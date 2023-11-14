@@ -1,0 +1,97 @@
+openapi: 3.1.0
+info:
+  title: Update Post API
+  description: REST API for updating a specific post
+  version: 'v1.0'
+ 
+servers:
+  - url: http://localhost:8080
+ 
+paths:
+  /posts/{postId}:
+
+    put:
+      operationId: update-post
+      description: Update the details of a specific post using its identifier.
+      summary: Update a specific post
+      parameters:
+        - name: postId
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "456"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+                type: object
+                $ref: "#/components/schemas/Post"
+            example:
+              postId: "456"
+              userId: "123"
+              image: "new-chocolate-cake.jpg"
+              description: "Chocolate cake over!"
+              location: "Northeastern University, Boston"
+              dateTime: "2023-11-14T12:00:00Z"
+              availabilityStatus: "Unavailable"
+      responses:
+        '200':
+          description: Post updated successfully!
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/Post"
+              example:
+                postId: "456"
+                userId: "123"
+                image: "new-chocolate-cake.jpg"
+                description: "Chocolate cake over!"
+                location: "Northeastern University, Boston"
+                dateTime: "2023-11-14T12:00:00Z"
+                availabilityStatus: "Unavailable"
+        '404':
+          description: Post not found
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ErrorResponse"
+              example:
+                code: 404
+                message: "Post not found"
+  
+components:
+  schemas:
+    Post:
+      type: object
+      properties:
+        postId:
+          type: string
+        userId:
+          type: string
+        image:
+          type: string
+        description:
+          type: string
+        location:
+          type: string
+        dateTime:
+          type: string
+          format: date-time
+        availabilityStatus:
+          type: string
+
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Error code
+          format: int32
+        message:
+          type: string
+          description: Error message
+          format: string
