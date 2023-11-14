@@ -1,0 +1,52 @@
+openapi: 3.1.0
+info:
+  title: Delete post API
+  description: REST API for deleting a specific post
+  version: 'v1.0'
+ 
+servers:
+  - url: http://localhost:8080
+ 
+paths:
+  /posts/{postId}:
+    delete:
+      operationId: delete-post
+      description: Delete a specific post using its identifier.
+      summary: Delete a specific post
+      parameters:
+        - name: postId
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "456"
+      responses:
+        '204':
+          description: Post deleted successfully!
+          content:
+            text/plain:
+              example: Post deleted successfully!
+        '404':
+          description: Post not found
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ErrorResponse"
+              example:
+                code: 404
+                message: "Post not found"
+  
+components:
+  schemas:         
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Error code
+          format: int32
+        message:
+          type: string
+          description: Error message
+          format: string
