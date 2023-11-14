@@ -1,0 +1,81 @@
+openapi: 3.1.0
+info:
+  title: Get Specific Post API
+  description: REST API for retrieving specific post.
+  version: 'v1.0'
+
+servers:
+  - url: http://localhost:8080
+
+paths:
+  /posts/{postId}:
+    get:
+      operationId: get-post-details
+      description: Retrieve details of a specific post  using its identifier.
+      summary: Get details of a specific post
+      parameters:
+        - name: postId
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "456"
+      responses:
+        '200':
+          description: Post fetched successfully!
+          content:
+            application/json:
+              schema: 
+                type: object
+                $ref: "#/components/schemas/Post"
+              example:
+                postId: "456"
+                userId: "56"
+                image: "chocolate-cake.jpg"
+                description: "Tantalizing Chocolate Cake @ Curry Student Center"
+                location: "Northeastern University, Boston"
+                dateTime: "2023-11-13T09:25:01Z"
+                availabilityStatus: "Available"
+        '404':
+          description: Post not found!
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ErrorResponse"
+              example:
+                code: 404
+                message: "Post not found!"
+
+components:
+  schemas:
+    Post:
+      type: object
+      properties:
+        postId:
+          type: string
+        userId:
+          type: string
+        image:
+          type: string
+        description:
+          type: string
+        location:
+          type: string
+        dateTime:
+          type: string
+          format: date-time
+        availabilityStatus:
+          type: string
+
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Error code
+          format: int32
+        message:
+          type: string
+          description: Error message
+          format: string
