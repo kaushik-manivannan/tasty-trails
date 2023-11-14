@@ -1,0 +1,81 @@
+openapi: 3.1.0
+info:
+  title: REST API for GET COMMENTS
+  description: REST API for the Tasty Trails food-sharing application for getting the comments for a post.
+  version: 'v1.0'
+ 
+servers:
+  - url: http://localhost:8080
+ 
+paths:
+  /posts/{postId}/comments:
+    get:
+      operationId: get-post-comments
+      description: Retrieve comments for a specific post using its identifier.
+      summary: Get comments for a specific post
+      parameters:
+        - name: postId
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "456"
+      responses:
+        '200':
+          description: Comments fetched successfully!
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Comment"
+              example:
+                - userId: "48"
+                  postId: "456"
+                  commentId: "123"
+                  content: "This looks amazing!"
+                  image: "clap.jpg"
+                - userId: "789"
+                  postId: "987"
+                  commentId: "123"
+                  content: "This looks amazing!"
+                  image: "wow.jpg"
+        '404':
+          description: No comments found!
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ErrorResponse"
+              example:
+                code: 404
+                message: "No comments found!"
+ 
+components:
+  schemas:
+    Comment:
+      type: object
+      properties:
+        userId:
+          type: string
+        postId:
+          type: string
+        commentId:
+          type: string
+        content:
+          type: string
+        image:
+          type: string
+ 
+ 
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Error code
+          format: int32
+        message:
+          type: string
+          description: Error message
+          format: string
