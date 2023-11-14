@@ -1,0 +1,89 @@
+openapi: 3.1.0
+info:
+  title: Add new Posts API
+  description: A REST API for the Tasty Trails food-sharing application for adding a new post.
+  version: "v1.0"
+
+servers:
+  - url: http://localhost:8080
+
+paths:
+  /posts:
+    post:
+      operationId: create-post
+      description: Create a new post with the provided information.
+      summary: Create a new post
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              $ref: "#/components/schemas/Post"
+            example:
+              postId: null
+              userId: "456"
+              image: "Dosas Available!"
+              description: "Delicious Masala Dosas at Shillman Hall!"
+              location: "Northeastern University, Boston"
+              dateTime: "2023-04-06T02:20:00Z"
+              availabilityStatus: "Available"
+      responses:
+        "201":
+          description: Post created successfully!
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/Post"
+              example:
+                postId: "789"
+                userId: "456"
+                image: "Dosas Available!"
+                description: "Delicious Masala Dosas at Shillman Hall!"
+                location: "Northeastern University, Boston"
+                dateTime: "2023-04-06T02:20:00Z"
+                availabilityStatus: "Available"
+        "400":
+          description: Bad Request!
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ErrorResponse"
+              example:
+                code: "400"
+                message: "Bad Request!"
+
+components:
+  schemas:
+    Post:
+      type: object
+      properties:
+        postId:
+          type: string
+        userId:
+          type: string
+        image:
+          type: string
+        description:
+          type: string
+        location:
+          type: string
+        dateTime:
+          type: string
+          format: date-time
+        availabilityStatus:
+          type: string
+
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Error code
+          format: int32
+        message:
+          type: string
+          description: Error message
+          format: string
