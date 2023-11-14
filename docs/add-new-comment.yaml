@@ -1,0 +1,87 @@
+openapi: 3.1.0
+info:
+  title: Add Comment API
+  description: A REST API for the Tasty Trails food-sharing application to add a comment for a specific post.
+  version: "v1.0"
+
+servers:
+  - url: http://localhost:8080
+
+paths:
+  /posts/{postId}/comments:
+    post:
+      operationId: add-comment-to-post
+      description: Add a new comment to a specific post using its identifier.
+      summary: Add a comment to a specific post
+      parameters:
+        - name: postId
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "456"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              $ref: "#/components/schemas/Comment"
+            example:
+              - userId: "48"
+                postId: "456"
+                commentId: "null"
+                content: "This looks amazing!"
+                image: "clap.jpg"
+      responses:
+        "201":
+          description: Comment posted successfully!
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/Comment"
+              example:
+                userId: "48"
+                postId: "456"
+                commentId: "123"
+                content: "This looks amazing!"
+                image: "clap.jpg"
+        "400":
+          description: Bad Request!
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ErrorResponse"
+              example:
+                code: "400"
+                message: "Bad Request!"
+
+components:
+  schemas:
+    Comment:
+      type: object
+      properties:
+        userId:
+          type: string
+        postId:
+          type: string
+        commentId:
+          type: string
+        content:
+          type: string
+        image:
+          type: string
+
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Error code
+          format: int32
+        message:
+          type: string
+          description: Error message
+          format: string
