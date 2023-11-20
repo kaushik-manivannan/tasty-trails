@@ -1,0 +1,266 @@
+openapi: 3.1.0
+info:
+  title: Post API
+  description: REST API for retrieving, adding and updating posts.
+  version: 'v1.0'
+
+servers:
+  - url: http://localhost:8080
+
+paths:
+  /posts:
+    get:
+      operationId: get-posts
+      description: Retrieve a list of all available posts.
+      summary: Get all posts
+      parameters:
+        - name: location
+          in: query
+          description: Filter posts by location.
+          required: false
+          example: boston
+          schema:
+            type: string
+        - name: date
+          in: query
+          description: Filter posts by date.
+          required: false
+          example: 01/01/2000
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: Posts fetched successfully!
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Post'
+              example:
+                - postId: "1"
+                  userId: "123"
+                  image: "pizza.jpg"
+                  description: "Pizza and Pasta Available!"
+                  location: "Jamaica Plain, USA"
+                  dateTime: "2023-01-01T12:00:00Z"
+                  availabilityStatus: "Available"
+                - postId: "2"
+                  userId: "345"
+                  image: "spaghetti.jpg"
+                  description: "Spaghetti Available!"
+                  location: "Roxbury Crossing, USA"
+                  dateTime: "2023-01-01T12:00:00Z"
+                  availabilityStatus: "Available"
+        '404':
+          description: Page not found!
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ErrorResponse"
+              example:
+                code: "404"
+                message: "Page not found!"
+    
+    post:
+      operationId: create-post
+      description: Create a new post with the provided information.
+      summary: Create a new post
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              $ref: "#/components/schemas/Post"
+            example:
+              postId: null
+              userId: "456"
+              image: "Dosas Available!"
+              description: "Delicious Masala Dosas at Shillman Hall!"
+              location: "Northeastern University, Boston"
+              dateTime: "2023-04-06T02:20:00Z"
+              availabilityStatus: "Available"
+      responses:
+        "201":
+          description: Post created successfully!
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/Post"
+              example:
+                postId: "789"
+                userId: "456"
+                image: "Dosas Available!"
+                description: "Delicious Masala Dosas at Shillman Hall!"
+                location: "Northeastern University, Boston"
+                dateTime: "2023-04-06T02:20:00Z"
+                availabilityStatus: "Available"
+        "400":
+          description: Bad Request!
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ErrorResponse"
+              example:
+                code: "400"
+                message: "Bad Request!"
+        
+  /posts/{postId}:
+    get:
+      operationId: get-post-details
+      description: Retrieve details of a specific post  using its identifier.
+      summary: Get details of a specific post
+      parameters:
+        - name: postId
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "456"
+      responses:
+        '200':
+          description: Post fetched successfully!
+          content:
+            application/json:
+              schema: 
+                type: object
+                $ref: "#/components/schemas/Post"
+              example:
+                postId: "456"
+                userId: "56"
+                image: "chocolate-cake.jpg"
+                description: "Tantalizing Chocolate Cake @ Curry Student Center"
+                location: "Northeastern University, Boston"
+                dateTime: "2023-11-13T09:25:01Z"
+                availabilityStatus: "Available"
+        '404':
+          description: Post not found!
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ErrorResponse"
+              example:
+                code: 404
+                message: "Post not found!"
+
+    put:
+      operationId: update-post
+      description: Update the details of a specific post using its identifier.
+      summary: Update a specific post
+      parameters:
+        - name: postId
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "456"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+                type: object
+                $ref: "#/components/schemas/Post"
+            example:
+              postId: "456"
+              userId: "123"
+              image: "new-chocolate-cake.jpg"
+              description: "Chocolate cake over!"
+              location: "Northeastern University, Boston"
+              dateTime: "2023-11-14T12:00:00Z"
+              availabilityStatus: "Unavailable"
+      responses:
+        '200':
+          description: Post updated successfully!
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/Post"
+              example:
+                postId: "456"
+                userId: "123"
+                image: "new-chocolate-cake.jpg"
+                description: "Chocolate cake over!"
+                location: "Northeastern University, Boston"
+                dateTime: "2023-11-14T12:00:00Z"
+                availabilityStatus: "Unavailable"
+        '404':
+          description: Post not found
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ErrorResponse"
+              example:
+                code: 404
+                message: "Post not found"
+    
+    delete:
+      operationId: delete-post
+      description: Delete a specific post using its identifier.
+      summary: Delete a specific post
+      parameters:
+        - name: postId
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "456"
+      responses:
+        '204':
+          description: Post deleted successfully!
+          content:
+            text/plain:
+              example: Post deleted successfully!
+        '404':
+          description: Post not found
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ErrorResponse"
+              example:
+                code: 404
+                message: "Post not found"
+  
+
+
+components:
+  schemas:
+    Post:
+      type: object
+      properties:
+        postId:
+          type: string
+        userId:
+          type: string
+        image:
+          type: string
+        description:
+          type: string
+        location:
+          type: string
+        dateTime:
+          type: string
+          format: date-time
+        availabilityStatus:
+          type: string
+
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Error code
+          format: int32
+        message:
+          type: string
+          description: Error message
+          format: string
