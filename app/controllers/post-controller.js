@@ -34,3 +34,14 @@ export const getPostById = async (req, res) => {
     }
 }
 
+export const updatePost = async (req, res) => {
+    const { postId } = req.params;
+    const postData = req.body;
+    try {
+        const updatedPost = await postService.updatePost(postId, postData);
+        responses.setResponse(updatedPost, res);
+    } catch (err) {
+        responses.set404ErrorResponse(err, res);
+    }
+}
+
