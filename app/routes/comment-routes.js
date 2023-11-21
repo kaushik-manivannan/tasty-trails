@@ -9,8 +9,8 @@ const router = express.Router();
 
 // router.get('/', commentController.getAllComments);
 router.post('/', commentController.createComment);
-router.get('/:postId', commentController.getCommentByPostId);
-router.put('/:postId', commentController.updateComment);
-router.delete('/:postId', commentController.deleteComment);
+router.get('/:commentId', commentController.getCommentById);
+router.put('/:commentId', commentController.updateComment);
+router.delete('/:commentId', commentController.deleteComment);
 
 export default router;

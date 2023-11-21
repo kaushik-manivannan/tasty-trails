@@ -5,28 +5,6 @@
 import * as commentService from "../services/comment-service.js";
 import * as responses from "../controllers/response-handler.js";
 
-// /**
-//  * Handles the retrieval of all comments for a paticular post.
-//  * 
-//  * @async
-//  * @function
-//  * @param {Object} req - Express request object.
-//  * @param {Object} res - Express response object.
-//  */
-// export const getAllComments = async (req, res) => {
-//     const { postId } = req.params;
-//     try {
-//         const comments = await commentService.getAllComments(postId);
-//         responses.setResponse(comments, res);
-//     } catch (err) {
-//         res.status(500)
-//         .json({ 
-//             code: "500",
-//             message: "Internal Server Error."
-//         });
-//     }
-// }
-
 /**
  * Handles the creation of a new comment for a post.
  * 
@@ -53,13 +31,18 @@ export const createComment = async (req, res) => {
  * @param {Object} req - Express request object.
  * @param {Object} res - Express response object.
  */
-export const getCommentByPostId = async (req, res) => {
-    const { postId } = req.params;
+export const getCommentById = async (req, res) => {
+    const { commentId } = req.params;
     try {
-        const comment = await commentService.getCommentByPostId(postId);
+        const comment = await commentService.getCommentById(commentId);
         responses.setResponse(comment, res);
     } catch (err) {
-        responses.set404ErrorResponse(err, res);
+        // responses.set404ErrorResponse(err, res);
+        res.status(404)
+        .json({ 
+            code: "404",
+            message: "Comment not found."
+        });
     }
 }
 
@@ -93,9 +76,14 @@ export const updateComment = async (req, res) => {
 export const deleteComment = async (req, res) => {
     const { commentId } = req.params;
     try {
-        await commentService.deletePost(commentId);
+        await commentService.deleteComment(commentId);
         res.status(204).send();
     } catch (err) {
-        responses.set404ErrorResponse(err, res);
+        // responses.set404ErrorResponse(err, res);
+        res.status(404)
+        .json({ 
+            code: "404",
+            message: "Comment not found."
+        });
     }
 }

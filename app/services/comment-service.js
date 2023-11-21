@@ -24,23 +24,23 @@ export const createComment = async (newCommentData) => {
 };
 
 /**
- * Retrieves a comment by its unique identifier (postId).
+ * Retrieves a comment by its unique identifier (commentId).
  *
  * @async
  * @function
- * @param {string} postId - The unique identifier of the post.
+ * @param {string} commentId - The unique identifier of the post.
  * @returns {Promise<Object>} - A promise that resolves to the comment with the given ID.
  * @throws {Error} - Throws an error if the comment is not found or there is an issue fetching it.
  */
-export const getCommentByPostId = async (postId) => {
+export const getCommentById = async (commentId) => {
     try {
-        const post = await Comment.findById(postId);
-        if (!post) {
-          throw new Error('Post not found');
+        const comment = await Comment.findById(commentId);
+        if (!comment) {
+          throw new Error('Comment not found');
         }
-        return post;
+        return comment;
     } catch (error) {
-        throw new Error('Error fetching post by ID');
+        throw new Error('Error fetching comment by ID');
     }
 };
 
@@ -54,9 +54,9 @@ export const getCommentByPostId = async (postId) => {
  * @returns {Promise<Object>} - A promise that resolves to the updated comment.
  * @throws {Error} - Throws an error if the comment is not found or there is an issue updating it.
  */
-export const updatePost = async (commentId, newCommentData) => {
+export const updateComment = async (commentId, newCommentData) => {
     try {
-        const updatedComment = await Post.findByIdAndUpdate(commentId, newCommentData, { new: true });
+        const updatedComment = await Comment.findByIdAndUpdate(commentId, newCommentData, { new: true });
         if (!updatedComment) {
           throw new Error('Comment not found');
         }
@@ -76,7 +76,7 @@ export const updatePost = async (commentId, newCommentData) => {
  */
 export const deleteComment = async (commentId) => {
     try {
-        const deletedComment = await Post.findByIdAndDelete(commentId);
+        const deletedComment = await Comment.findByIdAndDelete(commentId);
         if (!deletedComment) {
           throw new Error('Comment not found');
         }
