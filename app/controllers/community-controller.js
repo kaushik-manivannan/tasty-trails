@@ -35,3 +35,13 @@ export const addNewCommunity = async (req, res) => {
     responses.set400ErrorResponse(err, res);
   }
 };
+
+export const getCommunityById = async (req, res) => {
+  const communityId = req.params.id;
+  try {
+    const community = await CommunityService.getCommunityById(communityId);
+    responses.setResponse(community, res);
+  } catch (err) {
+    responses.set404ErrorResponse(err, res);
+  }
+};

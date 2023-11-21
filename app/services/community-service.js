@@ -31,3 +31,15 @@ export const addNewCommunity = async (newCommunityData) => {
     throw new Error("Error creating community");
   }
 };
+
+export const getCommunityById = async (communityId) => {
+  try {
+    const communtiy = await CommunityModel.findById(communityId);
+    if (!communtiy) {
+      throw new Error("community is not found");
+    }
+    return communtiy;
+  } catch (error) {
+    throw new Error("Error fetching community by ID");
+  }
+};
