@@ -61,7 +61,12 @@ export const updateComment = async (req, res) => {
         const updatedComment = await commentService.updateComment(commentId, commentData);
         responses.setResponse(updatedComment, res);
     } catch (err) {
-        responses.set404ErrorResponse(err, res);
+        // responses.set404ErrorResponse(err, res);
+        res.status(404)
+        .json({ 
+            code: "404",
+            message: "Comment not found."
+        });
     }
 }
 
