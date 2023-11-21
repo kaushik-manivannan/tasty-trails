@@ -24,3 +24,13 @@ export const createPost = async (req, res) => {
     }
 }
 
+export const getPostById = async (req, res) => {
+    const { postId } = req.params;
+    try {
+        const post = await postService.getPostById(postId);
+        responses.setResponse(post, res);
+    } catch (err) {
+        responses.set404ErrorResponse(err, res);
+    }
+}
+
