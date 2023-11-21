@@ -8,4 +8,5 @@ import CommunityRouter from "../routes/community-routes.js";
 export default (app) => {
   app.use("/posts", postRouter); // Registers the Post API routes under the "/posts" endpoint.
   app.use("/communities", CommunityRouter); // Registers the Post API routes under the "/communities" endpoint.
+  app.use("/users", userRouter); // Registers the User API routes under the "/user" endpoint.
 };

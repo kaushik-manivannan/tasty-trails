@@ -1,0 +1,84 @@
+// Importing user service and response handler modules
+import * as userService from "../services/user-service.js";
+import * as responses from "../controllers/response-handler.js";
+import TastyTrialsError from "../errors/TastyTrialsError.js";
+
+// Constant for user not found error message
+const USER_NOT_FOUND_ERR_MSG = "User Not found";
+
+/**
+ * Creates a new user based on the request body.
+ *
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
+ */
+export const createUser = async (req, res) => {
+    // Extracting user data from the request body
+    const userData = req.body;
+    try {
+        const newUser = await userService.createUser(userData);
+        res.status(201).json(newUser);
+    } 
+    catch (err) {
+
+        if(err instanceof TastyTrialsError){
+            responses.setResponse(err.message, res);
+        }
+            
+        else{
+            responses.set400ErrorResponse(err, res);
+        } 
+    }
+}
+
+/**
+ * Updates an existing user based on the provided user ID and request body.
+ *
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
+ */
+export const updateUser = async (req, res) => {
+
+    const { userId } = req.params;
+    const userData = req.body;
+    try {
+       
+        const updatedUser = await userService.updateUser(userId, userData);
+        responses.setResponse(updatedUser, res);
+    } catch (err) {
+        responses.set404ErrorResponseWithMsg(err, res, USER_NOT_FOUND_ERR_MSG);
+    }
+}
+
+/**
+ * Deletes an existing user based on the provided user ID.
+ *
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
+ */
+export const deleteUser = async (req, res) => {
+    
+    const { userId } = req.params;
+    try {
+        await userService.deleteUser(userId);
+        res.status(204).send();
+    } catch (err) {
+        responses.set404ErrorResponseWithMsg(err, res, USER_NOT_FOUND_ERR_MSG);
+    }
+}
+
+/**
+ * Retrieves a user based on the provided user ID.
+ *
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
+ */
+export const getUserById = async (req, res) => {
+    const { userId } = req.params;
+    try {
+        const user = await userService.getUserById(userId);
+        responses.setResponse(user, res);
+    } catch (err) {
+        responses.set404ErrorResponseWithMsg(err, res, USER_NOT_FOUND_ERR_MSG);
+    }
+}
