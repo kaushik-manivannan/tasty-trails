@@ -1,5 +1,5 @@
 /**
- * @fileoverview Contains Express route handlers for Post API endpoints.
+ * @fileoverview Contains Express route handlers for Comment API endpoints.
  */
 
 import * as commentService from "../services/comment-service.js";
@@ -47,7 +47,7 @@ export const getCommentById = async (req, res) => {
 }
 
 /**
- * Handles the update of a post by its identifier.
+ * Handles the update of a comment by its identifier.
  * 
  * @async
  * @function

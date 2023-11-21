@@ -38,5 +38,5 @@ const CommentSchema = new Schema({
 // Create a Mongoose Model for the 'comments' collection
 const CommentModel = mongoose.model('Comment', CommentSchema);
 
-// Export the Post Model Schema for external use
+// Export the Comment Model Schema for external use
 export default CommentModel;

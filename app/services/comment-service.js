@@ -28,7 +28,7 @@ export const createComment = async (newCommentData) => {
  *
  * @async
  * @function
- * @param {string} commentId - The unique identifier of the post.
+ * @param {string} commentId - The unique identifier of the Comment.
  * @returns {Promise<Object>} - A promise that resolves to the comment with the given ID.
  * @throws {Error} - Throws an error if the comment is not found or there is an issue fetching it.
  */

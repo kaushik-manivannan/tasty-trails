@@ -1,5 +1,5 @@
 /**
- * @fileoverview Defines the Express router for handling Post API endpoints.
+ * @fileoverview Defines the Express router for handling Comment API endpoints.
  */
 
 import express from "express";
