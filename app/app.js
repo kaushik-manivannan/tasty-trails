@@ -1,6 +1,6 @@
 /**
- * @module app/app
- * @description Initializes and configures the Express application.
+ * @fileoverview
+ * Initializes and configures the Express application.
  */
 
 import cors from "cors";
