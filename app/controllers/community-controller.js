@@ -26,6 +26,15 @@ export const getCommunities = async (req, res) => {
   }
 };
 
+/**
+ * Handles the addition of a new community.
+ *
+ * @async
+ * @function
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
+ */
+
 export const addNewCommunity = async (req, res) => {
   try {
     const communityData = req.body;
@@ -36,6 +45,15 @@ export const addNewCommunity = async (req, res) => {
   }
 };
 
+/**
+ * Handles the retrieval of a community by its ID.
+ *
+ * @async
+ * @function
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
+ */
+
 export const getCommunityById = async (req, res) => {
   const communityId = req.params.id;
   try {
@@ -45,6 +63,15 @@ export const getCommunityById = async (req, res) => {
     responses.set404ErrorResponse(err, res);
   }
 };
+
+/**
+ * Handles the update of a community by its ID.
+ *
+ * @async
+ * @function
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
+ */
 
 export const updateCommunity = async (req, res) => {
   const communityId = req.params.id;
