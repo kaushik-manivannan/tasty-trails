@@ -1,6 +1,18 @@
+/**
+ * @fileoverview Contains Express route handlers for Post API endpoints.
+ */
+
 import * as postService from "../services/post-service.js";
 import * as responses from "../controllers/response-handler.js";
 
+/**
+ * Handles the retrieval of all posts.
+ * 
+ * @async
+ * @function
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
+ */
 export const getAllPosts = async (req, res) => {
     try {
         const posts = await postService.getAllPosts();
@@ -14,6 +26,14 @@ export const getAllPosts = async (req, res) => {
     }
 }
 
+/**
+ * Handles the creation of a new post.
+ * 
+ * @async
+ * @function
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
+ */
 export const createPost = async (req, res) => {
     const postData = req.body;
     try {
@@ -24,6 +44,14 @@ export const createPost = async (req, res) => {
     }
 }
 
+/**
+ * Handles the retrieval of a post by its identifier.
+ * 
+ * @async
+ * @function
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
+ */
 export const getPostById = async (req, res) => {
     const { postId } = req.params;
     try {
@@ -34,6 +62,14 @@ export const getPostById = async (req, res) => {
     }
 }
 
+/**
+ * Handles the update of a post by its identifier.
+ * 
+ * @async
+ * @function
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
+ */
 export const updatePost = async (req, res) => {
     const { postId } = req.params;
     const postData = req.body;
@@ -45,6 +81,14 @@ export const updatePost = async (req, res) => {
     }
 }
 
+/**
+ * Handles the deletion of a post by its identifier.
+ * 
+ * @async
+ * @function
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
+ */
 export const deletePost = async (req, res) => {
     const { postId } = req.params;
     try {
