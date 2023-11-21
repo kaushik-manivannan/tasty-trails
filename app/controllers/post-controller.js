@@ -5,8 +5,6 @@
 import * as postService from "../services/post-service.js";
 import * as responses from "../controllers/response-handler.js";
 
-const POST_NOT_FOUND_ERR_MSG = "Post Not found";
-
 /**
  * Handles the retrieval of all posts.
  * 
@@ -60,7 +58,7 @@ export const getPostById = async (req, res) => {
         const post = await postService.getPostById(postId);
         responses.setResponse(post, res);
     } catch (err) {
-        responses.set404ErrorResponse(err, res, POST_NOT_FOUND_ERR_MSG);
+        responses.set404ErrorResponse(err, res);
     }
 }
 
@@ -79,7 +77,7 @@ export const updatePost = async (req, res) => {
         const updatedPost = await postService.updatePost(postId, postData);
         responses.setResponse(updatedPost, res);
     } catch (err) {
-        responses.set404ErrorResponse(err, res, POST_NOT_FOUND_ERR_MSG);
+        responses.set404ErrorResponse(err, res);
     }
 }
 
@@ -97,6 +95,6 @@ export const deletePost = async (req, res) => {
         await postService.deletePost(postId);
         res.status(204).send();
     } catch (err) {
-        responses.set404ErrorResponse(err, res, POST_NOT_FOUND_ERR_MSG);
+        responses.set404ErrorResponse(err, res);
     }
 }
