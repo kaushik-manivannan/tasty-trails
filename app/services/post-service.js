@@ -30,3 +30,15 @@ export const getPostById = async (postId) => {
     }
 };
 
+export const updatePost = async (postId, newPostData) => {
+    try {
+        const updatedPost = await Post.findByIdAndUpdate(postId, newPostData, { new: true });
+        if (!updatedPost) {
+          throw new Error('Post not found');
+        }
+        return updatedPost;
+    } catch (error) {
+        throw new Error('Error updating post');
+    }
+};
+
