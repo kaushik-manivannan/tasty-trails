@@ -18,7 +18,7 @@ const initialize = async (app) => {
     app.use(express.urlencoded()); // Parse incoming URL-encoded requests
     app.use(express.json()); // Parse incoming JSON requests
     // Connect to the MongoDB database using Mongoose
-    mongoose.connect("mongodb+srv://manivannank:efbhxkLZmlAruvYf@kaushik-manivannan.7qyuxhq.mongodb.net/tasty-trails?retryWrites=true&w=majority");
+    mongoose.connect("mongodb+srv://ramalingamka:Kavi4118@webdevcluster.3umo3.mongodb.net/tasty-trails?retryWrites=true&w=majority");
     registerRouter(app); // Register routes for the application
 }
 

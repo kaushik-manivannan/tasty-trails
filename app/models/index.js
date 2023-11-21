@@ -4,7 +4,9 @@
  */
 
 import Post from "../models/post.js";
+import Comment from "../models/comment.js";
 
 export default {
-    Post
+    Post,
+    Comment
 }
