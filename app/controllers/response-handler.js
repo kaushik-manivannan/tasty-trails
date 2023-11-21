@@ -13,11 +13,12 @@ export const setResponse = (data, res) => {
 /**
  * Sets a 404 Not Found HTTP response for resource not found errors.
  */
-export const set404ErrorResponse = (err, res) => {
+export const set404ErrorResponse = (err, res, message) => {
+
     res.status(404)
         .json({ 
             code: "404",
-            message: "Post not found."
+            message: message
         });
 }
 
@@ -29,5 +30,18 @@ export const set400ErrorResponse = (err, res) => {
         .json({
             code: "400",
             message: "Bad Request."
+        });
+}
+
+/**
+ * Sets a 404 Not Found HTTP response with custom message for resource not found errors.
+ */
+
+export const set404ErrorResponseWithMsg = (err, res, message) => {
+
+    res.status(404)
+        .json({ 
+            code: "404",
+            message: message
         });
 }

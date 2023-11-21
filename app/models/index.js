@@ -8,5 +8,6 @@ import Comment from "../models/comment.js";
 
 export default {
     Post,
-    Comment
+    Comment,
+    User
 }
