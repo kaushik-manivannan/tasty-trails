@@ -1,6 +1,6 @@
 /**
- * @module models/post
- * @description Defines the Post Model Schema for interacting with the 'posts' collection in MongoDB.
+ * @fileoverview
+ * Defines the Post Model Schema for interacting with the 'posts' collection in MongoDB.
  */
 
 import mongoose from "mongoose";
