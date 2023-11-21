@@ -43,3 +43,15 @@ export const getCommunityById = async (communityId) => {
     throw new Error("Error fetching community by ID");
   }
 };
+
+export const updateCommunityById = async (communityId, communityData) => {
+  try {
+    const communtiy = await CommunityModel.findByIdAndUpdate(
+      communityId,
+      communityData
+    );
+    return communtiy;
+  } catch (error) {
+    throw new Error("Error updating community by ID");
+  }
+};

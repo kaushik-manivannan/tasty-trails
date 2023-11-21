@@ -9,6 +9,7 @@ const router = express.Router();
 
 router.get("/", CommunityController.getCommunities); // Route for retrieving  communities
 router.post("/", CommunityController.addNewCommunity); // Route for adding a new community
-router.get("/:id", CommunityController.getCommunityById); // Route for geting a comunity by id
+router.get("/:id", CommunityController.getCommunityById); // Route for geting a community by id
+router.put("/:id", CommunityController.updateCommunity); // Route for updating a community
 
 export default router;
