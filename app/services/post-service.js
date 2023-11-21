@@ -9,3 +9,12 @@ export const getAllPosts = async (params = {}) => {
     }
 };
 
+export const createPost = async (newPostData) => {
+    try {
+        const newPost = await Post.create(newPostData);
+        return newPost;
+    } catch (error) {
+        throw new Error('Error creating post');
+    }
+};
+
