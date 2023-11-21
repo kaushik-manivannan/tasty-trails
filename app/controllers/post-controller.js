@@ -14,3 +14,13 @@ export const getAllPosts = async (req, res) => {
     }
 }
 
+export const createPost = async (req, res) => {
+    const postData = req.body;
+    try {
+        const newPost = await postService.createPost(postData);
+        res.status(201).json(newPost);
+    } catch (err) {
+        responses.set400ErrorResponse(err, res);
+    }
+}
+
