@@ -1,6 +1,6 @@
 /**
- * @file server.js
- * @description Entry point for the Tasty Trails Node.js server.
+ * @fileoverview
+ * Entry point for the Tasty Trails Node.js server.
  */
 
 import express from "express";
