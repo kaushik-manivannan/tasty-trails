@@ -77,11 +77,11 @@ export const updateCommunity = async (req, res) => {
   const communityId = req.params.id;
   const communityDetails = req.body;
   try {
-    const community = await CommunityService.updateCommunityById(
+    const updatedCommuntiy = await CommunityService.updateCommunityById(
       communityId,
       communityDetails
     );
-    responses.setResponse(community, res);
+    responses.setResponse(updatedCommuntiy, res);
   } catch (err) {
     responses.set404ErrorResponse(err, res);
   }
