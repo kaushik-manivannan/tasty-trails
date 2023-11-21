@@ -25,3 +25,13 @@ export const getCommunities = async (req, res) => {
     });
   }
 };
+
+export const addNewCommunity = async (req, res) => {
+  try {
+    const communityData = req.body;
+    const community = await CommunityService.addNewCommunity(communityData);
+    res.status(201).json(community);
+  } catch (err) {
+    responses.set400ErrorResponse(err, res);
+  }
+};

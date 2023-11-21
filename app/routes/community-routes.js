@@ -8,5 +8,6 @@ import * as CommunityController from "../controllers/community-controller.js";
 const router = express.Router();
 
 router.get("/", CommunityController.getCommunities); // Route for retrieving  communities
+router.post("/", CommunityController.addNewCommunity); // Route for adding a new community
 
 export default router;

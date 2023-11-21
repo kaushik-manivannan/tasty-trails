@@ -11,6 +11,10 @@ const CommunitySchema = new Schema(
       type: String,
       required: true,
     },
+    communityAdmin: {
+      type: String,
+      required: false,
+    },
     image: {
       type: String,
       required: false,

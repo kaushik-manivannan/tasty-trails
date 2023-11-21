@@ -22,3 +22,12 @@ export const getCommunities = async (params = {}) => {
     throw new Error("Error fetching communities");
   }
 };
+
+export const addNewCommunity = async (newCommunityData) => {
+  try {
+    const newCommunity = await CommunityModel.create(newCommunityData);
+    return newCommunity;
+  } catch (error) {
+    throw new Error("Error creating community");
+  }
+};
