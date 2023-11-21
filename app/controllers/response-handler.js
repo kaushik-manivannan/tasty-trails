@@ -32,3 +32,16 @@ export const set400ErrorResponse = (err, res) => {
             message: "Bad Request."
         });
 }
+
+/**
+ * Sets a 404 Not Found HTTP response with custom message for resource not found errors.
+ */
+
+export const set404ErrorResponseWithMsg = (err, res, message) => {
+
+    res.status(404)
+        .json({ 
+            code: "404",
+            message: message
+        });
+}
