@@ -45,3 +45,12 @@ export const updatePost = async (req, res) => {
     }
 }
 
+export const deletePost = async (req, res) => {
+    const { postId } = req.params;
+    try {
+        await postService.deletePost(postId);
+        res.status(204).send();
+    } catch (err) {
+        responses.set404ErrorResponse(err, res);
+    }
+}
