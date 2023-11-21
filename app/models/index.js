@@ -4,7 +4,9 @@
  */
 
 import Post from "../models/post.js";
+import User from "../models/user.js";
 
 export default {
-    Post
+    Post,
+    User
 }
