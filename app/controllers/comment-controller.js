@@ -66,7 +66,7 @@ export const updateComment = async (req, res) => {
 }
 
 /**
- * Handles the deletion of a post by its identifier.
+ * Handles the deletion of a comment by its identifier.
  * 
  * @async
  * @function
@@ -77,7 +77,10 @@ export const deleteComment = async (req, res) => {
     const { commentId } = req.params;
     try {
         await commentService.deleteComment(commentId);
-        res.status(204).send();
+        res.status(200).send("Deleted sucessfully");
+        // .json({ 
+        //     message: "Comment successfully deleted."
+        // });
     } catch (err) {
         // responses.set404ErrorResponse(err, res);
         res.status(404)
