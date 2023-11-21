@@ -42,3 +42,13 @@ export const updatePost = async (postId, newPostData) => {
     }
 };
 
+export const deletePost = async (postId) => {
+    try {
+        const deletedPost = await Post.findByIdAndDelete(postId);
+        if (!deletedPost) {
+          throw new Error('Post not found');
+        }
+    } catch (error) {
+        throw new Error('Error deleting post');
+    }
+};
