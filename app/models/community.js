@@ -15,10 +15,7 @@ const CommunitySchema = new Schema(
       type: String,
       required: false,
     },
-    members: {
-      type: [String],
-      required: false,
-    },
+    members: [],
   },
   {
     versionKey: false,
@@ -26,7 +23,7 @@ const CommunitySchema = new Schema(
 );
 
 // Create a Mongoose Model for the 'community' collection
-const CommunityModel = mongoose.model("Post", PostSchema);
+const CommunityModel = mongoose.model("Community", CommunitySchema);
 
 // Export the community Model Schema for external use
 export default CommunityModel;
