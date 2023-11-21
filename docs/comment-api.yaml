@@ -1,0 +1,184 @@
+openapi: 3.1.0
+info:
+  title: Comment API
+  description: REST API for retrieving, adding and updating comments.
+  version: 'v1.0'
+
+servers:
+  - url: http://localhost:8080
+
+paths:
+  /posts/{postId}/comments:
+    get:
+      operationId: get-post-comments
+      description: Retrieve comments for a specific post using its identifier.
+      summary: Get comments for a specific post
+      parameters:
+        - name: postId
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "456"
+      responses:
+        '200':
+          description: Comments fetched successfully!
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Comment"
+              example:
+                - userId: "48"
+                  postId: "456"
+                  commentId: "123"
+                  content: "This looks amazing!"
+                  image: "clap.jpg"
+                - userId: "789"
+                  postId: "987"
+                  commentId: "123"
+                  content: "This looks amazing!"
+                  image: "wow.jpg"
+        '404':
+          description: No comments found!
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ErrorResponse"
+              example:
+                code: 404
+                message: "No comments found!"
+  
+    post:
+      operationId: add-comment-to-post
+      description: Add a new comment to a specific post using its identifier.
+      summary: Add a comment to a specific post
+      parameters:
+        - name: postId
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "456"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              $ref: "#/components/schemas/Comment"
+            example:
+              - userId: "48"
+                postId: "456"
+                commentId: "null"
+                content: "This looks amazing!"
+                image: "clap.jpg"
+      responses:
+        "201":
+          description: Comment posted successfully!
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/Comment"
+              example:
+                userId: "48"
+                postId: "456"
+                commentId: "123"
+                content: "This looks amazing!"
+                image: "clap.jpg"
+        "400":
+          description: Bad Request!
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ErrorResponse"
+              example:
+                code: "400"
+                message: "Bad Request!"
+    
+    put:
+      operationId: update-comment
+      description: Update a specific comment using its identifier.
+      summary: Update a specific comment
+      parameters:
+        - name: postId
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "234"
+        - name: commentId
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "123"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+                type: object
+                $ref: "#/components/schemas/Comment"
+            example:
+              userId: "48"
+              postId: "234"
+              commentId: "123"
+              content: "I'll be coming in 5 mins!"
+              image: "thumbs-up.jpg"
+      responses:
+        '200':
+          description: Comment updated successfully!
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/Comment"
+              example:
+                userId: "48"
+                postId: "456"
+                commentId: "123"
+                content: "I'll be coming in 5 mins!"
+                image: "thumbs-up.jpg"
+        '404':
+          description: Comment not found!
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ErrorResponse"
+              example:
+                code: 404
+                message: "Comment not found!"
+
+components:
+  schemas:
+    Comment:
+      type: object
+      properties:
+        userId:
+          type: string
+        postId:
+          type: string
+        commentId:
+          type: string
+        content:
+          type: string
+        image:
+          type: string
+
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Error code
+          format: int32
+        message:
+          type: string
+          description: Error message
+          format: string
