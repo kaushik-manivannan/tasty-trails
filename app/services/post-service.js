@@ -18,3 +18,15 @@ export const createPost = async (newPostData) => {
     }
 };
 
+export const getPostById = async (postId) => {
+    try {
+        const post = await Post.findById(postId);
+        if (!post) {
+          throw new Error('Post not found');
+        }
+        return post;
+    } catch (error) {
+        throw new Error('Error fetching post by ID');
+    }
+};
+
