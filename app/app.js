@@ -19,7 +19,7 @@ const initialize = async (app) => {
     app.use(express.json()); // Parse incoming JSON requests
     // Connect to the MongoDB database using Mongoose
     mongoose.connect("mongodb+srv://manivannank:efbhxkLZmlAruvYf@kaushik-manivannan.7qyuxhq.mongodb.net/tasty-trails?retryWrites=true&w=majority");
-    registerRouter(app);
+    registerRouter(app); // Register routes for the application
 }
 
 // Export the initialize function for external use
