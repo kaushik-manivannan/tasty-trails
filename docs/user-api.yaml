@@ -1,0 +1,200 @@
+openapi: 3.1.0
+info:
+  title: User Management API
+  description: REST API for user creation, update, and deletion.
+  version: 'v1.0'
+
+servers:
+  - url: http://localhost:8080
+
+paths:
+  /users:
+    post:
+      operationId: create-user
+      description: Create a new user with the provided information.
+      summary: Create a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+            example:
+              id: null
+              emailId: new.user@example.com
+              fullName: New User
+              userName: newuser
+              password: newpassword
+              image: https://example.com/newprofile.jpg
+              location: New Location
+      responses:
+        "201":
+          description: User created successfully!
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+              example:
+                id: "3"
+                emailId: new.user@example.com
+                fullName: New User
+                userName: newuser
+                image: https://example.com/newprofile.jpg
+                location: New Location
+        "400":
+          description: Bad Request!
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              example:
+                code: 400
+                message: "Bad Request!"
+        
+  /users/{id}:
+    get:
+      operationId: get-user-details
+      description: Retrieve details of a specific user using their identifier.
+      summary: Get details of a specific user
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "1"
+      responses:
+        '200':
+          description: User fetched successfully!
+          content:
+            application/json:
+              schema: 
+                $ref: "#/components/schemas/User"
+              example:
+                id: "1"
+                emailId: john.doe@example.com
+                fullName: John Doe
+                userName: johndoe
+                image: https://example.com/profile.jpg
+                location: New York
+        '404':
+          description: User not found!
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              example:
+                code: 404
+                message: "User not found"
+
+    put:
+      operationId: update-user
+      description: Update the details of a specific user using their identifier.
+      summary: Update a specific user
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "1"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+                $ref: "#/components/schemas/User"
+            example:
+              id: "1"
+              emailId: updated.user@example.com
+              fullName: Updated User
+              userName: updateduser
+              password: updatedpassword
+              image: https://example.com/updatedprofile.jpg
+              location: Updated Location
+      responses:
+        '200':
+          description: User updated successfully!
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+              example:
+                id: "1"
+                emailId: updated.user@example.com
+                fullName: Updated User
+                userName: updateduser
+                image: https://example.com/updatedprofile.jpg
+                location: Updated Location
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              example:
+                code: 404
+                message: "User not found"
+    
+    delete:
+      operationId: delete-user
+      description: Delete a specific user using their identifier.
+      summary: Delete a specific user
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "1"
+      responses:
+        '204':
+          description: User deleted successfully!
+          content:
+            text/plain:
+              example: User deleted successfully!
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              example:
+                code: 404
+                message: "User not found"
+  
+
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        emailId:
+          type: string
+          format: email
+        fullName:
+          type: string
+        userName:
+          type: string
+        password:
+          type: string
+        image:
+          type: string
+          format: uri
+        location:
+          type: string
+
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Error code
+          format: int32
+        message:
+          type: string
+          description: Error message
+          format: string
