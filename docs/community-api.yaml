@@ -1,0 +1,203 @@
+openapi: 3.1.0
+info:
+  title: Community Management API
+  description: REST API for managing communities.
+  version: 'v1.0'
+
+servers:
+  - url: http://localhost:8080
+
+paths:
+  /communities:
+    get:
+      operationId: get-communities
+      description: Retrieve a list of all communities.
+      summary: Get all communities
+      responses:
+        '200':
+          description: Communities fetched successfully!
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Community'
+              example:
+                - communityId: "1"
+                  communityName: "Tech Enthusiasts"
+                  description: "A community for tech lovers."
+                  communityAdmin: "JohnDoe"
+                  image: "tech.jpg"
+                  members: ["User1", "User2"]
+                - communityId: "2"
+                  communityName: "Foodies Club"
+                  description: "A community for food lovers."
+                  communityAdmin: "JaneSmith"
+                  image: "food.jpg"
+                  members: ["User3", "User4"]
+        '404':
+          description: Communities not found!
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              example:
+                code: 404
+                message: "Communities not found!"
+
+    post:
+      operationId: create-community
+      description: Create a new community with the provided information.
+      summary: Create a new community
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Community"
+            example:
+              communityId: null
+              communityName: "Travel Explorers"
+              description: "A community for travel enthusiasts."
+              communityAdmin: "TravelAdmin"
+              image: "travel.jpg"
+              members: []
+      responses:
+        "201":
+          description: Community created successfully!
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Community"
+              example:
+                communityId: "3"
+                communityName: "Travel Explorers"
+                description: "A community for travel enthusiasts."
+                communityAdmin: "TravelAdmin"
+                image: "travel.jpg"
+                members: []
+        "400":
+          description: Bad Request!
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              example:
+                code: 400
+                message: "Bad Request!"
+        
+  /communities/{communityId}:
+    get:
+      operationId: get-community-details
+      description: Retrieve details of a specific community using its identifier.
+      summary: Get details of a specific community
+      parameters:
+        - name: communityId
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "1"
+      responses:
+        '200':
+          description: Community fetched successfully!
+          content:
+            application/json:
+              schema: 
+                $ref: "#/components/schemas/Community"
+              example:
+                communityId: "1"
+                communityName: "Tech Enthusiasts"
+                description: "A community for tech lovers."
+                communityAdmin: "JohnDoe"
+                image: "tech.jpg"
+                members: ["User1", "User2"]
+        '404':
+          description: Community not found!
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              example:
+                code: 404
+                message: "Community not found!"
+
+    put:
+      operationId: update-community
+      description: Update the details of a specific community using its identifier.
+      summary: Update a specific community
+      parameters:
+        - name: communityId
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "1"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+                $ref: "#/components/schemas/Community"
+            example:
+              communityId: "1"
+              communityName: "Updated Tech Enthusiasts"
+              description: "Updated description for tech lovers."
+              communityAdmin: "UpdatedAdmin"
+              image: "updated-tech.jpg"
+              members: ["User1", "User2"]
+      responses:
+        '200':
+          description: Community updated successfully!
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Community"
+              example:
+                communityId: "1"
+                communityName: "Updated Tech Enthusiasts"
+                description: "Updated description for tech lovers."
+                communityAdmin: "UpdatedAdmin"
+                image: "updated-tech.jpg"
+                members: ["User1", "User2"]
+        '404':
+          description: Community not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              example:
+                code: 404
+                message: "Community not found"
+    
+components:
+  schemas:
+    Community:
+      type: object
+      properties:
+        communityId:
+          type: string
+        communityName:
+          type: string
+        description:
+          type: string
+        communityAdmin:
+          type: string
+        image:
+          type: string
+        members:
+          type: array
+          items:
+            type: string
+
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Error code
+          format: int32
+        message:
+          type: string
+          description: Error message
+          format: string
