@@ -8,9 +8,21 @@ import mongoose from "mongoose";
 // Create a Schema object from mongoose.
 const Schema = mongoose.Schema;
 
-// Represents the structure of a post in the 'posts' collection.
-const PostSchema = new Schema({
-    userId: {
+// Represents the structure of a post in the 'Users' collection.
+const UserSchema = new Schema({
+    emailId: {
+        type: String,
+        required: true
+    },
+    fullName: {
+        type: String,
+        required: true
+    },
+    userName: {
+        type: String,
+        required: true
+    },
+    password: {
         type: String,
         required: true
     },
@@ -18,19 +30,7 @@ const PostSchema = new Schema({
         type: String,
         required: true
     },
-    description: {
-        type: String,
-        required: true
-    },
     location: {
-        type: String,
-        required: true
-    },
-    dateTime: {
-        type: String,
-        required: true
-    },
-    availabilityStatus: {
         type: String,
         required: true
     }
@@ -39,8 +39,8 @@ const PostSchema = new Schema({
     versionKey: false
 });
 
-// Create a Mongoose Model for the 'posts' collection
-const PostModel = mongoose.model('Post', PostSchema);
+// Create a Mongoose Model for the 'Users' collection
+const UserModel = mongoose.model('User', UserSchema);
 
-// Export the Post Model Schema for external use
-export default PostModel;
+// Export the User Model Schema for external use
+export default UserModel;
