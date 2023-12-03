@@ -15,10 +15,10 @@ export const createUser = async (newUserData) => {
         console.log("userName="+newUserData.userName);
         
         //Checking if the user already exists with the username
-        const user = User.find({"userName":newUserData.userName});
-        // if(user) {
-        //     throw new TastyTrialsError('user name already exists');
-        // }
+        const user = await User.findOne({"userName":newUserData.userName});
+        if(user) {
+            throw new TastyTrialsError('user name already exists');
+         }
         const newUser = await User.create(newUserData);
         return newUser;
     } catch (error) {
