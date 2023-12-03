@@ -10,7 +10,7 @@ import initialize from "./app/app.js";
 const app = express();
 
 // Setting the port for the server to listen on
-const port = 3000;
+const port = 8080;
 
 /**
  * @function initialize

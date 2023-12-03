@@ -3,7 +3,7 @@
  */
 
 import * as CommunityService from "../services/community-service.js";
-import * as responses from "../controllers/response-handler.js";
+import * as responses from "./response-handler.js";
 
 /**
  * Handles the retrieval of all posts.
