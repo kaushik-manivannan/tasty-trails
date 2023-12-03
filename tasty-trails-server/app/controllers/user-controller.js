@@ -1,6 +1,6 @@
 // Importing user service and response handler modules
 import * as userService from "../services/user-service.js";
-import * as responses from "../controllers/response-handler.js";
+import * as responses from "./response-handler.js";
 import TastyTrialsError from "../errors/TastyTrialsError.js";
 
 // Constant for user not found error message

@@ -3,7 +3,7 @@
  */
 
 import * as commentService from "../services/comment-service.js";
-import * as responses from "../controllers/response-handler.js";
+import * as responses from "./response-handler.js";
 
 /**
  * Handles the creation of a new comment for a post.

@@ -77,11 +77,11 @@ export const getCommunityById = async (communityId) => {
 
 export const updateCommunityById = async (communityId, communityData) => {
   try {
-    const updatedCommuntiy = await CommunityModel.findByIdAndUpdate(
+    const updatedCommunity = await CommunityModel.findByIdAndUpdate(
       communityId,
       communityData
     );
-    return updatedCommuntiy;
+    return updatedCommunity;
   } catch (error) {
     throw new Error("Error updating community by ID");
   }
