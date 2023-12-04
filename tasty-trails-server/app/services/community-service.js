@@ -79,7 +79,7 @@ export const updateCommunityById = async (communityId, communityData) => {
   try {
     const updatedCommunity = await CommunityModel.findByIdAndUpdate(
       communityId,
-      communityData
+      communityData, { new: true }
     );
     return updatedCommunity;
   } catch (error) {
