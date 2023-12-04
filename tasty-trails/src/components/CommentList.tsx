@@ -21,7 +21,7 @@ const CommentList: React.FC<CommentListProps> = ({ comments }) => {
     <div>
       {comments.map((comment, idx) => {
         return <CommentItem key={`comment-${idx + 1}`} commentValue={comment} />;
-      })}
+      })} 
     </div>
   );
 };

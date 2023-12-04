@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'; 
 
 interface Comment {
   _id: {
@@ -18,9 +18,9 @@ interface CommentItemProps {
 const CommentItem: React.FC<CommentItemProps> = ({ commentValue }) => {
   console.log(commentValue);
   return (
-    <>
-      <h2>{commentValue.comment}</h2>
-    </>
+    <div style={{ width: '300px', height: 'auto',borderRadius: '8px', backgroundColor: '#f0f0f0', padding: '8px', marginBottom: '8px' }}>
+      <div><p>{commentValue.comment}</p></div>
+    </div>
   );
 };
 

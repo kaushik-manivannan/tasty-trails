@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import CommentList from '../components/CommentList.tsx';
+import NewCommentContainer from './NewCommentContainer.tsx';
 
 const CommentListContainer: React.FC = () => {
   const [comments, setComments] = useState([]);
+  const postId = '2';
+  const userId = 'Vijay';
   console.log(comments);
   useEffect(() => {
-    fetch('http://localhost:8080/comments/2')
+    fetch(`http://localhost:8080/comments/${postId}`)
       .then((response) => response.json())
       .then((data) => {
         setComments(data);
@@ -13,9 +16,19 @@ const CommentListContainer: React.FC = () => {
       .catch((error) => {
         console.error('Error fetching posts:', error);
       });
-  }, []);
+  }, [postId]);
 
-  return <CommentList comments={comments} />;
+  const addComment = (newComment) => {
+    // Update the state with the newly added comment
+    setComments((prevComments) => [...prevComments, newComment]);
 };
+
+  return (
+    <div>
+    <CommentList comments={comments} />
+    <NewCommentContainer userId={userId} postId={postId} addComment={addComment}></NewCommentContainer> 
+    </div>
+    )
+}
 
 export default CommentListContainer;
