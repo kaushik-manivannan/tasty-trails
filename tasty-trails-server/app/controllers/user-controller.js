@@ -82,3 +82,20 @@ export const getUserById = async (req, res) => {
         responses.set404ErrorResponseWithMsg(err, res, USER_NOT_FOUND_ERR_MSG);
     }
 }
+
+
+/**
+ * Authenticates a user based on the provided username and password.
+ *
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
+ */
+export const loginUser = async (req, res) => {
+    const userData = req.body;
+    try {
+        const { user, token } = await userService.loginUser(userData);
+        res.status(200).json({ user, token });
+    } catch (err) {
+        responses.set400ErrorResponse(err, res);
+    }
+};
