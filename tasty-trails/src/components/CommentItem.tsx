@@ -1,4 +1,5 @@
 import React from 'react'; 
+import './CommentItem.css';
 
 interface Comment {
   _id: {
@@ -18,7 +19,7 @@ interface CommentItemProps {
 const CommentItem: React.FC<CommentItemProps> = ({ commentValue }) => {
   console.log(commentValue);
   return (
-    <div style={{ width: '300px', height: 'auto',borderRadius: '8px', backgroundColor: '#f0f0f0', padding: '8px', marginBottom: '8px' }}>
+    <div className="comment-item-container">
       <div><p>{commentValue.comment}</p></div>
     </div>
   );
