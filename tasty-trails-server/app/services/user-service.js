@@ -1,5 +1,7 @@
 import User from "../models/user.js";
 import TastyTrialsError from "../errors/TastyTrialsError.js";
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 
 /**
  * Creates a new user.
@@ -12,24 +14,27 @@ import TastyTrialsError from "../errors/TastyTrialsError.js";
  */
 export const createUser = async (newUserData) => {
     try {
-        console.log("userName="+newUserData.userName);
-        
-        //Checking if the user already exists with the username
-        const user = await User.findOne({"userName":newUserData.userName});
-        if(user) {
-            throw new TastyTrialsError('user name already exists');
-         }
-        const newUser = await User.create(newUserData);
-        return newUser;
-    } catch (error) {
-
-        if(error instanceof TastyTrialsError) {
-            throw error;
+        const user = await User.findOne({ userName: newUserData.userName });
+        if (user) {
+            throw new TastyTrialsError('User name already exists');
         }
-        else {
+
+        // Hash the password before saving it to the database
+        newUserData.password = await bcrypt.hash(newUserData.password, 10);
+
+        const newUser = await User.create(newUserData);
+
+        const token = generateAuthToken(newUser);
+
+        return { user: newUser, token };
+    } catch (error) {
+        if (error instanceof TastyTrialsError) {
+            throw error;
+        } else {
             throw new Error('Error creating user');
         }
     }
+
 };
 
 /**
@@ -85,5 +90,67 @@ export const getUserById = async (userId) => {
         return user;
     } catch (error) {
         throw new Error('Error fetching User by ID');
+    }
+};
+
+
+export const loginUser = async (userData) => {
+    try {
+        // Assuming you have a function to authenticate the user in your service
+        const user = await authenticateUser(userData.userName, userData.password);
+        if (!user) {
+            throw new TastyTrialsError('Invalid username or password');
+        }
+
+        // Generate a JWT token for authentication
+        const token = generateAuthToken(user);
+
+        return { user, token };
+    } catch (error) {
+        throw new Error('Error during login');
+    }
+};
+
+export const authenticateUser = async (userName, password) => {
+    try {
+        const user = await User.findOne({ userName });
+
+        if (!user) {
+            throw new TastyTrialsError('User not found');
+        }
+
+        const isPasswordValid = await user.comparePassword(password);
+
+        if (!isPasswordValid) {
+            throw new TastyTrialsError('Incorrect password');
+        }
+
+        return user;
+    } catch (error) {
+        throw new TastyTrialsError('Error authenticating user');
+    }
+};
+
+
+
+export const generateAuthToken = (user) => {
+    try {
+        // Assuming you have a secret key for signing the token
+        const secretKey = '1234';
+
+        const payload = {
+            user: {
+                id: user._id, // Assuming your user model has an '_id' field
+                userName: user.userName,
+                
+            },
+        };
+
+        // Sign the token with the payload, secret key, and any optional settings
+        const token = jwt.sign(payload, secretKey, { expiresIn: '4h' }); // Token expires in 1 hour
+
+        return token;
+    } catch (error) {
+        throw new TastyTrialsError('Error generating authentication token');
     }
 };
