@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import NewComment from '../components/NewComment.tsx';
+import '../components/NewComment.css';
 
 const NewCommentContainer = ({ userId, postId, addComment}) => {
     const [comment, setComment] = useState('');
@@ -9,11 +10,11 @@ const NewCommentContainer = ({ userId, postId, addComment}) => {
         setComment(e.target.value);
     };
 
-    const addCommentHandler = () => {
+    const addCommentHandler = (commentWithEmoji) => {
         const newComment = {
             userId,
             postId,
-            comment,
+            comment: commentWithEmoji,
             dateTime,
             image: 'image.jpg', // You may handle image uploading separately
         };
@@ -42,6 +43,7 @@ const NewCommentContainer = ({ userId, postId, addComment}) => {
     return (
         <NewComment
             comment={comment}
+            setComment={setComment}
             commentChangeHandler={commentChangeHandler}
             addCommentHandler={addCommentHandler}
         />
