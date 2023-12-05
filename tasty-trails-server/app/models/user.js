@@ -4,6 +4,7 @@
  */
 
 import mongoose from "mongoose";
+import bcrypt from 'bcrypt';
 
 // Create a Schema object from mongoose.
 const Schema = mongoose.Schema;
@@ -38,6 +39,14 @@ const UserSchema = new Schema({
 {
     versionKey: false
 });
+
+UserSchema.methods.comparePassword = async function (candidatePassword) {
+    try {
+        return await bcrypt.compare(candidatePassword, this.password);
+    } catch (error) {
+        throw new Error('Error comparing passwords');
+    }
+};
 
 // Create a Mongoose Model for the 'Users' collection
 const UserModel = mongoose.model('User', UserSchema);
