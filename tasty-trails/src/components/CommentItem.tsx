@@ -17,7 +17,6 @@ interface CommentItemProps {
 }
 
 const CommentItem: React.FC<CommentItemProps> = ({ commentValue }) => {
-  console.log(commentValue);
   return (
     <div className="comment-item-container">
       <div><p>{commentValue.comment}</p></div>

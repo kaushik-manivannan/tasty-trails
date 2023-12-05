@@ -4,19 +4,41 @@ import '../components/NewComment.css';
 
 const NewCommentContainer = ({ userId, postId, addComment}) => {
     const [comment, setComment] = useState('');
+    const [emojiPickerVisible, setEmojiPickerVisible] = useState(false);
+    const [selectedImage, setSelectedImage] = useState(null);
     const dateTime = new Date().toISOString();
 
     const commentChangeHandler = (e) => {
         setComment(e.target.value);
     };
+    const handleAddComment = () => {
+        const commentWithEmoji = `${comment}`;
+        addCommentHandler(commentWithEmoji, selectedImage);
+        setSelectedImage(null);
+      };
 
-    const addCommentHandler = (commentWithEmoji) => {
+      const toggleEmojiPicker = () => {
+        setEmojiPickerVisible(!emojiPickerVisible);
+      };
+    
+      const handleImageUpload = (event) => {
+        const file = event.target.files[0];
+        setSelectedImage(file);
+      };
+
+      const handleEmojiClick = (event, emojiObject) => {
+        const emoji = event.emoji;
+        setComment(prevComment => prevComment + emoji);
+        setEmojiPickerVisible(false);
+      };
+
+    const addCommentHandler = (commentWithEmoji,selectedImage) => {
         const newComment = {
             userId,
             postId,
             comment: commentWithEmoji,
             dateTime,
-            image: 'image.jpg', // You may handle image uploading separately
+            image: 'selectedImage',
         };
 
         // Send a POST request to save the new comment
@@ -46,6 +68,11 @@ const NewCommentContainer = ({ userId, postId, addComment}) => {
             setComment={setComment}
             commentChangeHandler={commentChangeHandler}
             addCommentHandler={addCommentHandler}
+            handleAddComment={handleAddComment}
+            handleEmojiClick={handleEmojiClick}
+            toggleEmojiPicker={toggleEmojiPicker}
+            handleImageUpload={handleImageUpload}
+            emojiPickerVisible={emojiPickerVisible}
         />
     );
 };
