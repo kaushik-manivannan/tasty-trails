@@ -23,6 +23,7 @@
   }
   
   .new-comment-buttons-container {
+    margin-top: 10px;
     display: flex;
     align-items: center;
   }
@@ -68,3 +69,11 @@
     margin-top: 10px;
   }
   
+  .new-comment-attachment-word{
+    font-size: small;
+    color: #2222d6;
+  }
+
+  .new-comment-attachment{
+    margin-right: 4px;
+  }

@@ -3,8 +3,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane, faImage, faSmile } from '@fortawesome/free-solid-svg-icons';
 import EmojiPicker from 'emoji-picker-react';
 import './NewComment.css';
+import { TiAttachment } from "react-icons/ti";
 
-const NewComment = ({ comment, setComment, commentChangeHandler, addCommentHandler, handleAddComment, handleEmojiClick, toggleEmojiPicker, handleImageUpload ,emojiPickerVisible}) => {
+const NewComment = ({ comment, setComment, commentChangeHandler, addCommentHandler, handleAddComment, handleEmojiClick, toggleEmojiPicker, handleImageUpload ,emojiPickerVisible, selectedImage}) => {
   const isSubmitDisabled = comment.trim() === '';
   
   return (
@@ -17,6 +18,13 @@ const NewComment = ({ comment, setComment, commentChangeHandler, addCommentHandl
           placeholder="Enter your Comments"
           className="new-comment-input"
         />
+        {selectedImage && (
+          <div>
+          <TiAttachment className='new-comment-attachment' />
+          <span className="new-comment-attachment-word">Attached</span>
+          </div>
+        )}
+
         <div className="new-comment-buttons-container">
           <label className="new-comment-button" htmlFor="imageUpload">
             <FontAwesomeIcon icon={faImage} />
