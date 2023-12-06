@@ -16,9 +16,9 @@ import registerRouter from "./routes/index.js"
 const initialize = async (app) => {
     app.use(cors()); // Enable Cross-Origin Resource Sharing (CORS)
     app.use(express.urlencoded()); // Parse incoming URL-encoded requests
-    app.use(express.json()); // Parse incoming JSON requests
+    app.use(express.json({ limit: '50mb' }));  // Parse incoming JSON requests
     // Connect to the MongoDB database using Mongoose
-    mongoose.connect("mongodb+srv://manivannank:efbhxkLZmlAruvYf@kaushik-manivannan.7qyuxhq.mongodb.net/tasty-trails?retryWrites=true&w=majority");
+    mongoose.connect("mongodb+srv://vijay:vijay@vijay.pu330la.mongodb.net/tasty-trails?retryWrites=true&w=majority");
     registerRouter(app); // Register routes for the application
 }
 

@@ -17,3 +17,10 @@ export interface CommunityListProps{
 export interface CommunityItemProps{
     community: Community;
 }
+
+// Define form data interface
+export interface CommunityFormData {
+    communityName: string;
+    description: string;
+    image?: string;
+  }
