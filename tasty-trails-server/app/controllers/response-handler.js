@@ -45,3 +45,20 @@ export const set404ErrorResponseWithMsg = (err, res, message) => {
             message: message
         });
 }
+
+export const set401ErrorResponse = (res, message) => {
+
+    res.status(404)
+        .json({ 
+            code: "401",
+            message: message
+        });
+}
+
+export const setResponseData = (code, res, message) => {
+    res.status(code)
+        .json({
+            code: code,
+            message: message
+        })
+}
