@@ -1,10 +1,38 @@
 /* CommentItem.css */
+
 .comment-item-container {
-    width: 300px;
-    height: auto;
-    border-radius: 8px;
-    background-color: #f0f0f0;
-    padding: 10px;
-    margin-bottom: 8px;
-  }
-  
+  width: 420px;
+  height: auto;
+  border-radius: 8px;
+  background-color: #ffffff;
+  padding: 10px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.user-image-container {
+  margin-right: 12px;
+}
+
+.user-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.comment-text-container {
+  flex: 1;
+}
+
+.comment-text {
+  border-radius: 8px;
+  background-color: #f0f0f0;
+  padding: 8px;
+}
+
+.comment-image-display {
+  max-width: 100px; /* Fix the typo: Remove the quotes around 100px */
+  max-height: 100px; /* Fix the typo: Remove the quotes around 100px */
+}
