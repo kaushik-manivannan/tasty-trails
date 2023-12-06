@@ -20,7 +20,7 @@ export const createUser = async (newUserData) => {
         }
 
         // Hash the password before saving it to the database
-        newUserData.password = await bcrypt.hash(newUserData.password, 10);
+        newUserData.password = await getHashedPassword(newUserData.password);
 
         const newUser = await User.create(newUserData);
 
@@ -28,6 +28,7 @@ export const createUser = async (newUserData) => {
 
         return { user: newUser, token };
     } catch (error) {
+        console.log(error);
         if (error instanceof TastyTrialsError) {
             throw error;
         } else {
@@ -47,6 +48,13 @@ export const createUser = async (newUserData) => {
  */
 export const updateUser = async (userId, userData) => {
     try {
+
+        if (userData.password) {
+            // Hash the password before updating
+            const hashedPassword = await getHashedPassword(userData.password);
+            userData.password = hashedPassword;
+        }
+
         const updatedUser = await User.findByIdAndUpdate(userId, userData, { new: true });
         if (!updatedUser) {
           throw new Error('User not found');
@@ -136,13 +144,11 @@ export const authenticateUser = async (userName, password) => {
 export const generateAuthToken = (user) => {
     try {
         // Assuming you have a secret key for signing the token
-        const secretKey = '1234';
+        const secretKey = process.env.JWT_SECRET;
 
         const payload = {
             user: {
-                id: user._id, // Assuming your user model has an '_id' field
-                userName: user.userName,
-                
+                id: user._id,  
             },
         };
 
@@ -154,3 +160,11 @@ export const generateAuthToken = (user) => {
         throw new TastyTrialsError('Error generating authentication token');
     }
 };
+
+const getHashedPassword = async (password) => {
+
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    return hashedPassword;
+}
