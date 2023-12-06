@@ -6,7 +6,6 @@ const CommentListContainer: React.FC = () => {
   const [comments, setComments] = useState([]);
   const postId = '2';
   const userId = 'Vijay';
-  console.log(comments);
   useEffect(() => {
     fetch(`http://localhost:8080/comments/${postId}`)
       .then((response) => response.json())

@@ -4,12 +4,42 @@ import { faPaperPlane, faImage, faSmile } from '@fortawesome/free-solid-svg-icon
 import EmojiPicker from 'emoji-picker-react';
 import './NewComment.css';
 import { TiAttachment } from "react-icons/ti";
+import userDefault from '../assets/user.png';
 
-const NewComment = ({ comment, setComment, commentChangeHandler, addCommentHandler, handleAddComment, handleEmojiClick, toggleEmojiPicker, handleImageUpload ,emojiPickerVisible, selectedImage}) => {
+interface NewCommentProps {
+  comment: string;
+  setComment: React.Dispatch<React.SetStateAction<string>>;
+  commentChangeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  addCommentHandler: () => void;
+  handleEmojiClick: (event: any, emojiObject: any) => void;
+  toggleEmojiPicker: () => void;
+  handleImageUpload: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  emojiPickerVisible: boolean;
+  selectedImage: string;
+  userImage?: string; 
+}
+
+const NewComment: React.FC<NewCommentProps> = ({ 
+  comment, 
+  setComment, 
+  commentChangeHandler, 
+  addCommentHandler, 
+  handleAddComment, 
+  handleEmojiClick, 
+  toggleEmojiPicker, 
+  handleImageUpload ,
+  emojiPickerVisible, 
+  selectedImage, 
+  userImage = userDefault,
+}) => {
   const isSubmitDisabled = comment.trim() === '';
   
   return (
     <div className="new-comment-container">
+    <div className="user-image-container">
+        <img src={userImage} alt="" className="user-image" />
+      </div>
+    <div className="new-comment-container-input">
       <div className="new-comment-input-container">
         <input
           type='text'
@@ -52,6 +82,7 @@ const NewComment = ({ comment, setComment, commentChangeHandler, addCommentHandl
           <EmojiPicker onEmojiClick={handleEmojiClick} pickerStyle={{ position: 'absolute', bottom: '60px' }} />
         )}
       </div>
+    </div>
     </div>
   );
 };
