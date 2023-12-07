@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react';
-import CommunityList from '../components/CommunityList.tsx';
+import CommunityList from '../components/CommunityList/CommunityList.tsx';
 
 const CommunityListContainer: React.FC = () => {
     const  [communities, setCommunities] = useState([]);
