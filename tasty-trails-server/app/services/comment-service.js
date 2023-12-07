@@ -28,13 +28,13 @@ export const createComment = async (newCommentData) => {
  *
  * @async
  * @function
- * @param {string} commentId - The unique identifier of the Comment.
+ * @param {string} postId - The unique identifier of the Comment.
  * @returns {Promise<Object>} - A promise that resolves to the comment with the given ID.
  * @throws {Error} - Throws an error if the comment is not found or there is an issue fetching it.
  */
-export const getCommentById = async (commentId) => {
+export const getCommentById = async (postId) => {
     try {
-        const comment = await Comment.findById(commentId);
+        const comment = await Comment.find({ postId: postId });
         if (!comment) {
           throw new Error('Comment not found');
         }

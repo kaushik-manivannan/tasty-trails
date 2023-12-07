@@ -1,0 +1,46 @@
+//Mixins
+@mixin reset-list {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+@mixin button-hover-effect {
+    box-shadow: rgba(74, 58, 255, 0.15) 0px 4px 10px 0px;
+    transform: translate(0px, -2px);
+}
+
+@mixin flexbox(
+  $display: flex,
+  $direction: row,
+  $placeContent: null,
+  $placeItems: null,
+  $wrap: nowrap,
+  $shrink: 0,
+  $grow: 0,
+  $alignContent: null,
+  $justifyContent: null,
+  $alignItems: null,
+  $justifyItems: null) {
+
+    display: $display;
+    flex-direction: $direction;
+
+    @if $placeContent == null {
+      @if $alignContent   { align-content: $alignContent; }
+      @if $justifyContent { justify-content: $justifyContent; }
+    } @else {
+      place-content: $placeContent;
+    }
+
+    @if $placeItems == null {
+      @if $alignItems   { align-items: $alignItems; }
+      @if $justifyItems { justify-items: $justifyItems; }
+    } @else {
+      place-items: $placeItems;
+    }
+
+    flex-wrap: $wrap;
+    flex-shrink: $shrink;
+    flex-grow: $grow;
+}

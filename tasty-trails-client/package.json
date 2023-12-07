@@ -1,0 +1,66 @@
+{
+  "name": "tasty-trails-client",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.0.1",
+    "@fortawesome/fontawesome-svg-core": "^6.5.1",
+    "@fortawesome/free-solid-svg-icons": "^6.5.1",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.14.19",
+    "@mui/material": "^5.14.20",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.6.2",
+    "emoji-picker-react": "^4.5.16",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-redux": "^9.0.2",
+    "react-dropzone": "^14.2.3",
+    "react-icons": "^4.12.0",
+    "react-router-dom": "^6.20.1",
+    "react-scripts": "^5.0.1",
+    "ts-loader": "^9.5.1",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "webpack": {
+    "style": {
+      "modules": true
+    }
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@types/node": "^20.10.3",
+    "css-loader": "^6.8.1",
+    "sass": "^1.69.5",
+    "style-loader": "^3.3.3",
+    "typescript": "^3.9.10"
+  }
+}
