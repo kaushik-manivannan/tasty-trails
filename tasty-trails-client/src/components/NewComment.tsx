@@ -4,7 +4,7 @@ import { faPaperPlane, faImage, faSmile, faTimes } from '@fortawesome/free-solid
 import EmojiPicker from 'emoji-picker-react';
 import './NewComment.css';
 import { TiAttachment } from "react-icons/ti";
-import userDefault from '../assets/user.png';
+const userDefault = `${process.env.PUBLIC_URL}/assets/user.png`;
 
 interface NewCommentProps {
   comment: string;

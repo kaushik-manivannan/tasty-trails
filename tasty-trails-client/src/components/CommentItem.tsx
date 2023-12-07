@@ -1,6 +1,7 @@
 import React from 'react'; 
 import './CommentItem.css';
-import userDefault from '../assets/user.png';
+
+const userDefault = `${process.env.PUBLIC_URL}/assets/user.png`;
 
 interface Comment {
   _id: {
