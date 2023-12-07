@@ -18,7 +18,3 @@ export interface PostItemProps {
 export interface PostListProps {
     posts: Post[];
 }
-
-
-
-
