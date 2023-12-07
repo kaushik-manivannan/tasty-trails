@@ -13,13 +13,13 @@
 
 .logo {
     display: block;
-    width: 350px;
+    width: 60%;
     margin: auto;
 }
 
 .navLinks {
     width: fit-content;
-    margin: -70px auto;
+    margin: 0 auto;
 }
 
 .navLink {
@@ -44,5 +44,10 @@
 .navIcon {
     margin-right: 15px;
     width: 40px;
+}
+
+.logout {
+    position: absolute;
+    bottom: 0px;
 }
 
