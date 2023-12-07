@@ -1,0 +1,48 @@
+@import '../../scss/base/variables';
+@import '../../scss/mixins';
+@import '../../scss/functions';
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    border: 1px solid black;
+    height: 100vh;
+    width: 25vw;
+}
+
+.logo {
+    display: block;
+    width: 350px;
+    margin: auto;
+}
+
+.navLinks {
+    width: fit-content;
+    margin: -70px auto;
+}
+
+.navLink {
+    @include flexbox(flex, $alignItems: center);
+    color: black;
+    margin: 25px 0;
+    cursor: pointer;
+    width: fit-content;
+    padding: 15px;
+}
+
+.navLink:hover {
+    border-radius: 50px;
+    background-color: hsla(0, 0, 90, 100);
+}
+
+.navText {
+    font-weight: set-weight(medium);
+    font-size: 1.4rem;
+}
+
+.navIcon {
+    margin-right: 15px;
+    width: 40px;
+}
+
