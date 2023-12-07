@@ -1,0 +1,6 @@
+@use "sass:map";
+
+//Function Declarations
+@function set-weight($font-weight){
+    @return map.get($font-weights, $font-weight);
+}

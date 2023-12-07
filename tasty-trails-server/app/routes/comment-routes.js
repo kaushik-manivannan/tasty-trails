@@ -7,9 +7,9 @@ import * as commentController from "../controllers/comment-controller.js"
 
 const router = express.Router();
 
-// router.get('/', commentController.getAllComments);
+router.get('/:postId', commentController.getCommentById);
 router.post('/', commentController.createComment);
-router.get('/:commentId', commentController.getCommentById);
+// router.get('/:commentId', commentController.getCommentById);
 router.put('/:commentId', commentController.updateComment);
 router.delete('/:commentId', commentController.deleteComment);
 

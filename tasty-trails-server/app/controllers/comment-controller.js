@@ -32,9 +32,9 @@ export const createComment = async (req, res) => {
  * @param {Object} res - Express response object.
  */
 export const getCommentById = async (req, res) => {
-    const { commentId } = req.params;
+    const { postId } = req.params;
     try {
-        const comment = await commentService.getCommentById(commentId);
+        const comment = await commentService.getCommentById(postId);
         responses.setResponse(comment, res);
     } catch (err) {
         // responses.set404ErrorResponse(err, res);

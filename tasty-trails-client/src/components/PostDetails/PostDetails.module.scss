@@ -1,0 +1,63 @@
+.backButton {
+    padding: 10px;
+    border: 0px;
+    border-radius: 100px;
+    background-color: hsla(0, 0, 90, 100);
+    margin: 40px 0;
+
+    &:hover {
+        background-color: hsla(0, 0, 70, 100);
+    }
+}
+
+.postDetails {
+    width: 40vw;
+    margin: 0 auto;
+}
+
+.card {
+    border: 1px solid black;
+    border-radius: 25px;
+    text-align: center;
+    padding: 30px 30px 20px 30px;
+    transition: box-shadow .3s;
+}
+
+.heading {
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+}
+
+.image {
+    width: 100%;
+    margin-bottom: 20px;
+    border-radius: 25px;
+}
+
+.locationAndStatus {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.1rem;
+    font-weight: set-weight(medium);
+    margin-bottom: 10px;
+}
+
+.location {
+    display: flex;
+    align-items: center;
+}
+
+.locationIcon {
+    margin-right: 5px;
+}
+
+.locationText {
+    font-weight: set-weight(medium);
+}
+
+.date {
+    font-size: 1.1rem;
+    text-align: left;
+    font-weight: set-weight(medium);
+}

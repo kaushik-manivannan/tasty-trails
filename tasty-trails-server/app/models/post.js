@@ -26,17 +26,14 @@ const PostSchema = new Schema({
         type: String,
         required: true
     },
-    dateTime: {
-        type: String,
-        required: true
-    },
     availabilityStatus: {
         type: String,
         required: true
     }
 },
 {
-    versionKey: false
+    versionKey: false,
+    timestamps: true
 });
 
 // Create a Mongoose Model for the 'posts' collection
