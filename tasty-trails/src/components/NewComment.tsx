@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPaperPlane, faImage, faSmile } from '@fortawesome/free-solid-svg-icons';
+import { faPaperPlane, faImage, faSmile, faTimes } from '@fortawesome/free-solid-svg-icons';
 import EmojiPicker from 'emoji-picker-react';
 import './NewComment.css';
 import { TiAttachment } from "react-icons/ti";
@@ -14,6 +14,7 @@ interface NewCommentProps {
   handleEmojiClick: (event: any, emojiObject: any) => void;
   toggleEmojiPicker: () => void;
   handleImageUpload: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleRemoveImage: () => void;
   emojiPickerVisible: boolean;
   selectedImage: string;
   userImage?: string; 
@@ -28,6 +29,7 @@ const NewComment: React.FC<NewCommentProps> = ({
   handleEmojiClick, 
   toggleEmojiPicker, 
   handleImageUpload ,
+  handleRemoveImage,
   emojiPickerVisible, 
   selectedImage, 
   userImage = userDefault,
@@ -35,7 +37,7 @@ const NewComment: React.FC<NewCommentProps> = ({
   const isSubmitDisabled = comment.trim() === '';
   
   return (
-    <div className="new-comment-container">
+    <form onSubmit={addCommentHandler} className="new-comment-container">
     <div className="user-image-container">
         <img src={userImage} alt="" className="user-image" />
       </div>
@@ -49,9 +51,13 @@ const NewComment: React.FC<NewCommentProps> = ({
           className="new-comment-input"
         />
         {selectedImage && (
-          <div>
+          <div className="new-comment-attachment-container">
           <TiAttachment className='new-comment-attachment' />
           <span className="new-comment-attachment-word">Attached</span>
+          <FontAwesomeIcon 
+            icon={faTimes} 
+            className="remove-attachment" 
+            onClick={handleRemoveImage} />
           </div>
         )}
 
@@ -63,6 +69,7 @@ const NewComment: React.FC<NewCommentProps> = ({
               id="imageUpload"
               style={{ display: 'none' }}
               onChange={handleImageUpload}
+              accept=".jpg, .jpeg, .png"
             />
           </label>
           
@@ -74,7 +81,7 @@ const NewComment: React.FC<NewCommentProps> = ({
             )}
           </button>
           <div style={{ flex: '1' }} />
-          <button onClick={handleAddComment} disabled={isSubmitDisabled} className="new-comment-button">
+          <button type="submit" disabled={isSubmitDisabled} className="new-comment-button">
             <FontAwesomeIcon icon={faPaperPlane} />
           </button>
         </div>
@@ -83,7 +90,7 @@ const NewComment: React.FC<NewCommentProps> = ({
         )}
       </div>
     </div>
-    </div>
+    </form>
   );
 };
 

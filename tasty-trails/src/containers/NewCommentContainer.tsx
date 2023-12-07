@@ -8,10 +8,11 @@ const NewCommentContainer = ({ userId, postId, addComment, userImage }) => {
   const [selectedImage, setSelectedImage] = useState("");
   const dateTime = new Date().toISOString();
 
-  const commentChangeHandler = (e) => {
-    setComment(e.target.value);
+  const commentChangeHandler = (event) => {
+    setComment(event.target.value);
   };
-  const handleAddComment = () => {
+  const handleAddComment = (event) => {
+    // event.preventDefault();
     const commentWithEmoji = `${comment}`;
     addCommentHandler(commentWithEmoji, selectedImage);
     setSelectedImage("");
@@ -39,6 +40,10 @@ const NewCommentContainer = ({ userId, postId, addComment, userImage }) => {
       setSelectedImage(base64Image);
       event.target.value = '';
     }
+  };
+
+  const handleRemoveImage = () => {
+    setSelectedImage("");
   };
 
   const handleEmojiClick = (event, emojiObject) => {
@@ -79,7 +84,7 @@ const NewCommentContainer = ({ userId, postId, addComment, userImage }) => {
 
   return (
     <NewComment
-            comment= { comment }
+  comment= { comment }
   setComment = { setComment }
   commentChangeHandler = { commentChangeHandler }
   addCommentHandler = { addCommentHandler }
@@ -87,6 +92,7 @@ const NewCommentContainer = ({ userId, postId, addComment, userImage }) => {
   handleEmojiClick = { handleEmojiClick }
   toggleEmojiPicker = { toggleEmojiPicker }
   handleImageUpload = { handleImageUpload }
+  handleRemoveImage = {handleRemoveImage}
   emojiPickerVisible = { emojiPickerVisible }
   selectedImage = { selectedImage }
   userImage = { userImage }

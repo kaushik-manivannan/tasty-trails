@@ -70,3 +70,16 @@
   margin-left: 4px;
   color: #007bff;
 }
+
+.new-comment-attachment-container {
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+  margin-bottom: 10px;
+}
+
+.remove-attachment {
+  cursor: pointer;
+  margin-left: 4px; /* Adjust as needed */
+  color: red; /* Adjust the color as needed */
+}
