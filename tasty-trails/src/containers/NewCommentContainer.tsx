@@ -52,7 +52,8 @@ const NewCommentContainer = ({ userId, postId, addComment, userImage }) => {
     setEmojiPickerVisible(false);
   };
 
-  const addCommentHandler = (commentWithEmoji, selectedImage) => {
+  const addCommentHandler = (event, commentWithEmoji, selectedImage) => {
+    event.preventDefault();
     const newComment = {
       userId,
       postId,
