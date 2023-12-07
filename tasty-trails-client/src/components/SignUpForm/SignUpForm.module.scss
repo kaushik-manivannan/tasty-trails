@@ -22,36 +22,37 @@
 
 .logo {
     display: block;
-    margin: 0 auto;
-    width: 48%;
+    margin: -35px auto 0 auto;
+    width: 47%;
 }
 
 .heading {
     position: relative;
-    bottom: 60px;
+    bottom: 55px;
     text-align: center;
     color: $primary-color;
+    font-size: 1.7rem;
 }
 
 .signupForm {
     width: 55%;
-    margin: -55px auto 0 auto;
+    margin: -60px auto 0 auto;
 }
 
 .inputContainer {
     @include flexbox(flex, column);
-    margin: 17px 0;
+    margin: 15px 0;
     width: 100%;
 }
 
 .inputLabel {
-    font-size: 1.1rem;
+    font-size: 0.95rem;
     font-weight: set-weight(medium);
-    margin-bottom: 6px;
+    margin-bottom: 4px;
 }
 
 .input {
-    padding: 10px 4px;
+    padding: 9px 4px;
     border: 1px solid $primary-color;
     border-radius: 5px;
     background-color: $secondary-color;
@@ -65,7 +66,7 @@
 
 .signupDivision {
     position: relative;
-    top: 20px;
+    top: 15px;
 }
 
 .secondarySignup {
@@ -75,7 +76,7 @@
 .secondarySignupButton {
     @extend .button-primary;
     padding: 10px;
-    margin: 40px auto 0 auto;
+    margin: 30px auto 0 auto;
     background-color: $secondary-color;
     width: 55%;
     border-radius: 25px;
@@ -88,7 +89,7 @@
 
 .login {
     width: fit-content;
-    margin: 25px auto;
+    margin: 15px auto;
 }
 
 .loginText {

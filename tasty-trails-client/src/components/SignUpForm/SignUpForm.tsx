@@ -18,7 +18,7 @@ const SignupForm: React.FC<SignupFormProps> = ({ formData, onChange, onSubmit, o
   return (
     <div className={styles.coverImage}>
       <div className={styles.signupPage}>
-        <img src={`${process.env.PUBLIC_URL}/assets/logo.png`} alt="Tasty Trails Logo" className={styles.logo}/>
+        <img src={`${process.env.PUBLIC_URL}/assets/logo.svg`} alt="Tasty Trails Logo" className={styles.logo}/>
         <h1 className={styles.heading}>Sign Up</h1>
         <form onSubmit={onSubmit} className={styles.signupForm}>
           <div className={styles.inputContainer}>
