@@ -1,0 +1,79 @@
+@import "../../scss/base/variables";
+@import "../../scss/mixins";
+@import "../../scss/base/globals";
+@import "../../scss/functions";
+
+.coverImage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../../../public/assets/cover-image.jpg");
+}
+
+.loginPage {
+    position: relative;
+    padding: 0 20px 20px 20px;
+    border-radius: 25px;
+    width: 25vw;
+    background-color: $secondary-color;
+}
+
+.logo {
+    display: block;
+    margin: 0 auto;
+    width: 50%;
+}
+
+.heading {
+    position: relative;
+    bottom: 30px;
+    text-align: center;
+    color: $primary-color;
+}
+
+.loginForm {
+    width: 50%;
+    margin: 0 auto
+}
+
+.inputContainer {
+    @include flexbox(flex, column);
+    margin: 20px 0;
+    width: 100%;
+}
+
+.inputLabel {
+    font-size: 1.1rem;
+    font-weight: set-weight(medium);
+    margin-bottom: 10px;
+}
+
+.input {
+    padding: 12px 4px;
+    border: 1px solid $primary-color;
+    border-radius: 5px;
+    background-color: $secondary-color;
+}
+
+.loginButton {
+    @extend .button-primary;
+    width: 100%;
+    border-radius: 25px;
+}
+
+.signup {
+    width: fit-content;
+    margin: 25px auto;
+}
+
+.signupText {
+    margin-right: 10px;
+}
+
+.signupButton {
+    font-size: 1rem;
+    color: $button-color;
+    font-weight: set-weight(medium);
+}
