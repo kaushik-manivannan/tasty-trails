@@ -153,7 +153,7 @@ export const generateAuthToken = (user) => {
         };
 
         // Sign the token with the payload, secret key, and any optional settings
-        const token = jwt.sign(payload, secretKey, { expiresIn: '4h' }); // Token expires in 1 hour
+        const token = jwt.sign(payload, secretKey, { expiresIn: '4h' }); 
 
         return token;
     } catch (error) {
