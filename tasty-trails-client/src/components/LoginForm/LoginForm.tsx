@@ -45,7 +45,12 @@ const LoginForm: React.FC<LoginFormProps> = ({ formData, onChange, onSubmit, onS
             />
           </div>
           <button type="submit" className={styles.loginButton}>Login</button>
+          <hr className={styles.loginDivision}/>
         </form>
+        <div className={styles.secondaryLogin}>
+          <button type="submit" className={styles.secondaryLoginButton}>Sign in with Google
+          </button>
+        </div>
         <div className={styles.signup}>
           <span className={styles.signupText}>Don't have an account?</span>
           <button onClick={onSignupClick} className={styles.signupButton}>Sign up</button>

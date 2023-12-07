@@ -16,7 +16,7 @@
     position: relative;
     padding: 0 20px 20px 20px;
     border-radius: 25px;
-    width: 25vw;
+    width: 30vw;
     background-color: $secondary-color;
 }
 
@@ -61,6 +61,29 @@
     @extend .button-primary;
     width: 100%;
     border-radius: 25px;
+}
+
+.loginDivision {
+    position: relative;
+    top: 20px;
+}
+
+.secondaryLogin {
+    @include flexbox(flex, $justifyContent: center);
+}
+
+.secondaryLoginButton {
+    @extend .button-primary;
+    padding: 10px;
+    margin: 40px auto 0 auto;
+    background-color: $secondary-color;
+    width: 50%;
+    border-radius: 25px;
+
+    &:hover {
+        background-color: $button-color;
+        transition: background-color 500ms;
+    }
 }
 
 .signup {
