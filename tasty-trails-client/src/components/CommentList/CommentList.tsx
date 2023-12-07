@@ -1,27 +1,19 @@
 import React from 'react';
 import CommentItem from '../CommentItem/CommentItem.tsx';
+import { CommentListProps } from '../../interfaces/comment-interfaces';
 
-interface Comment {
-    _id: {
-        $oid: string;
-      };
-      userId: string;
-      postId: string;
-      comment: string;
-      dateTime: string;
-      image: string;
-}
-
-interface CommentListProps {
-  comments: Comment[];
-}
-
-const CommentList: React.FC<CommentListProps> = ({ comments }) => {
+const CommentList: React.FC<CommentListProps & { onEdit: (commentId: string, editedComment: string) => void; onDelete: (commentId: string) => void }> = ({ comments, onEdit,
+  onDelete}) => {
   return (
     <div>
       {comments.map((comment, idx) => {
-        return <CommentItem key={`comment-${idx + 1}`} commentValue={comment} />;
+        return ( 
+          <CommentItem key={`comment-${idx + 1}`} commentValue={comment} 
+          onEdit={(editedComment) => onEdit(comment._id, editedComment)}
+            onDelete={() => onDelete(comment._id)}
+        / >);
       })} 
+      <p>Total Comments: {comments.length}</p>
     </div>
   );
 };
