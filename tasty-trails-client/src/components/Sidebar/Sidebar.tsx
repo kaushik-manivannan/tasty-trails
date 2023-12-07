@@ -26,7 +26,7 @@ const Sidebar: React.FC = () => {
             <p className={styles.navText}>Profile</p>
           </NavLink>
           <div className={styles.logout}>
-            <LogoutButton className={styles.logoutButton}/> 
+            <LogoutButton /> 
           </div>
       </div>
     </nav>
