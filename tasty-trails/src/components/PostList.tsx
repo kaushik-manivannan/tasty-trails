@@ -1,5 +1,6 @@
 import React from 'react';
 import PostItem from './PostItem.tsx';
+import LogoutButton from './LogoutButton.tsx';
 
 interface Post {
   _id: {
@@ -21,6 +22,7 @@ interface PostListProps {
 const PostList: React.FC<PostListProps> = ({ posts }) => {
   return (
     <div>
+      <LogoutButton/>
       {posts.map((post, idx) => {
         return <PostItem key={`post-${idx + 1}`} post={post} />;
       })}
