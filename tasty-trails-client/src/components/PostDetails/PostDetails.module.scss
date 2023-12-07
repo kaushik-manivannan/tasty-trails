@@ -1,6 +1,18 @@
-.card-link {
-    text-decoration: none;
-    color: inherit;
+.backButton {
+    padding: 10px;
+    border: 0px;
+    border-radius: 100px;
+    background-color: hsla(0, 0, 90, 100);
+    margin: 40px 0;
+
+    &:hover {
+        background-color: hsla(0, 0, 70, 100);
+    }
+}
+
+.postDetails {
+    width: 40vw;
+    margin: 0 auto;
 }
 
 .card {
@@ -8,14 +20,11 @@
     border-radius: 25px;
     text-align: center;
     padding: 30px 30px 20px 30px;
-    margin-bottom: 40px;
-    width: 25vw;
-    margin: 0 auto;
     transition: box-shadow .3s;
 }
 
 .heading {
-    font-size: 1.2rem;
+    font-size: 1.6rem;
     margin-bottom: 20px;
 }
 
@@ -29,7 +38,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     font-weight: set-weight(medium);
     margin-bottom: 10px;
 }
@@ -44,12 +53,11 @@
 }
 
 .locationText {
-    font-size: 0.9rem;
     font-weight: set-weight(medium);
 }
 
 .date {
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     text-align: left;
     font-weight: set-weight(medium);
 }
