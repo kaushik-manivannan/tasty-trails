@@ -18,7 +18,7 @@ const PostListContainer: React.FC = () => {
       }
     };
     fetchPosts();
-  }, [posts]);
+  }, []);
 
   return <PostList posts={posts} />;
 };
