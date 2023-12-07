@@ -61,13 +61,13 @@ const NewComment: React.FC<NewCommentProps> = ({
             />
           </label>
           
-          <button className={styles.newCommentButton}     onClick={toggleEmojiPicker}>
+          <div className={styles.newCommentButton}     onClick={toggleEmojiPicker}>
             {emojiPickerVisible ? (
               <FontAwesomeIcon icon={faSmile} className={styles.emojiPickerIcon}/>
             ) : (
               <FontAwesomeIcon icon={faSmile} />
             )}
-          </button>
+          </div>
           <div style={{ flex: '1' }} />
           <button type="submit" disabled={isSubmitDisabled} className={styles.newCommentButton} >
             <FontAwesomeIcon icon={faPaperPlane} />

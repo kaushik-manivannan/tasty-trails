@@ -12,3 +12,7 @@ export interface Comment {
 export interface CommentItemProps {
     comment: Comment;
   }
+
+export interface CommentListProps {
+  comments: Comment[];
+}
