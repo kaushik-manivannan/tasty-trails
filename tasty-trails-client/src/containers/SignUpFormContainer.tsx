@@ -1,6 +1,6 @@
 // SignupFormContainer.tsx
 import React, { useState } from 'react';
-import SignupForm from '../components/SignUpForm.tsx';
+import SignupForm from '../components/SignUpForm/SignUpForm.tsx';
 import { createUser } from '../api/index.js';
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';

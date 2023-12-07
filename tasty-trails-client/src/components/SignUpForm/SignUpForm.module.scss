@@ -12,9 +12,9 @@
     background-image: url("../../../public/assets/cover-image.jpg");
 }
 
-.loginPage {
+.signupPage {
     position: relative;
-    padding: 0 20px 20px 20px;
+    padding-bottom: 5px;
     border-radius: 25px;
     width: 30vw;
     background-color: $secondary-color;
@@ -23,56 +23,56 @@
 .logo {
     display: block;
     margin: 0 auto;
-    width: 50%;
+    width: 48%;
 }
 
 .heading {
     position: relative;
-    bottom: 30px;
+    bottom: 60px;
     text-align: center;
     color: $primary-color;
 }
 
-.loginForm {
+.signupForm {
     width: 55%;
-    margin: 0 auto
+    margin: -55px auto 0 auto;
 }
 
 .inputContainer {
     @include flexbox(flex, column);
-    margin: 20px 0;
+    margin: 17px 0;
     width: 100%;
 }
 
 .inputLabel {
     font-size: 1.1rem;
     font-weight: set-weight(medium);
-    margin-bottom: 10px;
+    margin-bottom: 6px;
 }
 
 .input {
-    padding: 12px 4px;
+    padding: 10px 4px;
     border: 1px solid $primary-color;
     border-radius: 5px;
     background-color: $secondary-color;
 }
 
-.loginButton {
+.signupButton {
     @extend .button-primary;
     width: 100%;
     border-radius: 25px;
 }
 
-.loginDivision {
+.signupDivision {
     position: relative;
     top: 20px;
 }
 
-.secondaryLogin {
+.secondarySignup {
     @include flexbox(flex, $justifyContent: center);
 }
 
-.secondaryLoginButton {
+.secondarySignupButton {
     @extend .button-primary;
     padding: 10px;
     margin: 40px auto 0 auto;
@@ -86,16 +86,16 @@
     }
 }
 
-.signup {
+.login {
     width: fit-content;
     margin: 25px auto;
 }
 
-.signupText {
+.loginText {
     margin-right: 10px;
 }
 
-.signupButton {
+.loginButton {
     font-size: 1rem;
     color: $accent-color;
     font-weight: set-weight(medium);
