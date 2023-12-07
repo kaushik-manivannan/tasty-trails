@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import CommentList from '../components/CommentList.tsx';
+import CommentList from '../components/CommentList/CommentList.tsx';
 import NewCommentContainer from './NewCommentContainer.tsx';
 
 const CommentListContainer: React.FC = () => {

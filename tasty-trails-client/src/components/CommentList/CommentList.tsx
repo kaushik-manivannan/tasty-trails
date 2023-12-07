@@ -1,5 +1,5 @@
 import React from 'react';
-import CommentItem from './CommentItem.tsx';
+import CommentItem from '../CommentItem/CommentItem.tsx';
 
 interface Comment {
     _id: {
