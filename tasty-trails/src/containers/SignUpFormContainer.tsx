@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import SignupForm from '../components/SignUpForm.tsx';
 import { createUser } from '../api/index.js';
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { setAuth } from '../auth/authSlice.ts';
 
 const SignupFormContainer: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -15,7 +17,8 @@ const SignupFormContainer: React.FC = () => {
 
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const navigate = useNavigate();
+  const navigate = useNavigate(); 
+  const dispatch = useDispatch();
 
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,13 +35,21 @@ const SignupFormContainer: React.FC = () => {
     try {
         const { firstName, lastName, ...restFormData } = formData;
         const fullName = `${firstName} ${lastName}`;
+		console.log('in handle submit');
   
         const response = await createUser({ ...restFormData, fullName });
 
       if (response.status === 201) {
         console.log('User created successfully!');
         // Add any additional logic after successful user creation
-        navigate('/posts');
+        
+        const { userId, token } = {
+          userId: response.data.user._id,
+          token: response.data.token,
+        };
+        dispatch(setAuth({ userId, token }));
+
+        navigate('/posts', { state: { userId } });
       } else {
 
         setErrorMessage('Failed to create user. Please try again.');
@@ -49,10 +60,20 @@ const SignupFormContainer: React.FC = () => {
       // Handle error as needed
     }
   };
+
+  const handleLoginClick = () => {
+    navigate('/login');
+  };
+
   return (
     <div>
       {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-      <SignupForm formData={formData} onChange={handleChange} onSubmit={handleSubmit} />
+      <SignupForm 
+        formData={formData} 
+        onChange={handleChange} 
+        onSubmit={handleSubmit} 
+        onLoginClick={handleLoginClick}
+      />
     </div>
   );
 };

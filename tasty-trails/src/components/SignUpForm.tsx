@@ -11,9 +11,10 @@ interface SignupFormProps {
   };
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onSubmit: (e: React.FormEvent) => void;
+  onLoginClick: () => void;
 }
 
-const SignupForm: React.FC<SignupFormProps> = ({ formData, onChange, onSubmit }) => {
+const SignupForm: React.FC<SignupFormProps> = ({ formData, onChange, onSubmit, onLoginClick }) => {
   return (
     <div>
       <h1>Sign Up</h1>
@@ -75,6 +76,7 @@ const SignupForm: React.FC<SignupFormProps> = ({ formData, onChange, onSubmit })
         </div>
         <button type="submit">Sign Up</button>
       </form>
+      <button onClick={onLoginClick}>Login</button>
     </div>
   );
 };
