@@ -37,7 +37,6 @@ const deleteComment = (commentId) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log('Comment deleted:', data);
         setComments((prevComments) =>
           prevComments.filter((comment) => comment._id !== commentId)
         );

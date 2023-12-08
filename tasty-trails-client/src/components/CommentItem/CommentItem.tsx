@@ -24,7 +24,6 @@ const CommentItem: React.FC<CommentItemProps & { onEdit: () => void; onDelete: (
   };
 
   const handleSaveEdit = () => {
-  // Make API call to update the comment
   const updatedComment = {
     ...commentValue,
     comment: editedComment,
@@ -39,9 +38,7 @@ const CommentItem: React.FC<CommentItemProps & { onEdit: () => void; onDelete: (
   })
     .then((response) => response.json())
     .then((data) => {
-      // Assuming the response contains the updated comment
-      // You may want to add error handling here
-      onEdit(data);  // Pass the updated comment to the parent component
+      onEdit(data); 
       setIsEditing(false);
     })
     .catch((error) => {
@@ -70,6 +67,7 @@ const CommentItem: React.FC<CommentItemProps & { onEdit: () => void; onDelete: (
                             }}
       >
       <div className={styles.commentContent}>
+                    
       {isEditing ? (
         <div>
           <textarea
@@ -81,7 +79,12 @@ const CommentItem: React.FC<CommentItemProps & { onEdit: () => void; onDelete: (
         </div>
       ) : (
         <>
+        <div>
+        <div className={styles.commentHeader}>
+        <p className={styles.userName}>usename</p>
+        </div>  
           <p className={styles.commentText}>{editedComment}</p>
+          </div>
           {showOptions && (
             <div className={styles.optionsIndicator} onClick={toggleOptions}>
               <button onClick={modifyHandler}>...</button>

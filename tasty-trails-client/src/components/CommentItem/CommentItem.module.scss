@@ -42,6 +42,7 @@
   display: flex;
   align-items: center;
   position: relative;
+  margin-top: 18px;
   margin-left: 8px; /* Adjust the margin as needed */
 }
 
@@ -94,4 +95,9 @@
 {
 margin-right: 9px;
 margin-left: 9px;
+}
+
+.userName {
+  font-weight: bold;
+  margin-bottom: 5px;
 }

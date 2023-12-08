@@ -8,7 +8,7 @@ const CommentList: React.FC<CommentListProps & { onEdit: (commentId: string, edi
     <div>
       {comments.map((comment, idx) => {
         return ( 
-          <CommentItem key={`comment-${idx + 1}`} commentValue={comment} 
+          <CommentItem key={`comment-${comment._id}`} commentValue={comment} 
           onEdit={(editedComment) => onEdit(comment._id, editedComment)}
             onDelete={() => onDelete(comment._id)}
         / >);
