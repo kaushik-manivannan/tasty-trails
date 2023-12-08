@@ -1,0 +1,26 @@
+.logout {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: black;
+    margin: 25px 0;
+    width: fit-content;
+    padding: 15px;
+
+    &:hover {
+        border-radius: 50px;
+        background-color: hsla(0, 0, 90, 100);
+    }
+}
+
+.logoutIcon {
+    margin-right: 15px;
+    width: 40px;
+}
+
+.logoutButton {
+    font-weight: set-weight(medium);
+    font-size: 1.4rem;
+    border: none;
+    background: none;
+}

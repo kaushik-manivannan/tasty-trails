@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./Sidebar.module.scss";
 import { NavLink } from "react-router-dom";
+import LogoutButton from '../LogoutButton/LogoutButton';
 
 const Sidebar: React.FC = () => {
 
@@ -24,6 +25,9 @@ const Sidebar: React.FC = () => {
             <img src={`${process.env.PUBLIC_URL}/assets/profile-outline.svg`} alt="Profile" className={styles.navIcon}/>
             <p className={styles.navText}>Profile</p>
           </NavLink>
+          <div className={styles.logout}>
+            <LogoutButton /> 
+          </div>
       </div>
     </nav>
   );

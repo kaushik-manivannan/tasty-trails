@@ -18,3 +18,10 @@ export interface PostItemProps {
 export interface PostListProps {
     posts: Post[];
 }
+
+export interface PostFormData {
+    description: string;
+    location: string;
+    availabilityStatus: string;
+    image?: FileList | null; // Use FileList type for file input
+}
