@@ -2,6 +2,8 @@ import React,{useState} from "react";
 import { useForm, SubmitHandler } from 'react-hook-form';
 import {CommunityFormData} from '../../interfaces/community-interfaces';
 import {NewCommunityProps} from '../../interfaces/community-interfaces';
+import styles from './NewCommunity.module.scss';
+
 const NewCommunity: React.FC<NewCommunityProps> = ({postNewCommunity}) => {
   // Use the correct generic type for useForm
   const { register, handleSubmit, formState: { errors } } = useForm<CommunityFormData>({
@@ -31,51 +33,69 @@ const NewCommunity: React.FC<NewCommunityProps> = ({postNewCommunity}) => {
     }
   };
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <div className={styles.coverImage}>
+      <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+      <h2 className={styles.heading}>Create your community</h2>
       {/* Community Name */}
-      <label>
-        Community Name:
-        <input
-          {...register('communityName', {
-            required: 'Community Name is required',
-          })}
-        />
-        {errors.communityName && <p>{errors.communityName.message}</p>}
-      </label><br/>
+      <div className={styles.inputContainer}>
+        <label htmlFor="communityName" className={styles.inputLabel}>Community Name</label>
+          <input
+            id="communityName"
+            className={styles.input}
+            placeholder="Enter the name of your community"
+            {...register('communityName', {
+              required: 'Community Name is required',
+            })}
+          />
+          {errors.communityName && <p className={styles.errorMessage}>{errors.communityName.message}</p>}
+      </div>
 
       {/* Description */}
-      <label>
-        Description:
-        <input
-          {...register('description', {
-            required: 'Description is required',
-          })}
-        />
-        {errors.description && <p>{errors.description.message}</p>}
-      </label><br/>
+      <div className={styles.inputContainer}>
+        <label htmlFor="description" className={styles.inputLabel}>Description</label>
+          <input
+            id="description"
+            className={styles.input}
+            placeholder="Enter a description of your community"
+            {...register('description', {
+              required: 'Description is required',
+            })}
+          />
+          {errors.description && <p className={styles.errorMessage}>{errors.description.message}</p>}
+      </div>
 
       {/* Image (optional) */}
-      <label>
-        Image:
-        <input 
-          type="file"
-          {...register('image')}
-          accept=".jpg, .jpeg, .png, .gif"
-          onChange={handleImageChange}
-        />
-      </label><br/>
+      <div className={styles.inputContainer}>
+        <label htmlFor="image" className={styles.inputLabel}>Image</label>
+          <input 
+            id="image"
+            type="file"
+            {...register('image')}
+            accept=".jpg, .jpeg, .png, .gif"
+            onChange={handleImageChange}
+            style={{display: "none"}}
+          />
+          <button
+          type="button"
+          onClick={() => document.getElementById('image')?.click()}
+          className={styles.fileUploadButton}
+        >
+          Upload Image
+        </button>
+      </div>
 
         {/* Image Preview */}
         {imagePreview && (
         <div>
-          <p>Image Preview:</p>
-          <img src={imagePreview} alt="Preview" style={{ maxWidth: '200px', maxHeight: '200px' }} />
+          <p className={styles.imagePreviewText}>Community Image Preview</p>
+          <img src={imagePreview} alt="Preview" className={styles.imagePreview} />
         </div>
       )}
 
       {/* Submit button */}
-      <button type="submit">Create Community</button>
-    </form>
+      <button type="submit" className={styles.createButton}>Create Community</button>
+      </form>
+    </div>
   );
 };
 
