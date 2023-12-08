@@ -16,3 +16,9 @@ export interface CommentItemProps {
 export interface CommentListProps {
   comments: Comment[];
 }
+
+export interface CommentItemProps {
+  commentValue: CommentItemProps['commentValue'];
+  onEdit: CommentItemProps['onEdit'];
+  onDelete: CommentItemProps['onDelete'];
+}
