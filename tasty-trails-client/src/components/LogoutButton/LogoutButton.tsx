@@ -4,11 +4,7 @@ import { clearAuth } from '../../auth/authSlice.ts';
 import { useNavigate } from "react-router-dom";
 import styles from './LogoutButton.module.scss';
 
-interface LogoutButtonProps {
-  className?: string;
-}
-
-const LogoutButton: React.FC<LogoutButtonProps> = ({className}) => {
+const LogoutButton: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

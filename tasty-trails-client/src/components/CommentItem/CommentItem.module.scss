@@ -1,0 +1,103 @@
+/* CommentItem.module.scss */
+
+.commentItemContainer {
+  display: flex;
+  align-items: flex-start;
+  padding: 10px;
+  width: 420px; /* Adjust the width as needed */
+  box-sizing: border-box;
+  margin-bottom: 8px;
+}
+
+.userImageContainer {
+  margin-right: 12px;
+}
+
+.userImage {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.commentTextContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.commentContent {
+  display: flex;
+  align-items: center;
+}
+
+.commentText {
+  border-radius: 8px;
+  background-color: #f0f0f0;
+  padding: 8px;
+}
+
+.optionsIndicator {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-top: 18px;
+  margin-left: 8px; /* Adjust the margin as needed */
+}
+
+.optionsIndicator button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px; 
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  border-radius: 50%; /* Make it circular */
+}
+
+.optionsIndicator button:hover {
+  background-color: #ddd; /* Change to grey on hover */
+}
+
+.commentImageDisplay {
+  max-width: 100px;
+  max-height: 100px;
+}
+
+.editButton,
+.deleteButton {
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  outline: none;
+  background-color: #ffffff;
+  padding: 8px;
+  // width: 100%;
+  text-align: left;
+}
+
+.optionsDropdown {
+  border: 1px solid #ffffff;
+  background-color: #ffffff;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.editButton:hover,
+.deleteButton:hover {
+  background-color: #fbfbfb;
+}
+
+.saveEditedComment,
+.editCommentItem
+{
+margin-right: 9px;
+margin-left: 9px;
+}
+
+.userName {
+  font-weight: bold;
+  margin-bottom: 5px;
+}

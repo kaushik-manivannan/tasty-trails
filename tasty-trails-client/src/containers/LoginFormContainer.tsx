@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setAuth } from '../auth/authSlice.ts';
-import LoginForm from '../components/LoginForm.tsx';
+import LoginForm from '../components/LoginForm/LoginForm.tsx';
 import { loginUser } from '../api/index.js';
 
 

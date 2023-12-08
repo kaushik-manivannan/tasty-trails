@@ -1,24 +1,12 @@
 import React from 'react';
+import styles from './NewComment.module.scss';
+import { NewCommentProps } from '../../interfaces/newComment-interfaces';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane, faImage, faSmile, faTimes } from '@fortawesome/free-solid-svg-icons';
 import EmojiPicker from 'emoji-picker-react';
 import './NewComment.css';
 import { TiAttachment } from "react-icons/ti";
 const userDefault = `${process.env.PUBLIC_URL}/assets/user.png`;
-
-interface NewCommentProps {
-  comment: string;
-  setComment: React.Dispatch<React.SetStateAction<string>>;
-  commentChangeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  addCommentHandler: () => void;
-  handleEmojiClick: (event: any, emojiObject: any) => void;
-  toggleEmojiPicker: () => void;
-  handleImageUpload: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  handleRemoveImage: () => void;
-  emojiPickerVisible: boolean;
-  selectedImage: string;
-  userImage?: string; 
-}
 
 const NewComment: React.FC<NewCommentProps> = ({ 
   comment, 
@@ -37,32 +25,32 @@ const NewComment: React.FC<NewCommentProps> = ({
   const isSubmitDisabled = comment.trim() === '';
   
   return (
-    <form onSubmit={addCommentHandler} className="new-comment-container">
-    <div className="user-image-container">
-        <img src={userImage} alt="" className="user-image" />
+    <form onSubmit={handleAddComment} className={styles.newCommentContainer}>
+    <div className={styles.userImageContainer}>
+        <img src={userImage} alt="" className={styles.userImage} />
       </div>
-    <div className="new-comment-container-input">
-      <div className="new-comment-input-container">
+    <div className={styles.newCommentContainerInput}>
+      <div className={styles.newCommentInputContainer}>
         <input
           type='text'
           value={comment}
           onChange={commentChangeHandler}
           placeholder="Enter your Comments"
-          className="new-comment-input"
+          className={styles.newCommentInput}
         />
         {selectedImage && (
-          <div className="new-comment-attachment-container">
-          <TiAttachment className='new-comment-attachment' />
-          <span className="new-comment-attachment-word">Attached</span>
+          <div className={styles.newCommentAttachmentContainer}>
+          <TiAttachment className={styles.newCommentAttachment} />
+          <span className={styles.newCommentAttachmentWord}>Attached</span>
           <FontAwesomeIcon 
             icon={faTimes} 
-            className="remove-attachment" 
+            className={styles.removeAttachment}
             onClick={handleRemoveImage} />
           </div>
         )}
 
-        <div className="new-comment-buttons-container">
-          <label className="new-comment-button" htmlFor="imageUpload">
+        <div className={styles.newCommentButtonsContainer}>
+          <label className={styles.newCommentButton} htmlFor="imageUpload">
             <FontAwesomeIcon icon={faImage} />
             <input
               type="file"
@@ -73,15 +61,15 @@ const NewComment: React.FC<NewCommentProps> = ({
             />
           </label>
           
-          <button className="new-comment-button" onClick={toggleEmojiPicker}>
+          <div className={styles.newCommentButton}     onClick={toggleEmojiPicker}>
             {emojiPickerVisible ? (
-              <FontAwesomeIcon icon={faSmile} className="emoji-picker-icon" />
+              <FontAwesomeIcon icon={faSmile} className={styles.emojiPickerIcon}/>
             ) : (
               <FontAwesomeIcon icon={faSmile} />
             )}
-          </button>
+          </div>
           <div style={{ flex: '1' }} />
-          <button type="submit" disabled={isSubmitDisabled} className="new-comment-button">
+          <button type="submit" disabled={isSubmitDisabled} className={styles.newCommentButton} >
             <FontAwesomeIcon icon={faPaperPlane} />
           </button>
         </div>
