@@ -16,7 +16,7 @@ const router = createBrowserRouter(createRoutesFromElements([
   <Route path='/posts' element={ <LandingPage /> }/>,
   <Route path='/posts/:postId' element={ <PostDetailsPage /> } />,
   <Route path='/comments' element={ <CommentListContainer /> }/>,
-  <Route path='/communites' element={ <CommunityListContainer /> }/>,
+  <Route path='/communities' element={ <CommunityListContainer /> }/>,
   <Route path='/new-community' element={ <NewCommunity /> } />
 ]));
 
