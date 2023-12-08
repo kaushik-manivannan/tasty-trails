@@ -26,4 +26,9 @@ export interface CommunityFormData {
     communityName: string;
     description: string;
     image?: string;
-  }
+    communityAdmin?:string;
+}
+
+export interface NewCommunityProps {
+    postNewCommunity: (payload: CommunityFormData) => void;
+}
