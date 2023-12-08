@@ -8,7 +8,7 @@ import LandingPage from './views/LandingPage/LandingPage.tsx';
 import PostDetailsPage from './views/PostDetailsPage/PostDetailsPage.tsx';
 import SignupFormContainer from './containers/SignUpFormContainer.tsx';
 import LoginFormContainer from './containers/LoginFormContainer.tsx';
-import NewCommunityContainer from './containers/NewCommunityContainer.tsx';
+import NewCommunityPage from './views/NewCommunityPage/NewCommunityPage.tsx';
 import CreatePostContainer from './containers/CreatePostContainer.tsx';
 import CreatePostPage from './views/CreatePostPage/CreatePostPage.tsx';
 
@@ -20,7 +20,7 @@ const router = createBrowserRouter(createRoutesFromElements([
   <Route path='/posts/create' element={ <CreatePostPage /> } />,
   <Route path='/comments' element={ <CommentListContainer /> }/>,
   <Route path='/communities' element={ <CommunityListContainer /> }/>,
-  <Route path='/new-community' element={ <NewCommunityContainer /> } />
+  <Route path='/new-community' element={ <NewCommunityPage /> } />
 ]));
 
 function App() {
