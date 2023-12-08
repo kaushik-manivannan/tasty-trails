@@ -1,6 +1,6 @@
 import React from 'react';
 import { CommunityListProps } from '../../interfaces/community-interfaces.tsx';
-import  CommunityItem  from '../CommunityItem.tsx';
+import  CommunityItem  from '../CommunityItem/CommunityItem.tsx';
 import styles from './CommunityList.module.scss';
 
 const CommunityList : React.FC<CommunityListProps> = ({communities}) => {
