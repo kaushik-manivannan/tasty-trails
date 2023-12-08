@@ -8,7 +8,7 @@ import LandingPage from './views/LandingPage/LandingPage.tsx';
 import PostDetailsPage from './views/PostDetailsPage/PostDetailsPage.tsx';
 import SignupFormContainer from './containers/SignUpFormContainer.tsx';
 import LoginFormContainer from './containers/LoginFormContainer.tsx';
-import NewCommunity from './components/NewCommunity.tsx';
+import NewCommunityContainer from './containers/NewCommunityContainer.tsx';
 
 const router = createBrowserRouter(createRoutesFromElements([
   <Route path='/signUp' element={ <SignupFormContainer/> }/>,
@@ -17,7 +17,7 @@ const router = createBrowserRouter(createRoutesFromElements([
   <Route path='/posts/:postId' element={ <PostDetailsPage /> } />,
   <Route path='/comments' element={ <CommentListContainer /> }/>,
   <Route path='/communities' element={ <CommunityListContainer /> }/>,
-  <Route path='/new-community' element={ <NewCommunity /> } />
+  <Route path='/new-community' element={ <NewCommunityContainer /> } />
 ]));
 
 function App() {
