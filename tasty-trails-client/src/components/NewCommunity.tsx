@@ -1,8 +1,8 @@
 import React,{useState} from "react";
 import { useForm, SubmitHandler } from 'react-hook-form';
 import {CommunityFormData} from '../interfaces/community-interfaces';
-
-const NewCommunity: React.FC = () => {
+import {NewCommunityProps} from '../interfaces/community-interfaces';
+const NewCommunity: React.FC<NewCommunityProps> = ({postNewCommunity}) => {
   // Use the correct generic type for useForm
   const { register, handleSubmit, formState: { errors } } = useForm<CommunityFormData>({
     mode: 'onChange', // errors will be displayed on change
@@ -15,18 +15,10 @@ const NewCommunity: React.FC = () => {
         communityName: data.communityName,
         description: data.description,
         image: imagePreview,
-        communityAdmin:'1'
     };
-    fetch('http://localhost:8080/communities', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(payload) // Convert the payload into a JSON string
-    }).then((response) => response.json())
-    .catch((error) =>console.log(error));
+    postNewCommunity(payload);
   };
-  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [imagePreview, setImagePreview] = useState<string>("");
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files ? event.target.files[0] : null;
