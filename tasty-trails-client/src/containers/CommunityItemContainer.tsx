@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from "react";
+import React,{ useState} from "react";
 import {  CommunityItemContainerProps } from "../interfaces/community-interfaces.tsx";
 import CommunityItem from "../components/CommunityItem/CommunityItem.tsx";
 import { useSelector } from 'react-redux';
