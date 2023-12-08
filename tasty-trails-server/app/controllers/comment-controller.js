@@ -82,7 +82,7 @@ export const deleteComment = async (req, res) => {
     const { commentId } = req.params;
     try {
         await commentService.deleteComment(commentId);
-        res.status(200).send("Deleted sucessfully");
+        res.status(200).json({ message: "Comment deleted successfully" });
         // .json({ 
         //     message: "Comment successfully deleted."
         // });
