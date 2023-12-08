@@ -1,7 +1,7 @@
 import React,{useState} from "react";
 import { useForm, SubmitHandler } from 'react-hook-form';
-import {CommunityFormData} from '../interfaces/community-interfaces';
-import {NewCommunityProps} from '../interfaces/community-interfaces';
+import {CommunityFormData} from '../../interfaces/community-interfaces';
+import {NewCommunityProps} from '../../interfaces/community-interfaces';
 const NewCommunity: React.FC<NewCommunityProps> = ({postNewCommunity}) => {
   // Use the correct generic type for useForm
   const { register, handleSubmit, formState: { errors } } = useForm<CommunityFormData>({

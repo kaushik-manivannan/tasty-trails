@@ -1,5 +1,5 @@
 import React from 'react';
-import NewCommunity from '../components/NewCommunity';
+import NewCommunity from '../components/NewCommunity/NewCommunity';
 import {CommunityFormData} from '../interfaces/community-interfaces';
 import { useSelector } from 'react-redux';
 
