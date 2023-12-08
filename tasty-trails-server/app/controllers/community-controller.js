@@ -4,6 +4,7 @@
 
 import * as CommunityService from "../services/community-service.js";
 import * as responses from "./response-handler.js";
+import * as postService from "../services/post-service.js";
 
 /**
  * Handles the retrieval of all posts.
@@ -86,3 +87,13 @@ export const updateCommunity = async (req, res) => {
     responses.set404ErrorResponse(err, res);
   }
 };
+
+export const getPostsByCommunityId = async (req,res) => {
+  const communityId = req.params.id;
+  try {
+    const community = await CommunityService.getCommunityById(communityId);
+    const posts = await postService.getPostsByIds(community.postIds);
+  } catch (err) {
+    responses.set404ErrorResponse(err, res);
+  }
+}
