@@ -9,7 +9,16 @@ const CommunityItem:React.FC<CommunityItemProps> = ({community}) => {
     const data = useSelector((state:any) => state.auth.userId);
     
     return(
-        
+        <div className={styles.communityItem}>
+            <div className={styles.communityImage}>
+                <img src={imageUrl} alt={community.communityName} />
+            </div>
+            <div className={styles.communityDetails}>
+                <h3 className={styles.communityName}>{community.communityName}</h3>
+                <p className={styles.communityDescription}>{community.description}</p>
+                <p className={styles.communityMembers}>{community.members.length} members</p>
+            </div>
+        </div>
         );
 }
 export default CommunityItem;
