@@ -1,0 +1,103 @@
+@import "../../scss/base/variables";
+@import "../../scss/mixins";
+@import "../../scss/base/globals";
+@import "../../scss/functions";
+
+.coverImage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../../../public/assets/cover-image.jpg");
+}
+
+.signupPage {
+    position: relative;
+    padding-bottom: 5px;
+    border-radius: 25px;
+    width: 30vw;
+    background-color: $secondary-color;
+}
+
+.logo {
+    display: block;
+    margin: -35px auto 0 auto;
+    width: 47%;
+}
+
+.heading {
+    position: relative;
+    bottom: 55px;
+    text-align: center;
+    color: $primary-color;
+    font-size: 1.7rem;
+}
+
+.signupForm {
+    width: 55%;
+    margin: -60px auto 0 auto;
+}
+
+.inputContainer {
+    @include flexbox(flex, column);
+    margin: 15px 0;
+    width: 100%;
+}
+
+.inputLabel {
+    font-size: 0.95rem;
+    font-weight: set-weight(medium);
+    margin-bottom: 4px;
+}
+
+.input {
+    padding: 9px 4px;
+    border: 1px solid $primary-color;
+    border-radius: 5px;
+    background-color: $secondary-color;
+}
+
+.signupButton {
+    @extend .button-primary;
+    width: 100%;
+    border-radius: 25px;
+}
+
+.signupDivision {
+    position: relative;
+    top: 15px;
+}
+
+.secondarySignup {
+    @include flexbox(flex, $justifyContent: center);
+}
+
+.secondarySignupButton {
+    @extend .button-primary;
+    padding: 10px;
+    margin: 30px auto 0 auto;
+    background-color: $secondary-color;
+    width: 55%;
+    border-radius: 25px;
+
+    &:hover {
+        background-color: $accent-color;
+        transition: background-color 500ms;
+    }
+}
+
+.login {
+    width: fit-content;
+    margin: 15px auto;
+}
+
+.loginText {
+    margin-right: 10px;
+}
+
+.loginButton {
+    font-size: 1rem;
+    color: $accent-color;
+    font-weight: set-weight(medium);
+}

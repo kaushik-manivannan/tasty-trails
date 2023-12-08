@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import NewComment from '../components/NewComment.tsx';
-import '../components/NewComment.css';
+import NewComment from '../components/NewComment/NewComment.tsx';
+import '../components/NewComment/NewComment.css';
 
 const NewCommentContainer = ({ userId, postId, addComment, userImage }) => {
   const [comment, setComment] = useState('');
@@ -12,7 +12,7 @@ const NewCommentContainer = ({ userId, postId, addComment, userImage }) => {
     setComment(event.target.value);
   };
   const handleAddComment = (event) => {
-    // event.preventDefault();
+    event.preventDefault();
     const commentWithEmoji = `${comment}`;
     addCommentHandler(commentWithEmoji, selectedImage);
     setSelectedImage("");
@@ -52,8 +52,7 @@ const NewCommentContainer = ({ userId, postId, addComment, userImage }) => {
     setEmojiPickerVisible(false);
   };
 
-  const addCommentHandler = (event, commentWithEmoji, selectedImage) => {
-    event.preventDefault();
+  const addCommentHandler = (commentWithEmoji, selectedImage) => {
     const newComment = {
       userId,
       postId,

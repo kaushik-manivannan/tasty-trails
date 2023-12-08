@@ -1,3 +1,8 @@
+@import "../../scss/base/variables";
+@import "../../scss/mixins";
+@import "../../scss/base/globals";
+@import "../../scss/functions";
+
 .logout {
     display: flex;
     align-items: center;
@@ -9,7 +14,7 @@
 
     &:hover {
         border-radius: 50px;
-        background-color: hsla(0, 0, 90, 100);
+        background-color: $tertiary-color;
     }
 }
 

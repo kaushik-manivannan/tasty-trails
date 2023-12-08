@@ -18,8 +18,10 @@ API.interceptors.request.use((req) => {
    
 });
 
+//Post APIs
 export const getAllPosts = () => API.get('/posts');
 export const getPost = (id) => API.get(`/posts/${id}`);
+export const createPost = (data) => API.post(`/posts`, data);
 
 //User API's
 export const createUser = (data) => API.post('/users',data);
