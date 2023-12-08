@@ -1,0 +1,35 @@
+.communityListContainer {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .communityList {
+    list-style: none; // Removes default list styling
+    padding: 0; // Resets default padding
+    margin: 0; // Resets default margin
+    width: 100%; // Sets the width of the list
+  
+    .communityItem {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      margin-bottom: 20px; // Space between list items
+      padding: 15px; // Padding inside each list item
+      transition: box-shadow 0.3s ease;
+
+      &:hover {
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      }
+  
+    }
+  }
+  
+  // @media (max-width: 600px) {
+  //   .communityGrid {
+  //     grid-template-columns: 1fr;
+  //   }
+  // }
+  

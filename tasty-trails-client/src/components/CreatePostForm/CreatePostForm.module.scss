@@ -1,0 +1,87 @@
+@import "../../scss/base/variables";
+@import "../../scss/mixins";
+@import "../../scss/base/globals";
+@import "../../scss/functions";
+
+.coverImage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../../../public/assets/food-share.jpg");
+    background-position: 50% 49%;
+}
+
+.form {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-40%, -50%);
+    padding: 40px 80px;
+    border-radius: 40px;
+    width: 30vw;
+    background-color: $secondary-color;
+}
+
+.heading {
+    text-align: center;
+    color: $primary-color;
+    font-size: 2.2rem;
+}
+
+.inputContainer {
+    @include flexbox(flex, column);
+    margin: 30px 0;
+    width: 100%;
+}
+
+.inputLabel {
+    font-weight: set-weight(medium);
+    margin-bottom: 7px;
+}
+
+.input {
+    padding: 12px 6px;
+    border: none;
+    border-radius: 5px;
+
+    &::placeholder {
+        color: $primary-color;
+    }
+}
+
+.imagePreviewText {
+    font-weight: set-weight(medium);
+    margin-bottom: 7px;
+}
+
+.imagePreview {
+    width: 50%;
+    border-radius: 25px;
+}
+
+.errorMessage {
+    font-size: 0.9rem;
+    color: $accent-color;
+    margin-top: 5px;
+}
+
+.fileUploadButton {
+    @extend .button-primary;
+    font-size: 0.9rem;
+    background-color: #fff;
+    padding: 10px 20px;
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+}
+
+.createButton {
+    @extend .button-primary;
+    margin-top: 20px;
+    font-weight: set-weight(medium);
+    width: 100%;
+    border-radius: 25px;
+}

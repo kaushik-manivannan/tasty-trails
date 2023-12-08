@@ -20,6 +20,7 @@ const CommunitySchema = new Schema(
       required: false,
     },
     members: [],
+    postIds: [],
   },
   {
     versionKey: false,

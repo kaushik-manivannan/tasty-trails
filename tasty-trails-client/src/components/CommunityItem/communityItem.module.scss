@@ -1,0 +1,38 @@
+.communityItem {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+  
+    .communityImage {
+      margin-right: 20px; // Adds some space between the image and the details
+  
+      img {
+        display: block;
+        width: 80px; // Set this to the desired image width
+        height: 80px; // Set this to the desired image height
+        object-fit: cover; // Ensures the image covers the area, useful for non-square images
+        border-radius: 40px; // Makes the image round
+      }
+    }
+  
+    .communityDetails {
+      flex-grow: 1;
+  
+      .communityName {
+        margin: 0;
+        color: #333;
+        font-size: 1.2em;
+      }
+  
+      .communityDescription {
+        color: #666;
+        font-size: 1em;
+      }
+  
+      .communityMembers {
+        font-size: 0.9em;
+        color: #666;
+      }
+    }
+  }
+  

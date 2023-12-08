@@ -102,3 +102,20 @@ export const deletePost = async (postId) => {
         throw new Error('Error deleting post');
     }
 };
+
+/**
+ * Retrieves an array of posts based on their unique IDs.
+ *
+ * @param {string[]} postIds - An array of post IDs to retrieve.
+ * @returns {Promise<Array<Object>>} A promise that resolves to an array of posts.
+ * @throws {Error} If there is an error during the database query.
+ */
+export const getPostsByIds = async (postIds) => {
+    try {
+      const posts = await Post.find({ _id: { $in: postIds } }).exec();
+      return posts;
+    } catch (error) {
+      throw new Error('Error fetching posts by IDs');
+    }
+};
+  
