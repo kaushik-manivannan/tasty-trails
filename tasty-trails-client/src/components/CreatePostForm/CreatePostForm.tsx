@@ -21,6 +21,19 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({ onSubmit, register, err
       </div>
 
       <div className={styles.inputContainer}>
+        <label htmlFor="location" className={styles.inputLabel}>Location</label>
+        <input
+          id="location"
+          className={styles.input}
+          placeholder="Enter the location of your food"
+          {...register('location', {
+            required: 'Please enter a location',
+          })}
+        />
+        {errors.location && <p className={styles.errorMessage}>{errors.location.message}</p>}
+      </div>
+
+      <div className={styles.inputContainer}>
         <label htmlFor="image" className={styles.inputLabel}>Image</label>
         <input 
           type="file"
@@ -47,19 +60,6 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({ onSubmit, register, err
           <img src={imagePreview} alt="Preview" className={styles.imagePreview} />
         </div>
       )}
-
-      <div className={styles.inputContainer}>
-        <label htmlFor="location" className={styles.inputLabel}>Location</label>
-        <input
-          id="location"
-          className={styles.input}
-          placeholder="Enter a location"
-          {...register('location', {
-            required: 'Please enter a location',
-          })}
-        />
-        {errors.location && <p className={styles.errorMessage}>{errors.location.message}</p>}
-      </div>
 
       <button type="submit" className={styles.createButton}>Create Post</button>
       </form>

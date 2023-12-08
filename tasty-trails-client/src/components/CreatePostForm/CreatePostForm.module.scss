@@ -10,7 +10,7 @@
     width: 100vw;
     height: 100vh;
     background-image: url("../../../public/assets/food-share.jpg");
-    background-position: 10% 45%;
+    background-position: 50% 49%;
 }
 
 .form {
@@ -20,15 +20,15 @@
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-40%, -50%);
     padding: 40px 80px;
-    border-radius: 25px;
-    width: 25vw;
+    border-radius: 40px;
+    width: 30vw;
     background-color: $secondary-color;
 }
 
 .heading {
     text-align: center;
     color: $primary-color;
-    font-size: 2.5rem;
+    font-size: 2.2rem;
 }
 
 .inputContainer {
@@ -38,7 +38,6 @@
 }
 
 .inputLabel {
-    font-size: 1.1rem;
     font-weight: set-weight(medium);
     margin-bottom: 7px;
 }
@@ -47,16 +46,19 @@
     padding: 12px 6px;
     border: none;
     border-radius: 5px;
+
+    &::placeholder {
+        color: $primary-color;
+    }
 }
 
 .imagePreviewText {
-    font-size: 1.1rem;
     font-weight: set-weight(medium);
     margin-bottom: 7px;
 }
 
 .imagePreview {
-    width: 100%;
+    width: 50%;
     border-radius: 25px;
 }
 
@@ -72,12 +74,14 @@
     background-color: #fff;
     padding: 10px 20px;
     width: 100%;
-    border-radius: 25px;
+    border-radius: 5px;
     border: none;
 }
 
 .createButton {
     @extend .button-primary;
+    margin-top: 20px;
+    font-weight: set-weight(medium);
     width: 100%;
     border-radius: 25px;
 }
