@@ -1,3 +1,5 @@
+import { SubmitHandler, UseFormRegister} from "react-hook-form";
+
 export interface Post {
     _id: {
       $oid: string;
@@ -23,5 +25,20 @@ export interface PostFormData {
     description: string;
     location: string;
     availabilityStatus: string;
-    image?: FileList | null; // Use FileList type for file input
+    image?: string;
+}
+
+export interface CreatePostFormProps {
+    onSubmit: SubmitHandler<any>;
+    register: UseFormRegister<PostFormData>;
+    errors: {
+      description?: {
+        message?: string;
+      };
+      location?: {
+        message?: string;
+      };
+    };
+    imagePreview: string | null;
+    onImageChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
