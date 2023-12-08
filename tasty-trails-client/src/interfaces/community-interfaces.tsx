@@ -14,10 +14,13 @@ export interface CommunityListProps{
     communities: Community[];
 }
 
-export interface CommunityItemProps{
+export interface CommunityItemContainerProps{
     community: Community;
 }
-
+export interface CommunityItemProps{
+    community: Community;
+    toggleJoin: Function;
+}
 // Define form data interface
 export interface CommunityFormData {
     communityName: string;
