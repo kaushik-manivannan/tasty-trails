@@ -4,7 +4,6 @@ import {CommunityDetailsProps} from '../../interfaces/community-interfaces';
 const CommunityDetails:React.FC<CommunityDetailsProps> = ({community,postList,isEditable})=>{
     const [editedCommunityName, setEditedCommunityName] = useState(community.communityName);
     const [editedCommunityDescription, setEditedCommunityDescription] = useState(community.description);
-    console.log("editedCommunityName",editedCommunityName);
     const handleCommunityNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setEditedCommunityName(event.target.value);
     };

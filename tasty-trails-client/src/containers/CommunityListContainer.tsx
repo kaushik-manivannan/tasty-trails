@@ -3,7 +3,6 @@ import CommunityList from '../components/CommunityList/CommunityList.tsx';
 
 const CommunityListContainer: React.FC = () => {
     const  [communities, setCommunities] = useState([]);
-    console.log(communities);
     useEffect(() => {
         fetch('http://localhost:8080/communities')
           .then((response) => response.json())
