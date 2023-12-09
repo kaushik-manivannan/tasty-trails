@@ -10,9 +10,7 @@ const userDefault = `${process.env.PUBLIC_URL}/assets/user.png`;
 
 const NewComment: React.FC<NewCommentProps> = ({ 
   comment, 
-  setComment, 
-  commentChangeHandler, 
-  addCommentHandler, 
+  commentChangeHandler,  
   handleAddComment, 
   handleEmojiClick, 
   toggleEmojiPicker, 
@@ -74,7 +72,7 @@ const NewComment: React.FC<NewCommentProps> = ({
           </button>
         </div>
         {emojiPickerVisible && (
-          <EmojiPicker onEmojiClick={handleEmojiClick} pickerStyle={{ position: 'absolute', bottom: '60px' }} />
+          <EmojiPicker onEmojiClick={handleEmojiClick}/>
         )}
       </div>
     </div>
