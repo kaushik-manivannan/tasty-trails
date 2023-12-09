@@ -59,7 +59,8 @@ export const getCommunityById = async (req, res) => {
   const communityId = req.params.id;
   try {
     const community = await CommunityService.getCommunityById(communityId);
-    responses.setResponse(community, res);
+    const posts = await postService.getPostsByIds(community.postIds);
+    responses.setResponse({community,posts}, res);
   } catch (err) {
     responses.set404ErrorResponse(err, res);
   }
@@ -88,12 +89,3 @@ export const updateCommunity = async (req, res) => {
   }
 };
 
-export const getPostsByCommunityId = async (req,res) => {
-  const communityId = req.params.id;
-  try {
-    const community = await CommunityService.getCommunityById(communityId);
-    const posts = await postService.getPostsByIds(community.postIds);
-  } catch (err) {
-    responses.set404ErrorResponse(err, res);
-  }
-}
