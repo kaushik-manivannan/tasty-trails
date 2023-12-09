@@ -1,3 +1,4 @@
+import {Post} from './post-interfaces';
 export interface Community{
     _id: {
         $oid: string;
@@ -20,6 +21,7 @@ export interface CommunityItemContainerProps{
 export interface CommunityItemProps{
     community: Community;
     toggleJoin: Function;
+    viewDetails: Function;
 }
 // Define form data interface
 export interface CommunityFormData {
@@ -31,4 +33,10 @@ export interface CommunityFormData {
 
 export interface NewCommunityProps {
     postNewCommunity: (payload: CommunityFormData) => void;
+}
+
+export interface CommunityDetailsProps{
+    community: Community;
+    postList: Post[];
+    isEditable: boolean;
 }
