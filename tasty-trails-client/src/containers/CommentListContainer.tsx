@@ -22,12 +22,25 @@ const CommentListContainer: React.FC = () => {
 };
 
 const editComment = (commentId, editedComment) => {
-  // Make API call to update the comment
-  // Update the state with the edited comment
-  const updatedComments = comments.map((comment) =>
-    comment._id === commentId ? { ...comment, comment: editedComment } : comment
-  );
-  setComments(updatedComments);
+  fetch(`http://localhost:8080/comments/${commentId}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ comment: editedComment }),
+  })
+    .then((response) => response.json())
+    .then((updatedComment) => {
+      // Update the state with the edited comment
+      const updatedComments = comments.map((comment) =>
+        comment._id === commentId ? updatedComment : comment
+      );
+      setComments(updatedComments);
+    })
+    .catch((error) => {
+      console.error('Error updating comment:', error);
+      // Handle error accordingly
+    });
 };
 
 const deleteComment = (commentId) => {

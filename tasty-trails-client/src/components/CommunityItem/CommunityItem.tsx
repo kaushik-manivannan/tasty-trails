@@ -4,7 +4,7 @@ import styles from './communityItem.module.scss';
 import { useSelector } from 'react-redux';
 
 const defaultImageUrl = `${process.env.PUBLIC_URL}/assets/communities-default.svg`;
-const CommunityItem:React.FC<CommunityItemProps> = ({community,toggleJoin}) => {
+const CommunityItem:React.FC<CommunityItemProps> = ({community,toggleJoin,viewDetails}) => {
     const imageUrl:string = community.image || defaultImageUrl; // Use the community image or the default one
     const userId = useSelector((state:any) => state.auth.userId);
     const isJoined:boolean = community.members.includes(userId);
@@ -25,7 +25,8 @@ const CommunityItem:React.FC<CommunityItemProps> = ({community,toggleJoin}) => {
                 <p className={styles.communityMembers}>{community.members.length} members</p>
             </div>
             <div>
-                <button onClick={()=>{toggleJoin(community._id)}}>{buttonText}</button>    
+                <button onClick={()=>{toggleJoin(community._id)}}>{buttonText}</button>  
+                {isJoined && <button onClick={()=>{viewDetails(community._id)}}>View Community</button>}  
             </div>
         </div>
         );
