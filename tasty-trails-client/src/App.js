@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import store from './auth/store.js';
 import CommentListContainer from './containers/CommentListContainer.tsx';
 import CommunityListContainer from './containers/CommunityListContainer.tsx';
+import CommunityDetailsContainer from './containers/CommunityDetailsContainer.tsx';
 import LandingPage from './views/LandingPage/LandingPage.tsx';
 import PostDetailsPage from './views/PostDetailsPage/PostDetailsPage.tsx';
 import SignupFormContainer from './containers/SignUpFormContainer.tsx';
@@ -20,6 +21,7 @@ const router = createBrowserRouter(createRoutesFromElements([
   <Route path='/posts/create' element={ <CreatePostPage /> } />,
   <Route path='/comments' element={ <CommentListContainer /> }/>,
   <Route path='/communities' element={ <CommunityListContainer /> }/>,
+  <Route path='/communities/:communityId' element={ <CommunityDetailsContainer /> } />,
   <Route path='/new-community' element={ <NewCommunityContainer /> } />
 ]));
 
