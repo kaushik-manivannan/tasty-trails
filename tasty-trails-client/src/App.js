@@ -1,5 +1,6 @@
 import './App.scss';
-import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route} from 'react-router-dom';
+import React from 'react';
+import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route, Navigate} from 'react-router-dom';
 import { Provider} from 'react-redux';
 import {store , persistor } from './auth/store.js';
 import { PersistGate } from 'redux-persist/integration/react';
@@ -22,7 +23,7 @@ const protectedRoutes = [
 ];
 
 const router = createBrowserRouter(createRoutesFromElements([
-  <Route path='/' element={<Navigate to='/login'/>}/>,
+  <Route path='/' element={<Navigate to='/posts'/>}/>,
   <Route path='/signUp' element={ <SignupFormContainer/> }/>,
   <Route path='/login' element = {<LoginFormContainer/>}/>,
   // <Route path='/posts' element={ <LandingPage /> }/>,
