@@ -2,15 +2,18 @@ import React,{ useState} from "react";
 import {  CommunityItemContainerProps } from "../interfaces/community-interfaces.tsx";
 import CommunityItem from "../components/CommunityItem/CommunityItem.tsx";
 import { useSelector } from 'react-redux';
-
-
+import { useNavigate } from "react-router-dom";
 
 const CommunityItemContainer:React.FC<CommunityItemContainerProps> = ({community}) => {
+    const navigate = useNavigate();
     const [communityState, setCommunity] = useState(community);
     const userId = useSelector((state:any) => state.auth.userId);
     const isJoined:boolean = community.members.includes(userId);
     var payload ={
     ...community
+    }
+    const viewDetails= () => {
+        navigate(`/communities/${community._id}`);
     }
     const toggleJoin = () => {
         if(isJoined) {
@@ -29,7 +32,7 @@ const CommunityItemContainer:React.FC<CommunityItemContainerProps> = ({community
         .catch((error) =>console.log(error));
         }
     return(
-        <CommunityItem community={communityState} toggleJoin = {()=>{toggleJoin()}} />
+        <CommunityItem community={communityState} toggleJoin = {()=>{toggleJoin()}} viewDetails={viewDetails}/>
     );
 }
 
