@@ -15,6 +15,7 @@ import NewCommunityPage from './views/NewCommunityPage/NewCommunityPage.tsx';
 import CreatePostContainer from './containers/CreatePostContainer.tsx';
 import CreatePostPage from './views/CreatePostPage/CreatePostPage.tsx';
 import CommunityListPage from './views/CommunityListPage/CommunityListPage.tsx';
+import CommunityDetailsPage from './views/CommunityDetailsPage/CommunityDetailsPage.tsx';
 import ProtectedRoute from './protectedRoute.js';
 
 const protectedRoutes = [
@@ -32,7 +33,7 @@ const router = createBrowserRouter(createRoutesFromElements([
   <Route path='/posts/create' element={ <CreatePostPage /> } />,
   <Route path='/comments' element={ <CommentListContainer /> }/>,
   <Route path='/communities' element={ <CommunityListPage /> }/>,
-  <Route path='/communities/:communityId' element={ <CommunityDetailsContainer /> } />,
+  <Route path='/communities/:communityId' element={ <CommunityDetailsPage /> } />,
   <Route path='/new-community' element={ <NewCommunityPage /> } />,
 
   ...protectedRoutes.map(route => (
