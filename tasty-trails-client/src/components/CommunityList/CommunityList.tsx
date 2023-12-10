@@ -5,18 +5,20 @@ import styles from './CommunityList.module.scss';
 
 const CommunityList : React.FC<CommunityListProps> = ({communities}) => {
     return (
-        <>
-        <h1>DISCOVER COMMUNITIES</h1>
-        <div className={styles.communityListContainer}>
-            <ul className={styles.communityList}>
-                {communities.map((community, idx) => (
-                    <li className={styles.communityItem} key={`community-${idx + 1}`}>
-                        <CommunityItemContainer community={community} />
-                    </li>
-                ))}
-            </ul>
+        <div className={styles.parentContainer}>
+            <div className={styles.communityListWithHeading}>
+            <h1 className={styles.heading}>Discover Communities</h1>
+            <div className={styles.communityListContainer}>
+                <ul className={styles.communityList}>
+                    {communities.map((community, idx) => (
+                        <li className={styles.communityItem} key={`community-${idx + 1}`}>
+                            <CommunityItemContainer community={community} />
+                        </li>
+                    ))}
+                </ul>
+            </div>
+            </div>
         </div>
-        </>
     );
 }
 

@@ -1,35 +1,36 @@
+@import "../../scss/base/variables";
+@import "../../scss/mixins";
+@import "../../scss/base/globals";
+@import "../../scss/functions";
+
+.communityListWithHeading {
+  margin-left: 30vw;
+  width: 60vw;
+}
+
+.heading {
+  color: $primary-color;
+  margin: 30px 0;
+}
+
 .communityListContainer {
-    padding: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
   }
   
   .communityList {
-    list-style: none; // Removes default list styling
-    padding: 0; // Resets default padding
-    margin: 0; // Resets default margin
-    width: 100%; // Sets the width of the list
+    list-style-type: none;
+    width: 100%;
   
     .communityItem {
       background-color: #fff;
       border: 1px solid #ddd;
-      border-radius: 8px;
+      border-radius: 25px;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-      margin-bottom: 20px; // Space between list items
-      padding: 15px; // Padding inside each list item
+      margin-bottom: 20px;
+      padding: 15px;
       transition: box-shadow 0.3s ease;
-
-      &:hover {
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-      }
-  
     }
   }
-  
-  // @media (max-width: 600px) {
-  //   .communityGrid {
-  //     grid-template-columns: 1fr;
-  //   }
-  // }
   
