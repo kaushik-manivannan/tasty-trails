@@ -7,7 +7,6 @@ const PostList: React.FC<PostListProps> = ({ posts }) => {
 
   return (
     <div className={styles.postFeed}>
-      <h2 className={styles.heading}>Your Posts</h2>
       {posts.slice(0).reverse().map((post, idx) => {
         return <PostItem key={`post-${idx + 1}`} post={post} />;
       })}
