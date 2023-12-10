@@ -1,7 +1,6 @@
 import React from 'react';
 import { CommentItemProps } from '../../interfaces/comment-interfaces';
 import styles from './CommentItem.module.scss';
-import './CommentItem.css';
 
 const userDefault = `${process.env.PUBLIC_URL}/assets/user.png`;
 

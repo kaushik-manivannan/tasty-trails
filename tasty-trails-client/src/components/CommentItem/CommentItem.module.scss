@@ -1,4 +1,7 @@
-/* CommentItem.module.scss */
+@import "../../scss/base/variables";
+@import "../../scss/mixins";
+@import "../../scss/base/globals";
+@import "../../scss/functions";
 
 .commentItemContainer {
   display: flex;
@@ -33,7 +36,7 @@
 
 .commentText {
   border-radius: 8px;
-  background-color: #f0f0f0;
+  background-color: $secondary-color;
   padding: 8px;
 }
 

@@ -59,7 +59,7 @@ const NewComment: React.FC<NewCommentProps> = ({
             />
           </label>
           
-          <div className={styles.newCommentButton}     onClick={toggleEmojiPicker}>
+          <div className={styles.newCommentButton} onClick={toggleEmojiPicker}>
             {emojiPickerVisible ? (
               <FontAwesomeIcon icon={faSmile} className={styles.emojiPickerIcon}/>
             ) : (
