@@ -22,8 +22,8 @@
 
 .logo {
     display: block;
-    margin: -35px auto 0 auto;
-    width: 47%;
+    margin: -15px auto 15px auto;
+    width: 40%;
 }
 
 .heading {
@@ -32,6 +32,7 @@
     text-align: center;
     color: $primary-color;
     font-size: 1.7rem;
+    margin-bottom: 20px;
 }
 
 .signupForm {
@@ -48,11 +49,11 @@
 .inputLabel {
     font-size: 0.95rem;
     font-weight: set-weight(medium);
-    margin-bottom: 4px;
+    margin-bottom: 5px;
 }
 
 .input {
-    padding: 9px 4px;
+    padding: 9px 7px;
     border: 1px solid $primary-color;
     border-radius: 5px;
     background-color: $secondary-color;
@@ -60,6 +61,7 @@
 
 .signupButton {
     @extend .button-primary;
+    padding: 10px 35px;
     width: 100%;
     border-radius: 25px;
 }
