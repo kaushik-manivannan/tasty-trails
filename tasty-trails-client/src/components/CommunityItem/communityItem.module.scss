@@ -1,3 +1,8 @@
+@import "../../scss/base/variables";
+@import "../../scss/mixins";
+@import "../../scss/base/globals";
+@import "../../scss/functions";
+
 .communityItem {
     display: flex;
     align-items: center;
@@ -19,19 +24,45 @@
       flex-grow: 1;
   
       .communityName {
-        margin: 0;
+        margin-bottom: 5px;
         color: #333;
-        font-size: 1.2em;
+        font-size: 1.3rem;
       }
   
       .communityDescription {
+        margin-bottom: 20px;
         color: #666;
-        font-size: 1em;
+        font-size: 1rem;
       }
   
       .communityMembers {
-        font-size: 0.9em;
+        font-size: 0.9rem;
         color: #666;
+      }
+    }
+
+    .joinButton {
+      @extend .button-primary;
+      background: none;
+      border-radius: 25px;
+      padding: 10px 25px;
+      font-weight: set-weight(medium);
+
+      &:hover {
+        background-color: $accent-color;
+      }
+    }
+
+    .viewCommunityButton {
+      @extend .button-primary;
+      background: none;
+      border-radius: 25px;
+      padding: 10px 25px;
+      margin-left: 15px;
+      font-weight: set-weight(medium);
+
+      &:hover {
+        background-color: $accent-color;
       }
     }
   }
