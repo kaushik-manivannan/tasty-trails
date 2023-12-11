@@ -8,9 +8,9 @@ const CommunityItemContainer:React.FC<CommunityItemContainerProps> = ({community
     const navigate = useNavigate();
     const [communityState, setCommunity] = useState(community);
     const userId = useSelector((state:any) => state.auth.userId);
-    const isJoined:boolean = community.members.includes(userId);
+    const isJoined:boolean = communityState.members.includes(userId);
     var payload ={
-    ...community
+    ...communityState
     }
     const viewDetails= () => {
         navigate(`/communities/${community._id}`);
