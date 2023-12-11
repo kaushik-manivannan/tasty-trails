@@ -1,35 +1,37 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { useForm, SubmitHandler } from 'react-hook-form';
 import CreatePostForm from "../components/CreatePostForm/CreatePostForm";
 import { PostFormData } from "../interfaces/post-interfaces";
+import {useSelector} from'react-redux';
+import {getuserCommunities} from "../api/index.js";
+import {createPost} from "../api/index.js"
 
 const CreatePostContainer: React.FC = () => {
   const { register, handleSubmit, formState: { errors } } = useForm<PostFormData>({
     mode: 'onChange',
   });
+  const [communites, setCommunities] = useState([]);
+  const userId = useSelector((state:any) => state.auth.userId);
 
   const onSubmit: SubmitHandler<PostFormData> = async (data) => {
-    const payload = {
+    const payload = {postDetails:{
+      userId: userId,
       description: data.description,
       location: data.location,
-      image: imagePreview
+      image: imagePreview,
+      availabilityStatus:"true",
+      },
+      communityId: data.community
     };
 
     try {
-      const response = await fetch('http://localhost:8080/posts', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(payload)
-      });
-
-      if (response.ok) {
-      } else {
-        console.error('Failed to create post');
+      const response = await createPost(payload);
+      if (response.status!== 200) {
+        throw new Error('Failed to create post');
       }
+      console.log(response.data);
     } catch (error) {
-      console.error(error);
+      console.error('Failed to create post');
     }
   };
 
@@ -53,6 +55,7 @@ const CreatePostContainer: React.FC = () => {
       errors={errors}
       imagePreview={imagePreview}
       onImageChange={handleImageChange}
+      communities={communites}
     />
   );
 };
