@@ -32,3 +32,4 @@ export const loginUser = (data) => API.post('/users/login',data);
 export const getAllCommunities = () => API.get(`/communities/`);
 // export const getCommunity = (id) => API.get(`/communities/${id}`);
 export const getAllCommunityDetailsById = (id) => API.get(`/communities/${id}`);
+export const updateCommunityById = (id,data) => API.put(`/communities/${id}`,data);
