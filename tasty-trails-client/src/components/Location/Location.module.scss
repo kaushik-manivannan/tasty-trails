@@ -1,0 +1,10 @@
+@import "../../scss/base/variables";
+@import "../../scss/mixins";
+@import "../../scss/base/globals";
+@import "../../scss/functions";
+
+.errorMessage {
+    font-size: 0.9rem;
+    color: $accent-color;
+    margin-top: 5px;
+}
