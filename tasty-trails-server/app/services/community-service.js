@@ -86,3 +86,24 @@ export const updateCommunityById = async (communityId, communityData) => {
     throw new Error("Error updating community by ID");
   }
 };
+
+/**
+ * Retrieves communities associated with a user based on their userId.
+ *
+ * @param {string} userId - The ID of the user for whom communities are to be retrieved.
+ * @returns {Promise<Array>} - A promise that resolves to an array of communities associated with the user.
+ * @throws {Error} - Throws an error if there's an issue fetching communities for the user.
+ */
+
+export const getUserCommunities = async(userId) =>{
+  try {
+    const communties = await CommunityModel.find({ members: userId });
+    if (!communties) {
+      throw new Error("No communites found");
+    }
+    return communties;
+  } catch (error) {
+    throw new Error("Error fetching communites for the user ID");
+  }
+}
+
