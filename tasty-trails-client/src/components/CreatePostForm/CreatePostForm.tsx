@@ -1,8 +1,8 @@
 import React from "react";
 import { CreatePostFormProps } from "../../interfaces/post-interfaces";
 import styles from "./CreatePostForm.module.scss";
-
-const CreatePostForm: React.FC<CreatePostFormProps> = ({ onSubmit, register, errors = {}, imagePreview, onImageChange, communities }) => {
+import Location from "../Location/Location.tsx";
+const CreatePostForm: React.FC<CreatePostFormProps> = ({ onSubmit, register, errors = {}, imagePreview, onImageChange, communities, setValue }) => {
   return (
     <div className={styles.coverImage}>
       <form onSubmit={onSubmit} className={styles.form}>
@@ -22,15 +22,7 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({ onSubmit, register, err
 
       <div className={styles.inputContainer}>
         <label htmlFor="location" className={styles.inputLabel}>Location</label>
-        <input
-          id="location"
-          className={styles.input}
-          placeholder="Enter the location of your food"
-          {...register('location', {
-            required: 'Please enter a location',
-          })}
-        />
-        {errors.location && <p className={styles.errorMessage}>{errors.location.message}</p>}
+        <Location register = {register} errors={errors} setValue={setValue}/>
       </div>
       
       <div className={styles.inputContainer}>
@@ -66,7 +58,6 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({ onSubmit, register, err
           Upload Image
         </button>
       </div>
-
       {imagePreview && (
         <div>
           <p className={styles.imagePreviewText}>Image Preview</p>
