@@ -2,6 +2,7 @@ import React from 'react';
 import { PostItemProps } from '../../interfaces/post-interfaces';
 import styles from './PostDetails.module.scss';
 import { useNavigate } from 'react-router-dom';
+import CommentListContainer from '../../containers/CommentListContainer';
 
 const PostDetails: React.FC<PostItemProps> = ({ post }) => {
 
@@ -35,6 +36,9 @@ const PostDetails: React.FC<PostItemProps> = ({ post }) => {
                 <p className={styles.date}>{formattedDate}</p>
                 </div>
             </div>
+        </div>
+        <div className={styles.commentSection}>
+          <CommentListContainer />
         </div>
       </div>
   );

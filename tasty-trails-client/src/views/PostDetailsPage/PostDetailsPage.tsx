@@ -7,12 +7,7 @@ import styles from './PostDetailsPage.module.scss';
 const PostDetailsPage: React.FC = () => {
     return (
         <div>
-            <div className={styles.postDetailsContainer}>
-                <PostDetailsContainer />
-                <div className={styles.commentSection}>
-                    <CommentListContainer/>
-                </div>
-            </div>
+            <PostDetailsContainer />
             <Sidebar />
         </div>
     );
