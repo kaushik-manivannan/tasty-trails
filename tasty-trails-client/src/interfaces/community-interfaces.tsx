@@ -39,4 +39,5 @@ export interface CommunityDetailsProps{
     community: Community;
     postList: Post[];
     isEditable: boolean;
+    updateCommunityById:Function
 }
