@@ -8,3 +8,14 @@
     color: $accent-color;
     margin-top: 5px;
 }
+
+.input {
+    padding: 12px 6px;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+
+    &::placeholder {
+        color: $primary-color;
+    }
+}
