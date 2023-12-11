@@ -12,7 +12,21 @@ const CreatePostContainer: React.FC = () => {
   });
   const [communites, setCommunities] = useState([]);
   const userId = useSelector((state:any) => state.auth.userId);
-
+  const fetchUserCommunities = async () => {
+    const resposne = await getuserCommunities(userId);
+    try{
+      if(resposne.status !== 200) {
+        throw new Error("error occured while fetching communities of specific user");
+      }
+      setCommunities(resposne.data);
+      console.log(resposne.data);
+    }catch(error){
+      throw new Error("error occured while fetching communities of specific user");
+    }
+  }
+  useEffect(() => {
+    fetchUserCommunities();
+  },[]);
   const onSubmit: SubmitHandler<PostFormData> = async (data) => {
     const payload = {postDetails:{
       userId: userId,
