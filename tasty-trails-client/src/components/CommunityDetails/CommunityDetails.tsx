@@ -15,7 +15,38 @@ const CommunityDetails:React.FC<CommunityDetailsProps> = ({community,postList,is
     const handleCommunityDescriptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setEditedCommunityDescription(event.target.value);
     };
+    const updateCommunity = async ()=>{
+        setIsEditClicked(true);
+        if( editedCommunityName.trim().length === 0|| editedCommunityDescription.trim().length === 0 || (editedCommunityName==community.communityName&&editedCommunityDescription==community.description)){
+            return;
+        }
+        const updatedCommunity = {
+            communityName:editedCommunityName,
+            description:editedCommunityDescription
+        }
+        try{
+            await updateCommunityById(updatedCommunity);
+            setUpdateMessage("Community updated successfully!");
+        }catch(error){
+            setUpdateMessage("Community updated successfully!");
+        }
+    }
+    const edit =()=>{
+        setIsEditClicked(true);
+    }
+    useEffect(() => {
+        const clearUpdateMessage = () => {
+            setUpdateMessage("");
+        };
 
+        // Attach event listener to clear update message on click
+        document.addEventListener("click", clearUpdateMessage);
+
+        // Cleanup the event listener when the component is unmounted
+        return () => {
+            document.removeEventListener("click", clearUpdateMessage);
+        };
+    }, []);
     return(
         <div className={styles.parentContainer}>
             <div className={styles.communityDetailsContainer}>
