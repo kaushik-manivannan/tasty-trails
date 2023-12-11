@@ -12,7 +12,7 @@ const authRouter = express.Router().use(auth);
 
 router.post('/', userController.createUser); // Route for creating a new user
 router.post('/login', userController.loginUser); // Route for user login
-authRouter.route('/:userId')
+router.route('/:userId')
     .get(userController.getUserById) // Route for retrieving details of a specific user by its ID.
     .put(userController.updateUser) // Route for updating details of a specific user by its ID.
     .delete(userController.deleteUser) // Route for deleting a specific user by its ID.

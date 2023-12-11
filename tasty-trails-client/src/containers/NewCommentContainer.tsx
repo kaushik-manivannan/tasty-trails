@@ -3,7 +3,7 @@ import NewComment from '../components/NewComment/NewComment.tsx';
 import '../components/NewComment/NewComment.css';
 import { NewCommentContainerProps } from '../interfaces/newComment-interfaces';
 
-const NewCommentContainer: React.FC<NewCommentContainerProps> = ({ userId, postId, addComment, userImage }) => {
+const NewCommentContainer: React.FC<NewCommentContainerProps> = ({ userId, userName, postId, addComment, userImage }) => {
   const [comment, setComment] = useState('');
   const [emojiPickerVisible, setEmojiPickerVisible] = useState(false);
   const [selectedImage, setSelectedImage] = useState("");
@@ -61,6 +61,7 @@ const NewCommentContainer: React.FC<NewCommentContainerProps> = ({ userId, postI
       comment: commentWithEmoji,
       dateTime,
       image: selectedImage,
+      userName: userName,
     };
     console.log("New comment befor fetch", newComment);
     // Send a POST request to save the new comment

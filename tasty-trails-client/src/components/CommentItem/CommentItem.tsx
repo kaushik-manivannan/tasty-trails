@@ -47,7 +47,7 @@ const CommentItem: React.FC<CommentItemProps> = ({
     <>
     <div>
       <div className={styles.commentHeader}>
-        <p className={styles.userName}>usename</p>
+        <p className={styles.userName}>{commentValue.userName}</p>
       </div>
       <p className={styles.commentText}>{editedComment}</p>
     </div>
