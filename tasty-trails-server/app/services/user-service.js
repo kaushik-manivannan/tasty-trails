@@ -91,6 +91,7 @@ export const deleteUser = async (userId) => {
  */
 export const getUserById = async (userId) => {
     try {
+        console.log(userId);
         const user = await User.findById(userId);
         if (!user) {
           throw new Error('User not found');
