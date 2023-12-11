@@ -33,7 +33,7 @@ const CommunityItem:React.FC<CommunityItemProps> = ({community,toggleJoin,viewDe
             <div className={styles.communityDetails}>
                 <h3 className={styles.communityName}>{community.communityName}</h3>
                 <p className={styles.communityDescription}>{community.description}</p>
-                <p className={styles.communityMembers}>{community.members.length} members</p>
+                <p className={styles.communityMembers}>{community.members.length === 1 ? community.members.length + " member" : community.members.length + " members"}</p>
             </div>
             <div>
                 <button onClick={toggleJoinOnClick} className={styles.joinButton}  disabled={isProcessing}>{isProcessing ? <span className={styles.spinner}>&#x21AA;</span> : buttonText}</button>  
