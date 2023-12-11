@@ -2,6 +2,7 @@
 import * as userService from "../services/user-service.js";
 import * as responses from "./response-handler.js";
 import TastyTrialsError from "../errors/TastyTrialsError.js";
+import * as CommunityService from "../services/community-service.js";
 
 // Constant for user not found error message
 const USER_NOT_FOUND_ERR_MSG = "User Not found";
@@ -100,3 +101,20 @@ export const loginUser = async (req, res) => {
         responses.set400ErrorResponse(err, res);
     }
 };
+
+/**
+ * Controller method to retrieve communities associated with a user.
+ *
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
+ */
+
+export const getUserCommunities = async (req, res) => {
+    const { userId } = req.params;
+    try {
+        const communites = await CommunityService.getUserCommunities(userId);
+        responses.setResponse(communites, res);
+    } catch (err) {
+        responses.set404ErrorResponseWithMsg(err, res);
+    }
+}
