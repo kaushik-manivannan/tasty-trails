@@ -2,7 +2,7 @@ import React from "react";
 import { CreatePostFormProps } from "../../interfaces/post-interfaces";
 import styles from "./CreatePostForm.module.scss";
 
-const CreatePostForm: React.FC<CreatePostFormProps> = ({ onSubmit, register, errors = {}, imagePreview, onImageChange }) => {
+const CreatePostForm: React.FC<CreatePostFormProps> = ({ onSubmit, register, errors = {}, imagePreview, onImageChange, communities }) => {
   return (
     <div className={styles.coverImage}>
       <form onSubmit={onSubmit} className={styles.form}>
@@ -32,7 +32,20 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({ onSubmit, register, err
         />
         {errors.location && <p className={styles.errorMessage}>{errors.location.message}</p>}
       </div>
-
+      
+      <div className={styles.inputContainer}>
+        <label htmlFor="community" className={styles.inputLabel}>Community</label>
+        <select
+          id="community"
+          className={styles.input}
+          {...register('community', {})}
+        >
+          <option value="">Select a Community</option>
+          {communities.map((community, index) => (
+            <option key={community.communityName+index} value={community._id}>{community.communityName}</option>
+          ))}
+        </select>
+      </div>
       <div className={styles.inputContainer}>
         <label htmlFor="image" className={styles.inputLabel}>Image</label>
         <input 
@@ -41,7 +54,7 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({ onSubmit, register, err
           {...register('image', {
             required: 'Please upload an image',
           })}
-          accept=".jpg, .jpeg, .png, .gif"
+          accept=".jpg, .jpeg, .png"
           onChange={onImageChange}
           style={{ display: "none" }}
         />
