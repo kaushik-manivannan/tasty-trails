@@ -17,8 +17,8 @@
   .newCommentContainer {
     display: flex;
     align-items: flex-start;
-    padding: 10px;
-    width: 440px;
+    padding: 10px 0;
+    width: 100%;
     box-sizing: border-box;
   }
   
@@ -27,7 +27,7 @@
     align-items: flex-start;
     border: 1px solid #ddd;
     padding: 10px;
-    width: 440px;
+    width: 100%;
     box-sizing: border-box;
     border-radius: 12px;
     background-color: #ebebeb;
