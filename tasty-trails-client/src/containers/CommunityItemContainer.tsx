@@ -15,7 +15,7 @@ const CommunityItemContainer:React.FC<CommunityItemContainerProps> = ({community
     const viewDetails= () => {
         navigate(`/communities/${community._id}`);
     }
-    const toggleJoin = () => {
+    const toggleJoin = async () => {
         if(isJoined) {
             payload.members = payload.members.filter((member) => member!== userId);
         }else {
@@ -30,9 +30,9 @@ const CommunityItemContainer:React.FC<CommunityItemContainerProps> = ({community
         }).then( response => response.json())
         .then((data) => {setCommunity(data)})
         .catch((error) =>console.log(error));
-        }
+    }
     return(
-        <CommunityItem community={communityState} toggleJoin = {()=>{toggleJoin()}} viewDetails={viewDetails}/>
+        <CommunityItem community={communityState} toggleJoin = {toggleJoin} viewDetails={viewDetails}/>
     );
 }
 
