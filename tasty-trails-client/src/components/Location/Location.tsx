@@ -69,8 +69,8 @@ const Location: FC<PlacesAutocompleteProps> = ({ register, errors={},setValue })
         </Autocomplete>
       )}
       {errors.location && <p className={styles.errorMessage}>{errors.location.message}</p>}
-      <input  {...register("latitude")} value={latitude}></input>
-      <input  {...register("longitude")} value={longitude}></input>
+      <input type="hidden" {...register("latitude")} value={latitude}></input>
+      <input type="hidden"  {...register("longitude")} value={longitude}></input>
     </>
   );  
 }
