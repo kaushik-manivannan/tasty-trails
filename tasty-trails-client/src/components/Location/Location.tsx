@@ -13,7 +13,7 @@ interface PlacesAutocompleteProps {
       message?: string;
     };
   };
-  setValue: UseFormSetValue<FieldValues>;
+  setValue: UseFormSetValue<PostFormData>;
 }
 
 const Location: FC<PlacesAutocompleteProps> = ({ register, errors={},setValue }) => {
