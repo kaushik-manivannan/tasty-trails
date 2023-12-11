@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
 import NewComment from '../components/NewComment/NewComment.tsx';
 import '../components/NewComment/NewComment.css';
+import { NewCommentContainerProps } from '../interfaces/newComment-interfaces';
 
-const NewCommentContainer = ({ userId, postId, addComment, userImage }) => {
+const NewCommentContainer: React.FC<NewCommentContainerProps> = ({ userId, postId, addComment, userImage }) => {
   const [comment, setComment] = useState('');
   const [emojiPickerVisible, setEmojiPickerVisible] = useState(false);
   const [selectedImage, setSelectedImage] = useState("");
   const dateTime = new Date().toISOString();
 
-  const commentChangeHandler = (event) => {
+  const commentChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setComment(event.target.value);
   };
-  const handleAddComment = (event) => {
+  const handleAddComment = (event: React.FormEvent) => {
     event.preventDefault();
     const commentWithEmoji = `${comment}`;
     addCommentHandler(commentWithEmoji, selectedImage);
@@ -22,20 +23,21 @@ const NewCommentContainer = ({ userId, postId, addComment, userImage }) => {
     setEmojiPickerVisible(!emojiPickerVisible);
   };
 
-  const imageToBase64 = (file) => {
-    return new Promise((resolve, reject) => {
+  const imageToBase64 = (file: File) => {
+    return new Promise<string>((resolve, reject) => {
       const reader = new FileReader();
       reader.onloadend = () => {
-        resolve(reader.result.split(",")[1]);
+        resolve(reader.result.toString().split(",")[1] || '');
       };
       reader.onerror = reject;
       reader.readAsDataURL(file);
     });
   };
 
-  const handleImageUpload = async (event) => {
-    const file = event.target.files[0];
-    if (file) {
+  const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files;
+    if (files && files.length > 0) {
+      const file = files[0];
       const base64Image = await imageToBase64(file);
       setSelectedImage(base64Image);
       event.target.value = '';
@@ -46,13 +48,13 @@ const NewCommentContainer = ({ userId, postId, addComment, userImage }) => {
     setSelectedImage("");
   };
 
-  const handleEmojiClick = (event, emojiObject) => {
+  const handleEmojiClick = (event: async) => {
     const emoji = event.emoji;
     setComment(prevComment => prevComment + emoji);
     setEmojiPickerVisible(false);
   };
 
-  const addCommentHandler = (commentWithEmoji, selectedImage) => {
+  const addCommentHandler = (commentWithEmoji: string, selectedImage: string) => {
     const newComment = {
       userId,
       postId,
@@ -87,7 +89,6 @@ const NewCommentContainer = ({ userId, postId, addComment, userImage }) => {
   comment= { comment }
   setComment = { setComment }
   commentChangeHandler = { commentChangeHandler }
-  addCommentHandler = { addCommentHandler }
   handleAddComment = { handleAddComment }
   handleEmojiClick = { handleEmojiClick }
   toggleEmojiPicker = { toggleEmojiPicker }

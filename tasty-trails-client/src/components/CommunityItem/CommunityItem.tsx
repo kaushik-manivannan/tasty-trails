@@ -25,8 +25,8 @@ const CommunityItem:React.FC<CommunityItemProps> = ({community,toggleJoin,viewDe
                 <p className={styles.communityMembers}>{community.members.length} members</p>
             </div>
             <div>
-                <button onClick={()=>{toggleJoin(community._id)}}>{buttonText}</button>  
-                {isJoined && <button onClick={()=>{viewDetails(community._id)}}>View Community</button>}  
+                <button onClick={()=>{toggleJoin(community._id)}} className={styles.joinButton}>{buttonText}</button>  
+                {isJoined && <button onClick={()=>{viewDetails(community._id)}} className={styles.viewCommunityButton}>View Community</button>}  
             </div>
         </div>
         );

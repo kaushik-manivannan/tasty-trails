@@ -1,4 +1,7 @@
-/* NewComment.scss */
+@import "../../scss/base/variables";
+@import "../../scss/mixins";
+@import "../../scss/base/globals";
+@import "../../scss/functions";
 
 .userImageContainer {
     margin-right: 12px;
@@ -52,7 +55,7 @@
   
     .newCommentButton {
       margin-right: 8px;
-      background-color: #007bff;
+      background-color: $primary-color;
       color: #ffffff;
       border: none;
       border-radius: 4px;

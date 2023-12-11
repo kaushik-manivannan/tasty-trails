@@ -14,6 +14,8 @@ import LoginFormContainer from './containers/LoginFormContainer.tsx';
 import NewCommunityPage from './views/NewCommunityPage/NewCommunityPage.tsx';
 import CreatePostContainer from './containers/CreatePostContainer.tsx';
 import CreatePostPage from './views/CreatePostPage/CreatePostPage.tsx';
+import CommunityListPage from './views/CommunityListPage/CommunityListPage.tsx';
+import CommunityDetailsPage from './views/CommunityDetailsPage/CommunityDetailsPage.tsx';
 import ProtectedRoute from './protectedRoute.js';
 
 const protectedRoutes = [
