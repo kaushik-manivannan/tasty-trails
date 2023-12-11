@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import { CommunityItemProps } from "../../interfaces/community-interfaces";
 import styles from './communityItem.module.scss';
 import { useSelector } from 'react-redux';
@@ -7,7 +7,18 @@ const defaultImageUrl = `${process.env.PUBLIC_URL}/assets/communities-default.sv
 const CommunityItem:React.FC<CommunityItemProps> = ({community,toggleJoin,viewDetails}) => {
     const imageUrl:string = community.image || defaultImageUrl; // Use the community image or the default one
     const userId = useSelector((state:any) => state.auth.userId);
+    const [isProcessing, setProcessing] = useState(false);
     const isJoined:boolean = community.members.includes(userId);
+    const toggleJoinOnClick = async()=>{
+        setProcessing(true);
+        try{
+            await toggleJoin();
+        }catch (error) {
+            console.error('Error toggling join:', error);
+        } finally {
+            setProcessing(false);
+        }
+     }
     let buttonText:string = "";
     if (isJoined) {
         buttonText = "Leave";
@@ -25,7 +36,7 @@ const CommunityItem:React.FC<CommunityItemProps> = ({community,toggleJoin,viewDe
                 <p className={styles.communityMembers}>{community.members.length} members</p>
             </div>
             <div>
-                <button onClick={()=>{toggleJoin(community._id)}} className={styles.joinButton}>{buttonText}</button>  
+                <button onClick={toggleJoinOnClick} className={styles.joinButton}  disabled={isProcessing}>{isProcessing ? <span className={styles.spinner}>&#x21AA;</span> : buttonText}</button>  
                 {isJoined && <button onClick={()=>{viewDetails(community._id)}} className={styles.viewCommunityButton}>View Community</button>}  
             </div>
         </div>
