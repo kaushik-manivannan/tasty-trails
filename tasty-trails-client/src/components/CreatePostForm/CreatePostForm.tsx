@@ -6,12 +6,38 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({ onSubmit, register, err
   return (
     <div className={styles.coverImage}>
       <form onSubmit={onSubmit} className={styles.form}>
-      <h2 className={styles.heading}>Create your tasty trail</h2>
+      <h2 className={styles.heading}>Create Your Tasty Trail</h2>
+
       <div className={styles.inputContainer}>
-        <label htmlFor="description" className={styles.inputLabel}>Description</label>
-        <input
+        <input 
+          type="file"
+          id="image"
+          {...register('image', {
+            required: 'Please upload an image',
+          })}
+          accept=".jpg, .jpeg, .png, .gif"
+          onChange={onImageChange}
+          style={{ display: "none" }}
+        />
+        <button
+          type="button"
+          onClick={() => document.getElementById('image')?.click()}
+          className={styles.fileUploadButton}
+        >
+          {imagePreview && (
+        <div>
+          <img src={imagePreview} alt="Preview" className={styles.imagePreview} />
+        </div>
+          )}
+          {!imagePreview && <p>Upload Image</p>}
+        </button>
+      </div>
+
+      <div className={styles.inputContainer}>
+        {/* <label htmlFor="description" className={styles.inputLabel}>Description</label> */}
+        <textarea
           id="description"
-          className={styles.input}
+          className={styles.textarea}
           placeholder="Enter a description of your food"
           {...register('description', {
             required: 'Please enter a description',
@@ -21,12 +47,12 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({ onSubmit, register, err
       </div>
 
       <div className={styles.inputContainer}>
-        <label htmlFor="location" className={styles.inputLabel}>Location</label>
-        <Location register = {register} errors={errors} setValue={setValue}/>
+        {/* <label htmlFor="location" className={styles.inputLabel}>Location</label> */}
+        <Location register = {register} errors={errors} setValue={setValue} />
       </div>
       
       <div className={styles.inputContainer}>
-        <label htmlFor="community" className={styles.inputLabel}>Community</label>
+        {/* <label htmlFor="community" className={styles.inputLabel}>Community</label> */}
         <select
           id="community"
           className={styles.input}
@@ -38,32 +64,6 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({ onSubmit, register, err
           ))}
         </select>
       </div>
-      <div className={styles.inputContainer}>
-        <label htmlFor="image" className={styles.inputLabel}>Image</label>
-        <input 
-          type="file"
-          id="image"
-          {...register('image', {
-            required: 'Please upload an image',
-          })}
-          accept=".jpg, .jpeg, .png"
-          onChange={onImageChange}
-          style={{ display: "none" }}
-        />
-        <button
-          type="button"
-          onClick={() => document.getElementById('image')?.click()}
-          className={styles.fileUploadButton}
-        >
-          Upload Image
-        </button>
-      </div>
-      {imagePreview && (
-        <div>
-          <p className={styles.imagePreviewText}>Image Preview</p>
-          <img src={imagePreview} alt="Preview" className={styles.imagePreview} />
-        </div>
-      )}
 
       <button type="submit" className={styles.createButton}>Create Post</button>
       </form>
