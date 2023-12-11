@@ -4,12 +4,14 @@ import CreatePostForm from "../components/CreatePostForm/CreatePostForm";
 import { PostFormData } from "../interfaces/post-interfaces";
 import {useSelector} from'react-redux';
 import {getuserCommunities} from "../api/index.js";
-import {createPost} from "../api/index.js"
+import {createPost} from "../api/index.js";
+import { useNavigate } from 'react-router-dom';
 
 const CreatePostContainer: React.FC = () => {
   const { register, handleSubmit, formState: { errors },getValues,setValue } = useForm<PostFormData>({
     mode: 'onChange',
   });
+  const navigate = useNavigate();
   const [communites, setCommunities] = useState([]);
   const userId = useSelector((state:any) => state.auth.userId);
   const fetchUserCommunities = async () => {
@@ -42,9 +44,11 @@ const CreatePostContainer: React.FC = () => {
 
     try {
       const response = await createPost(payload);
-      if (response.status!== 200) {
+      if (response.status!== 201) {
         throw new Error('Failed to create post');
       }
+      alert('Post created successfully');
+      navigate(-1);
       console.log(response.data);
     } catch (error) {
       console.error('Failed to create post');
