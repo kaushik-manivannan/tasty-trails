@@ -25,17 +25,16 @@ const PostDetails: React.FC<PostItemProps> = ({ post }) => {
         </button>
         <div className={styles.card}>
             <img src={post.image} className={styles.image}/>
-            <h3 className={styles.heading}>{post.description}</h3>
-            <div className={styles.locationAndStatus}>
-              <div className={styles.location}>
-                <img src={`${process.env.PUBLIC_URL}/assets/location.svg`} alt="Location" className={styles.locationIcon}/>
-                <p className={styles.locationText}>{post.location}</p>
-              </div>
-              <div className={styles.availabilityStatus}>
-                <p>Status: {post.availabilityStatus}</p>
-              </div>
+            <div className={styles.content}>
+              <h3 className={styles.heading}>{post.description}</h3>
+              <div className={styles.locationAndDate}>
+                <div className={styles.location}>
+                  <img src={`${process.env.PUBLIC_URL}/assets/location.svg`} alt="Location" className={styles.locationIcon}/>
+                  <p className={styles.locationText}>{post.location}</p>
+                </div>
+                <p className={styles.date}>{formattedDate}</p>
+                </div>
             </div>
-            <p className={styles.date}>Posted on: {formattedDate}</p>
         </div>
       </div>
   );
