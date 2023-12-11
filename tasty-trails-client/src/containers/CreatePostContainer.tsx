@@ -7,7 +7,7 @@ import {getuserCommunities} from "../api/index.js";
 import {createPost} from "../api/index.js"
 
 const CreatePostContainer: React.FC = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm<PostFormData>({
+  const { register, handleSubmit, formState: { errors },getValues,setValue } = useForm<PostFormData>({
     mode: 'onChange',
   });
   const [communites, setCommunities] = useState([]);
@@ -34,6 +34,8 @@ const CreatePostContainer: React.FC = () => {
       location: data.location,
       image: imagePreview,
       availabilityStatus:"true",
+      latitude: getValues("latitude"),
+      longitude: getValues("longitude"),
       },
       communityId: data.community
     };
@@ -69,6 +71,7 @@ const CreatePostContainer: React.FC = () => {
       errors={errors}
       imagePreview={imagePreview}
       onImageChange={handleImageChange}
+      setValue={setValue}
       communities={communites}
     />
   );
