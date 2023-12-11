@@ -2,6 +2,7 @@ import React,{useState} from "react";
 import { useForm, SubmitHandler } from 'react-hook-form';
 import {CommunityFormData} from '../../interfaces/community-interfaces';
 import {NewCommunityProps} from '../../interfaces/community-interfaces';
+import { useSelector } from 'react-redux';
 import styles from './NewCommunity.module.scss';
 
 const NewCommunity: React.FC<NewCommunityProps> = ({postNewCommunity}) => {
@@ -9,14 +10,16 @@ const NewCommunity: React.FC<NewCommunityProps> = ({postNewCommunity}) => {
   const { register, handleSubmit, formState: { errors } } = useForm<CommunityFormData>({
     mode: 'onChange', // errors will be displayed on change
   });
-
+  const userId = useSelector((state:any) => state.auth.userId);
   // Use SubmitHandler with FormData
   const onSubmit: SubmitHandler<CommunityFormData> = (data) => {
     // Create an object to send to the server
     const payload = {
         communityName: data.communityName,
+        communityAdmin: userId,
         description: data.description,
         image: imagePreview,
+        members:[userId]
     };
     postNewCommunity(payload);
   };
