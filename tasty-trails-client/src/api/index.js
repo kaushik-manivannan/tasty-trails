@@ -26,6 +26,7 @@ export const createPost = (data) => API.post(`/posts`, data);
 //User API's
 export const createUser = (data) => API.post('/users',data);
 export const loginUser = (data) => API.post('/users/login',data);
+export const getuserCommunities = (id)=> API.get(`/users/${id}/communities`);
 
 //Community API's
 // export const createCommunity = (data) => API.post('/communities',data);
