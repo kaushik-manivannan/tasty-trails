@@ -26,6 +26,14 @@ const PostSchema = new Schema({
         type: String,
         required: true
     },
+    latitude: {
+        type: Number,
+        required: true
+    },
+    longitude: {
+        type: Number,
+        required: true
+    },
     availabilityStatus: {
         type: String,
         required: true
