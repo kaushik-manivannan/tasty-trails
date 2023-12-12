@@ -6,7 +6,10 @@ import {useSelector} from'react-redux';
 import {getuserCommunities} from "../api/index.js";
 import {createPost} from "../api/index.js";
 import { useNavigate } from 'react-router-dom';
-
+/**
+ * The component is responsible for the creation of a new post. It contains a form to create a new post
+ * @returns React.FC
+ */
 const CreatePostContainer: React.FC = () => {
   const { register, handleSubmit, formState: { errors },getValues,setValue } = useForm<PostFormData>({
     mode: 'onChange',
@@ -14,6 +17,7 @@ const CreatePostContainer: React.FC = () => {
   const navigate = useNavigate();
   const [communites, setCommunities] = useState([]);
   const userId = useSelector((state:any) => state.auth.userId);
+  // function to fetch all communities of the user
   const fetchUserCommunities = async () => {
     const resposne = await getuserCommunities(userId);
     try{
@@ -26,6 +30,7 @@ const CreatePostContainer: React.FC = () => {
       throw new Error("error occured while fetching communities of specific user");
     }
   }
+
   useEffect(() => {
     fetchUserCommunities();
   },[]);
@@ -41,21 +46,23 @@ const CreatePostContainer: React.FC = () => {
       communityId: data.community
     };
 
+    // Api call to create a post
     try {
       const response = await createPost(payload);
       if (response.status!== 201) {
         throw new Error('Failed to create post');
       }
       alert('Post created successfully');
-      navigate(-1);
+      navigate(-1); //Navigate back to the home page
       console.log(response.data);
     } catch (error) {
       console.error('Failed to create post');
     }
   };
 
-  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [imagePreview, setImagePreview] = useState<string | null>(null); //state to store the image preview
 
+  // function to handle the image preview, get the file and read  it into base 64
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files ? event.target.files[0] : null;
     if (file) {

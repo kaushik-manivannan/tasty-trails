@@ -33,7 +33,7 @@ export const getUserById = (id) => API.get(`/users/${id}`);
 export const getuserCommunities = (id)=> API.get(`/users/${id}/communities`);
 
 //Community API's
-// export const createCommunity = (data) => API.post('/communities',data);
+export const createCommunity = (data) => API.post('/communities',data);
 export const getAllCommunities = () => API.get(`/communities/`);
 // export const getCommunity = (id) => API.get(`/communities/${id}`);
 export const getAllCommunityDetailsById = (id) => API.get(`/communities/${id}`);

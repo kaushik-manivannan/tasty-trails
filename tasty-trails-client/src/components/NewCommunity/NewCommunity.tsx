@@ -6,12 +6,16 @@ import { useSelector } from 'react-redux';
 import styles from './NewCommunity.module.scss';
 import { useTranslation } from 'react-i18next';
 
+/**
+ * This component is used for creating a new community
+ */
 const NewCommunity: React.FC<NewCommunityProps> = ({postNewCommunity}) => {
-  // Use the correct generic type for useForm
-  const { register, handleSubmit, formState: { errors } } = useForm<CommunityFormData>({
+
+  const { register, handleSubmit, formState: { errors } } = useForm<CommunityFormData>({ // Register hook form
     mode: 'onChange', // errors will be displayed on change
   });
   const userId = useSelector((state:any) => state.auth.userId);
+
   // Use SubmitHandler with FormData
   const onSubmit: SubmitHandler<CommunityFormData> = (data) => {
     // Create an object to send to the server
@@ -20,12 +24,14 @@ const NewCommunity: React.FC<NewCommunityProps> = ({postNewCommunity}) => {
         communityAdmin: userId,
         description: data.description,
         image: imagePreview,
-        members:[userId]
+        members:[userId],
+        postIds:[]
     };
     postNewCommunity(payload);
   };
   const [imagePreview, setImagePreview] = useState<string>("");
 
+  // Handle change of the image
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files ? event.target.files[0] : null;
     if (file) {

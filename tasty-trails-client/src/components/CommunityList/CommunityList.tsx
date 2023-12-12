@@ -5,6 +5,12 @@ import styles from './CommunityList.module.scss';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
+/**
+ * 
+ * This component is responsible for displaying all communities fetch from the database
+ * @param communities List of communities
+ * @returns 
+ */
 const CommunityList : React.FC<CommunityListProps> = ({communities}) => {
 
     // Check if the communities array is empty
@@ -15,6 +21,7 @@ const CommunityList : React.FC<CommunityListProps> = ({communities}) => {
             <div className={styles.communityListWithHeading}>
                 <div className={styles.titleContainer}>
                     <h1 className={styles.heading}>{t('Discover Communities')}</h1>
+                    {/*  Link to redirect for creating a new community*/}
                     <Link to="/new-community" className={styles.createButton}>
                         Create Community
                     </Link>

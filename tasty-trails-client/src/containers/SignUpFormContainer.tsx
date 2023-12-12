@@ -39,7 +39,7 @@ const SignupFormContainer: React.FC = () => {
   
         const response = await createUser({ ...restFormData, fullName });
 
-      if (response.status === 201) {
+      if (response.status === 200) {
         console.log('User created successfully!');
         // Add any additional logic after successful user creation
         
