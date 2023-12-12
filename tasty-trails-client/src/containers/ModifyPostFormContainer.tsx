@@ -6,7 +6,7 @@ import {useSelector} from'react-redux';
 import {getuserCommunities} from "../api/index.js";
 import {updatePost} from "../api/index.js";
 
-const ModifyPostContainer: React.FC<ModifyPostContainerProps> = ({setIsEditable, post}) => {
+const ModifyPostContainer: React.FC<ModifyPostContainerProps> = ({setIsOnEdit, post}) => {
   const { register, handleSubmit, formState: { errors },setValue } = useForm<PostFormData>({
     mode: 'onChange',
   });
@@ -56,7 +56,7 @@ const ModifyPostContainer: React.FC<ModifyPostContainerProps> = ({setIsEditable,
         throw new Error('Failed to create post');
       }
       alert('Post updated successfully');
-      setIsEditable(false);
+      setIsOnEdit(false);
       console.log(response.data);
     } catch (error) {
       console.error('Failed to create post');
