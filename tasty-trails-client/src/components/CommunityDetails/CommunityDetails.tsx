@@ -30,6 +30,7 @@ const CommunityDetails:React.FC<CommunityDetailsProps> = ({community,postList,is
         setSearchQuery(query);
     };
 
+    //filtering posts based on search query 
     const filteredPosts = postList.filter((post: Post) =>
         post.description.toLowerCase().includes(searchQuery.toLowerCase())
     );
@@ -37,7 +38,8 @@ const CommunityDetails:React.FC<CommunityDetailsProps> = ({community,postList,is
     //Function to update the community
     const updateCommunity = async ()=>{
         setIsEditClicked(true);
-        if( editedCommunityName.trim().length === 0|| editedCommunityDescription.trim().length === 0 || (editedCommunityName==community.communityName&&editedCommunityDescription==community.description)){
+        if( (editedCommunityName.trim().length === 0|| editedCommunityDescription.trim().length === 0 || 
+        (editedCommunityName==community.communityName&&editedCommunityDescription==community.description))){
             setIsEditClicked(false);
             return;
         }
@@ -53,9 +55,7 @@ const CommunityDetails:React.FC<CommunityDetailsProps> = ({community,postList,is
             setUpdateMessage("Community updated successfully!");
         }
     }
-    const edit =()=>{
-        setIsEditClicked(true);
-    }
+
     useEffect(() => {
         const clearUpdateMessage = () => {
             setUpdateMessage("");
@@ -80,14 +80,32 @@ const CommunityDetails:React.FC<CommunityDetailsProps> = ({community,postList,is
                 )}
                 {(isEditable&& isEditClicked)?(<>
                 <div className={styles.inputContainer}> 
-                {/* Div for community Name */}
-                    <label htmlFor="communityName" className={styles.inputLabel}>Community Name</label>
-                    <input id="communityName" type="text" value={editedCommunityName} onChange={handleCommunityNameChange} className={styles.input}/>   
+                    {/* Div for community Name */}
+                    <label 
+                        htmlFor="communityName" 
+                        className={styles.inputLabel}>
+                        Community Name
+                    </label>
+                    <input 
+                        id="communityName" 
+                        type="text" 
+                        value={editedCommunityName} 
+                        onChange={handleCommunityNameChange} 
+                        className={styles.input}/>   
                 </div>
                 <div className={styles.inputContainer}>
                     {/* Div for community Description */}
-                    <label htmlFor="communityDescription" className={styles.inputLabel}>Community Description</label>
-                    <input id="communityDescription" type="text" value={editedCommunityDescription} onChange={handleCommunityDescriptionChange} className={styles.input}/>
+                    <label 
+                        htmlFor="communityDescription" 
+                        className={styles.inputLabel}>
+                        Community Description
+                    </label>
+                    <input 
+                        id="communityDescription" 
+                        type="text" 
+                        value={editedCommunityDescription} 
+                        onChange={handleCommunityDescriptionChange} 
+                        className={styles.input}/>
                 </div>
                 </>
                 ):(<>
@@ -108,11 +126,17 @@ const CommunityDetails:React.FC<CommunityDetailsProps> = ({community,postList,is
                 {isEditable && (
                     isEditClicked ? (
                         <div>
-                            <button className={styles.updateButton} onClick={updateCommunity}>Update</button>
+                            <button 
+                            className={styles.updateButton} 
+                            onClick={updateCommunity}>Update</button>
                         </div>
                     ) : (
                         <div>
-                            <button className={styles.updateButton} onClick={edit}>Edit</button>
+                            <button
+                                className={styles.updateButton} 
+                                onClick={()=>{setIsEditClicked(true)}}>
+                                Edit
+                            </button>
                         </div>
                     )
                 )}
