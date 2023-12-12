@@ -14,7 +14,7 @@ import Post from "../models/post.js"
  * @returns {Promise<Array>} - A promise that resolves to an array of posts.
  * @throws {Error} - Throws an error if there is an issue fetching posts.
  */
-export const getAllPosts = async (params = {}) => {
+export const getAllPosts = async (params = {"communityId":"-1"}) => {
     try {
         const posts = await Post.find(params).exec();
         return posts;
