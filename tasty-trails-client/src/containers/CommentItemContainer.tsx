@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import CommentItem from '../components/CommentItem/CommentItem.tsx';
 import { CommentItemProps1 } from '../interfaces/comment-interfaces';
-import AlertBox from '../components/Alerts/Alerts.tsx';
  
 // CommentItemContainer component to manage the state and logic for CommentItem
 const CommentItemContainer: React.FC<CommentItemProps1> = ({ commentValue, onEdit, onDelete }) => {
