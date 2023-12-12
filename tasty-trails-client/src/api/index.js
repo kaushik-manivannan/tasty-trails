@@ -22,6 +22,7 @@ API.interceptors.request.use((req) => {
 export const getAllPosts = () => API.get('/posts');
 export const getPost = (id) => API.get(`/posts/${id}`);
 export const createPost = (data) => API.post(`/posts`, data);
+export const updatePost = (id, data) => API.put(`/posts/${id}`, data);
 
 //User API's
 export const createUser = (data) => API.post('/users',data);
