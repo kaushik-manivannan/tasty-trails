@@ -9,9 +9,10 @@ interface LoginFormProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onSubmit: (e: React.FormEvent) => void;
   onSignupClick: () => void;
+  onGoogleLogin: () => void;
 }
 
-const LoginForm: React.FC<LoginFormProps> = ({ formData, onChange, onSubmit, onSignupClick }) => {
+const LoginForm: React.FC<LoginFormProps> = ({ formData, onChange, onSubmit, onSignupClick,  onGoogleLogin}) => {
   return (
     <div className={styles.coverImage}>
       <div className={styles.loginPage}>
@@ -48,7 +49,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ formData, onChange, onSubmit, onS
           <hr className={styles.loginDivision}/>
         </form>
         <div className={styles.secondaryLogin}>
-          <button type="submit" className={styles.secondaryLoginButton}>Sign in with Google
+          <button type="submit" className={styles.secondaryLoginButton} onClick={onGoogleLogin}>Sign in with Google
           </button>
         </div>
         <div className={styles.signup}>
