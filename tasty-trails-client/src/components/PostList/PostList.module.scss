@@ -5,24 +5,18 @@
 
 .postFeed {
     width: 35vw;
-    margin: 0 auto;
-}
+    margin: 50px auto 0 auto;
 
-.search {
-    display: flex;
-    justify-content: end;
-    margin-bottom: 15px;
-}
+    .search {
+        display: flex;
+        justify-content: end;
+        margin-bottom: 15px;
+    }
 
-.noPosts {
-    text-align: center;
-    margin-top: 70px;
-    font-size: 1.5rem;
-    font-weight: set-weight(medium);
-}
-
-.heading {
-    text-align: center;
-    font-size: 2rem;
-    margin: 50px 0 30px 0;
+    .noPosts {
+        text-align: center;
+        margin-top: 70px;
+        font-size: 1.5rem;
+        font-weight: set-weight(medium);
+    }
 }
