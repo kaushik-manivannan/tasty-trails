@@ -20,12 +20,12 @@ const NewComment: React.FC<NewCommentProps> = ({
   selectedImage, 
   userImage = userDefault,
 }) => {
-  const isSubmitDisabled = comment.trim() === '';
+  const isSubmitDisabled = comment.trim() === '' && !selectedImage;
   
   return (
     <form onSubmit={handleAddComment} className={styles.newCommentContainer}>
     <div className={styles.userImageContainer}>
-        <img src={userImage} alt="" className={styles.userImage} />
+        <img src={userDefault} alt="" className={styles.userImage} />
       </div>
     <div className={styles.newCommentContainerInput}>
       <div className={styles.newCommentInputContainer}>
