@@ -63,7 +63,6 @@ const NewCommentContainer: React.FC<NewCommentContainerProps> = ({ userId, userN
       image: selectedImage,
       userName: userName,
     };
-    console.log("New comment befor fetch", newComment);
     // Send a POST request to save the new comment
     fetch('http://localhost:8080/comments', {
       method: 'POST',
