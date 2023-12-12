@@ -1,3 +1,4 @@
+// Import React and necessary hooks and components
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -6,14 +7,20 @@ import NewCommentContainer from './NewCommentContainer.tsx';
 import { Comment } from '../interfaces/comment-interfaces';
 import { getAllCommentsByPostId, getAllCommentsByUserId } from '../api/index.js';
  
+// Define the CommentListContainer component
 const CommentListContainer: React.FC = () => {
+  // State variables for managing comments and user name
   const [comments, setComments] = useState<Comment[]>([]);
   const [userName, setUserName] = useState<string>('');
+  // Extract postId from URL parameters and userId from Redux store
   const { postId } = useParams<{ postId: string }>();
   const userId = useSelector((state) => state.auth.userId);
   // const userId = user ? user.id : '';
  const userImage = "";
+
+ // useEffect to fetch comments and user data on component mount
   useEffect(() => {
+    // Fetch comments related to the post
     const fetchComments = async () => {
       try {
         const response = await getAllCommentsByPostId(postId);
@@ -26,6 +33,7 @@ const CommentListContainer: React.FC = () => {
       }
     };
 
+    // Fetch user data based on userId
     const fetchUser = async () => {
       try {
         const response = await getAllCommentsByUserId(userId);
@@ -37,14 +45,18 @@ const CommentListContainer: React.FC = () => {
         console.log("Error fetching data: ", error);
       }
     };
+
+    // Call the fetch functions
     fetchComments();
     fetchUser();
   }, [postId, userId]);
- 
+  
+  // Function to add a new comment to the state
   const addComment = (newComment: Comment) => {
     setComments((prevComments) => [...prevComments, newComment]);
   };
- 
+  
+  // Function to edit a comment using an API call
   const editComment = (commentId: { $oid: string; }, editedComment: string) => {
     fetch(`http://localhost:8080/comments/${commentId}`, {
       method: 'PUT',
@@ -68,7 +80,8 @@ const CommentListContainer: React.FC = () => {
         // Handle error accordingly
       });
   };
- 
+  
+  // Function to delete a comment using an API call
   const deleteComment = (commentId: { $oid: string; }) => {
     // Implement delete logic
     fetch(`http://localhost:8080/comments/${commentId}`, {
@@ -84,7 +97,8 @@ const CommentListContainer: React.FC = () => {
         console.error('Error deleting comment:', error);
       });
   };
- 
+  
+  // Render the CommentList and NewCommentContainer components
   return (
 <div>
 <CommentList
@@ -97,4 +111,5 @@ const CommentListContainer: React.FC = () => {
   );
 };
  
+// Export the CommentListContainer component
 export default CommentListContainer;

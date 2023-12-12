@@ -3,15 +3,20 @@ import NewComment from '../components/NewComment/NewComment.tsx';
 import '../components/NewComment/NewComment.css';
 import { NewCommentContainerProps } from '../interfaces/newComment-interfaces';
 
+// NewCommentContainer component to manage the state and logic for NewComment
 const NewCommentContainer: React.FC<NewCommentContainerProps> = ({ userId, userName, postId, addComment, userImage }) => {
+  // State variables to manage the comment text, emoji picker visibility, selected image, and current date and time
   const [comment, setComment] = useState('');
   const [emojiPickerVisible, setEmojiPickerVisible] = useState(false);
   const [selectedImage, setSelectedImage] = useState("");
   const dateTime = new Date().toISOString();
 
+  // Handler for updating the comment text as the user types
   const commentChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setComment(event.target.value);
   };
+
+  // Handler for adding a new comment
   const handleAddComment = (event: React.FormEvent) => {
     event.preventDefault();
     const commentWithEmoji = `${comment}`;
@@ -19,10 +24,12 @@ const NewCommentContainer: React.FC<NewCommentContainerProps> = ({ userId, userN
     setSelectedImage("");
   };
 
+  // Function to toggle the visibility of the emoji picker
   const toggleEmojiPicker = () => {
     setEmojiPickerVisible(!emojiPickerVisible);
   };
 
+  // Function to convert an image file to base64 format
   const imageToBase64 = (file: File) => {
     return new Promise<string>((resolve, reject) => {
       const reader = new FileReader();
@@ -34,6 +41,7 @@ const NewCommentContainer: React.FC<NewCommentContainerProps> = ({ userId, userN
     });
   };
 
+  // Handler for uploading an image
   const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
     if (files && files.length > 0) {
@@ -44,16 +52,19 @@ const NewCommentContainer: React.FC<NewCommentContainerProps> = ({ userId, userN
     }
   };
 
+  // Handler for removing the selected image
   const handleRemoveImage = () => {
     setSelectedImage("");
   };
 
+  // Handler for emoji click event
   const handleEmojiClick = (event: async) => {
     const emoji = event.emoji;
     setComment(prevComment => prevComment + emoji);
     setEmojiPickerVisible(false);
   };
 
+  // Handler for adding a new comment to the server
   const addCommentHandler = (commentWithEmoji: string, selectedImage: string) => {
     const newComment = {
       userId,
@@ -73,8 +84,6 @@ const NewCommentContainer: React.FC<NewCommentContainerProps> = ({ userId, userN
     })
       .then((response) => response.json())
       .then((data) => {
-        // Assuming the response contains the newly added comment
-        // You may want to add error handling here
         addComment(data);
         setComment('');
 
@@ -84,6 +93,7 @@ const NewCommentContainer: React.FC<NewCommentContainerProps> = ({ userId, userN
       });
   };
 
+  // Render the NewComment component with the appropriate props
   return (
     <NewComment
   comment= { comment }
@@ -101,4 +111,5 @@ const NewCommentContainer: React.FC<NewCommentContainerProps> = ({ userId, userN
     );
 };
 
+// Export the NewCommentContainer component
 export default NewCommentContainer;
