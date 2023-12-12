@@ -29,28 +29,27 @@
             cursor: pointer;
             width: fit-content;
             padding: 15px;
-        }
-        
-        .navLink:hover {
-            border-radius: 50px;
-            background-color: $tertiary-color;
-        }
-        
-        .navText {
-            font-weight: set-weight(medium);
-            font-size: 1.3rem;
-        }
-        
-        .navIcon {
-            margin-right: 15px;
-            width: 40px;
+
+            &:hover {
+                border-radius: 50px;
+                background-color: $tertiary-color;
+            }
+
+            .navIcon {
+                margin-right: 15px;
+                width: 40px;
+            }
+
+            .navText {
+                font-weight: set-weight(medium);
+                font-size: 1.3rem;
+            }
         }
         
         .logout {
             position: absolute;
             bottom: 0;
         }
-
     }
 }
 
