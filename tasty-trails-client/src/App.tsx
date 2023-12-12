@@ -19,6 +19,7 @@ import CommunityDetailsPage from './views/CommunityDetailsPage/CommunityDetailsP
 import ProtectedRoute from './protectedRoute.js';
 import UserProfileViewContainer from './containers/UserProfileViewContainer.tsx';
 import UserProfileEditContainer from './containers/UserProfileEditContainer.tsx';
+import GoogleOAuthSuccess from './containers/GoogleOAuthSucsess.tsx';
 
 const protectedRoutes = [
   { path: '/posts', component: LandingPage },
@@ -42,7 +43,9 @@ const router = createBrowserRouter(createRoutesFromElements([
   // <Route path='/communities/:communityId' element={ <CommunityDetailsContainer /> } />,
   // <Route path='/new-community' element={ <NewCommunityPage /> } />,
   <Route path="/edit-profile/:userId" element={<UserProfileEditContainer />} />,
-  <Route path="/profile" element={<UserProfileViewContainer />} />,,
+  
+  <Route path="/google/oauth/success" element={<GoogleOAuthSuccess/>} />,
+
 
   ...protectedRoutes.map(route => (
     <Route key={route.path} path={route.path} element={
