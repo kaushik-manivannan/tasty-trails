@@ -2,12 +2,15 @@ import React ,{useState,useEffect} from "react";
 import PostList from '../PostList/PostList';
 import {CommunityDetailsProps} from '../../interfaces/community-interfaces';
 import styles from './CommunityDetails.module.scss';
+import { Post } from "../../interfaces/post-interfaces";
 
 const CommunityDetails:React.FC<CommunityDetailsProps> = ({community,postList,isEditable,updateCommunityById})=>{
     const [editedCommunityName, setEditedCommunityName] = useState(community.communityName);
     const [editedCommunityDescription, setEditedCommunityDescription] = useState(community.description);
     const [updateMessage, setUpdateMessage] = useState("");
     const [isEditClicked, setIsEditClicked] = useState(false);
+    const [searchQuery, setSearchQuery] = useState('');
+
     const handleCommunityNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setEditedCommunityName(event.target.value);
     };
@@ -15,6 +18,15 @@ const CommunityDetails:React.FC<CommunityDetailsProps> = ({community,postList,is
     const handleCommunityDescriptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setEditedCommunityDescription(event.target.value);
     };
+
+    const onSearch = (query: string) => {
+        setSearchQuery(query);
+    };
+
+    const filteredPosts = postList.filter((post: Post) =>
+        post.description.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
     const updateCommunity = async ()=>{
         setIsEditClicked(true);
         if( editedCommunityName.trim().length === 0|| editedCommunityDescription.trim().length === 0 || (editedCommunityName==community.communityName&&editedCommunityDescription==community.description)){
@@ -95,7 +107,7 @@ const CommunityDetails:React.FC<CommunityDetailsProps> = ({community,postList,is
             </div>
             <div className={styles.postListContainer}>
                 <h2 className={styles.heading}>{`${community.communityName} Posts`}</h2>
-                <PostList posts={postList} />
+                <PostList posts={filteredPosts} onSearch={onSearch}/>
             </div>
         </div>
     )
