@@ -1,6 +1,7 @@
 import React from 'react';
 import { CommentItemProps } from '../../interfaces/comment-interfaces';
 import styles from './CommentItem.module.scss';
+import { useTranslation } from 'react-i18next';
 
 // Default user image URL
 const userDefault = `${process.env.PUBLIC_URL}/assets/user.png`;
@@ -23,6 +24,7 @@ const CommentItem: React.FC<CommentItemProps> = ({
   editCommentHandler,
 
 }) => {
+  const { t } = useTranslation();
   return (
     <div className={styles.commentItemContainer}>
       <div className={styles.userImageContainer}>
@@ -42,8 +44,8 @@ const CommentItem: React.FC<CommentItemProps> = ({
         value={editedComment}
         onChange={editCommentHandler}
       />
-    <button className={styles.saveEditedComment} onClick={handleSaveEdit}>Save</button>
-    <button onClick={handleCancelEdit}>Cancel</button>
+    <button className={styles.saveEditedComment} onClick={handleSaveEdit}>{t('Save')}</button>
+    <button onClick={handleCancelEdit}>{t('Cancel')}</button>
     </div>
     ) : (
     <>
@@ -62,8 +64,8 @@ const CommentItem: React.FC<CommentItemProps> = ({
     )}
     {showDelete && (
       <div className={styles.optionsDropdown}>
-        <button className={styles.editCommentItem} onClick={handleEdit}>Edit</button>
-        <button onClick={onDelete}>Delete</button>
+        <button className={styles.editCommentItem} onClick={handleEdit}>{t('Edit')}</button>
+        <button onClick={onDelete}>{t('Delete')}</button>
       </div>
     )}
   </>

@@ -2,6 +2,7 @@ import React,{useState} from "react";
 import { CommunityItemProps } from "../../interfaces/community-interfaces";
 import styles from './communityItem.module.scss';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 /**
  * This component is called when you want to render the commynity item
@@ -29,6 +30,7 @@ const CommunityItem:React.FC<CommunityItemProps> = ({community,toggleJoin,viewDe
     }else {
         buttonText = "Join";
     }
+    const { t } = useTranslation();
     return(
         <div className={styles.communityItem}>
             <div className={styles.communityImage}>
@@ -41,7 +43,7 @@ const CommunityItem:React.FC<CommunityItemProps> = ({community,toggleJoin,viewDe
             </div>
             <div>
                 <button onClick={toggleJoinOnClick} className={styles.joinButton}  disabled={isProcessing}>{isProcessing ? <span className={styles.spinner}>&#x21AA;</span> : buttonText}</button>  
-                {isJoined && <button onClick={()=>{viewDetails(community._id)}} className={styles.viewCommunityButton}>View Community</button>}  
+                {isJoined && <button onClick={()=>{viewDetails(community._id)}} className={styles.viewCommunityButton}>{t('View Community')}</button>}  
             </div>
         </div>
         );
