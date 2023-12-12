@@ -30,7 +30,7 @@ const CreatePostContainer: React.FC = () => {
     fetchUserCommunities();
   },[]);
   const onSubmit: SubmitHandler<PostFormData> = async (data) => {
-    const payload = {postDetails:{
+    const payload = {
       userId: userId,
       description: data.description,
       location: data.location,
@@ -38,7 +38,6 @@ const CreatePostContainer: React.FC = () => {
       availabilityStatus:"true",
       latitude: getValues("latitude"),
       longitude: getValues("longitude"),
-      },
       communityId: data.community
     };
 
