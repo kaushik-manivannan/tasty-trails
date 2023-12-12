@@ -58,7 +58,6 @@ const UserProfileEditContainer: React.FC = () => {
 
       
          const data = {
-            "emailId":user.emailId,
             "fullName":user.fullName,
             "userName":user.userName,
             "location":user.location,
