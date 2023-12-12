@@ -30,6 +30,9 @@ const ModifyPostContainer: React.FC<ModifyPostContainerProps> = ({setIsEditable,
     setValue('location', post.location);
     setImagePreview(post.image);
     setValue('community', post.communityId);
+    if(post.image){
+      setValue('image', "/DummyPath/image.jpg");  // added dummy value for image path sinse we are seting teh image preview
+    }
   }
   useEffect(() => {
     fetchUserCommunities();
