@@ -1,5 +1,5 @@
 import './App.scss';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route, Navigate} from 'react-router-dom';
 import { Provider} from 'react-redux';
 import {store , persistor } from './auth/store.js';
@@ -17,6 +17,9 @@ import CreatePostPage from './views/CreatePostPage/CreatePostPage.tsx';
 import CommunityListPage from './views/CommunityListPage/CommunityListPage.tsx';
 import CommunityDetailsPage from './views/CommunityDetailsPage/CommunityDetailsPage.tsx';
 import ProtectedRoute from './protectedRoute.js';
+import i18n from './i18n';
+import { Suspense } from'react';
+import { useTranslation } from'react-i18next';
 
 const protectedRoutes = [
   { path: '/posts', component: LandingPage },
@@ -49,11 +52,24 @@ const router = createBrowserRouter(createRoutesFromElements([
   )),
 ]));
 
+function Loading() {
+  return <>Loading...</>;
+}
 function App() {
+  const { t, i18n } = useTranslation();
+
+  useEffect(() => {
+    const lng = navigator.language;
+    i18n.changeLanguage(lng);
+  }, []);
+
+  const lng = navigator.language;
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <RouterProvider router={router}/>
+        <Suspense fallback={<Loading />}>
+          <RouterProvider router={router}/>
+        </Suspense>
       </PersistGate>
     </Provider>
   );
