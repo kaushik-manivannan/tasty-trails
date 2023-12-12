@@ -49,7 +49,9 @@ const CommentItem: React.FC<CommentItemProps> = ({
       <div className={styles.commentHeader}>
         <p className={styles.userName}>{commentValue.userName}</p>
       </div>
+      {editedComment && (
       <p className={styles.commentText}>{editedComment}</p>
+      )}
     </div>
     {showOptions && (
       <div className={styles.optionsIndicator} onClick={toggleOptions}>

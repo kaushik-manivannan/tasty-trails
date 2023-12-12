@@ -55,7 +55,6 @@ const UserProfileEditContainer: React.FC = () => {
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
-
       
          const data = {
             "fullName":user.fullName,
@@ -67,6 +66,8 @@ const UserProfileEditContainer: React.FC = () => {
         try {
             await updateUser(userId,data);
             alert('Profile updated successfully');
+            navigate('/profile');
+            
         } catch (error) {
             console.error('Error updating profile:', error);
             alert('Error updating profile');

@@ -1,4 +1,6 @@
 import React from 'react';
+import styles from './UserProfileEditComponent.module.scss'
+import { Link } from 'react-router-dom';
 
 interface UserProfileEditProps {
     user: {
@@ -23,56 +25,71 @@ const UserProfileEditComponent: React.FC<UserProfileEditProps> = ({
     onBack,
 }) => {
     return (
-        <div>
-            <form onSubmit={onSubmit}>
-                <div>
-                    <label>Email:</label>
+        <div className={styles.userProfileEditContainer}>
+            <form onSubmit={onSubmit} className={styles.userProfileEdit}>
+                <img src={`${process.env.PUBLIC_URL}/assets/back-arrow.svg`} onClick={onBack} className={styles.backButton}></img>
+                <div className={styles.inputContainer}>
+                    <input
+                        id="image"
+                        type="file" 
+                        onChange={onImageChange} 
+                        accept=".jpg, .jpeg, .png, .gif"
+                        className={styles.input}
+                        style={{display: "none"}}
+                    />
+                    <button
+                        type="button"
+                        onClick={() => document.getElementById('image')?.click()}
+                        className={styles.fileUploadButton}
+                        >
+                        {imagePreviewUrl && (
+                        <img src={imagePreviewUrl} alt="Profile Preview" className={styles.imagePreview} />
+                        )}
+                        {!imagePreviewUrl && <p>Upload Image</p>}
+                    </button>
+                </div>
+                <div className={styles.inputContainer}>
+                    <label className={styles.inputLabel}>Email</label>
                     <input 
                         type="text" 
                         name="emailId" 
                         value={user.emailId} 
                         onChange={onInputChange} 
+                        className={styles.input}
+                        disabled
                     />
                 </div>
-                <div>
-                    <label>Full Name:</label>
+                <div className={styles.inputContainer}>
+                    <label className={styles.inputLabel}>Full Name</label>
                     <input 
                         type="text" 
                         name="fullName" 
                         value={user.fullName} 
                         onChange={onInputChange} 
+                        className={styles.input}
                     />
                 </div>
-                <div>
-                    <label>Username:</label>
+                <div className={styles.inputContainer}>
+                    <label className={styles.inputLabel}>Username</label>
                     <input 
                         type="text" 
                         name="userName" 
                         value={user.userName} 
                         onChange={onInputChange} 
+                        className={styles.input}
                     />
                 </div>
-                <div>
-                    <label>Location:</label>
+                <div className={styles.inputContainer}>
+                    <label className={styles.inputLabel}>Location</label>
                     <input 
                         type="text" 
                         name="location" 
                         value={user.location} 
                         onChange={onInputChange} 
+                        className={styles.input}
                     />
                 </div>
-                <div>
-                    <label>Profile Image:</label>
-                    <input 
-                        type="file" 
-                        onChange={onImageChange} 
-                    />
-                    {imagePreviewUrl && (
-                        <img src={imagePreviewUrl} alt="Profile Preview" style={{ width: '100px', height: '100px' }} />
-                    )}
-                </div>
-                <button type="submit">Save Changes</button>
-                <button type="button" onClick={onBack}>Back</button>
+                <button type="submit" className={styles.createButton}>Save Changes</button>
             </form>
         </div>
     );

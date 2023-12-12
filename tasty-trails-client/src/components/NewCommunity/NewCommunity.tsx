@@ -54,14 +54,14 @@ const NewCommunity: React.FC<NewCommunityProps> = ({postNewCommunity}) => {
           type="button"
           onClick={() => document.getElementById('image')?.click()}
           className={styles.fileUploadButton}
-        >
+          >
           {imagePreview && (
-        <div>
-          <img src={imagePreview} alt="Preview" className={styles.imagePreview} />
-        </div>
+            <div>
+              <img src={imagePreview} alt="Preview" className={styles.imagePreview} />
+            </div>
           )}
           {!imagePreview && <p>Upload Image</p>}
-        </button>
+          </button>
       </div>
 
       {/* Community Name */}

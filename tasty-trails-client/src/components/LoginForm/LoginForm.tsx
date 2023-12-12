@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './LoginForm.module.scss';
+import { useTranslation } from 'react-i18next';
 
 interface LoginFormProps {
   formData: {
@@ -12,48 +13,49 @@ interface LoginFormProps {
 }
 
 const LoginForm: React.FC<LoginFormProps> = ({ formData, onChange, onSubmit, onSignupClick }) => {
+  const { t } = useTranslation();
   return (
     <div className={styles.coverImage}>
       <div className={styles.loginPage}>
         <img src={`${process.env.PUBLIC_URL}/assets/logo.png`} alt="Tasty Trails Logo" className={styles.logo}/>
-        <h1 className={styles.heading}>Sign in to Tasty Trails</h1>
+        <h1 className={styles.heading}>{t('Sign in to Tasty Trails')}</h1>
         <form onSubmit={onSubmit} className={styles.loginForm}>
           <div className={styles.inputContainer}>
-            <label htmlFor="userName" className={styles.inputLabel}>Username</label>
+            <label htmlFor="userName" className={styles.inputLabel}>{t('Username')}</label>
             <input
               type="text"
               id="userName"
               name="userName"
               value={formData.userName}
               onChange={onChange}
-              placeholder="Enter your username"
+              placeholder={t('Enter your username')}
               required
               className={styles.input}
             />
           </div>
           <div className={styles.inputContainer}>
-            <label htmlFor="password" className={styles.inputLabel}>Password</label>
+            <label htmlFor="password" className={styles.inputLabel}>{t('Password')}</label>
             <input
               type="password"
               id="password"
               name="password"
               value={formData.password}
               onChange={onChange}
-              placeholder="Enter your password"
+              placeholder={t('Enter your password')}
               required
               className={styles.input}
             />
           </div>
-          <button type="submit" className={styles.loginButton}>Login</button>
+          <button type="submit" className={styles.loginButton}>{t('Login')}</button>
           <hr className={styles.loginDivision}/>
         </form>
         <div className={styles.secondaryLogin}>
-          <button type="submit" className={styles.secondaryLoginButton}>Sign in with Google
+          <button type="submit" className={styles.secondaryLoginButton}>{t('Sign in with Google')}
           </button>
         </div>
         <div className={styles.signup}>
           <span className={styles.signupText}>Don't have an account?</span>
-          <button onClick={onSignupClick} className={styles.signupButton}>Sign up</button>
+          <button onClick={onSignupClick} className={styles.signupButton}>{t('Sign up')}</button>
         </div>
       </div>
     </div>

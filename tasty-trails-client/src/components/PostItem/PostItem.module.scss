@@ -21,6 +21,7 @@
 
     .image {
         width: 100%;
+        max-height: 350px;
         margin-bottom: 20px;
         border-radius: 25px 25px 0 0;
     }
@@ -41,7 +42,7 @@
             align-items: center;
             font-weight: set-weight(medium);
             margin-top: 25px;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             color: $primary-color;
 
             .location {
