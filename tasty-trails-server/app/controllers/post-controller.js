@@ -78,7 +78,12 @@ export const updatePost = async (req, res) => {
     const { postId } = req.params;
     const postData = req.body;
     try {
+        const prevPost = await postService.getPostById(postId);
         const updatedPost = await postService.updatePost(postId, postData);
+        if(prevPost.communityId!==postData.communityId){ // need to update only if user is changing the community
+            await CommunityService.addPostToCommunity(postData.communityId,postId); // add post to community 
+            await CommunityService.removePostFromCommunity(postData.communityId,prevPost._id);//remove post from community
+        }
         responses.setResponse(updatedPost, res);
     } catch (err) {
         responses.set404ErrorResponse(err, res);

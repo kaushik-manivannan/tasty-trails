@@ -16,8 +16,7 @@ export interface Post {
 
 export interface PostItemProps {
     post: Post;
-    handleDelete : Function;
-    handleEdit: Function;
+    onDelete : Function;
     canModify: boolean;
 }
 
