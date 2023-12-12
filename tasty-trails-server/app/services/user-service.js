@@ -2,6 +2,7 @@ import User from "../models/user.js";
 import TastyTrialsError from "../errors/TastyTrialsError.js";
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import { sendEmail } from "../middleware/email.js";
 
 /**
  * Creates a new user.
@@ -16,15 +17,20 @@ export const createUser = async (newUserData) => {
     try {
         const user = await User.findOne({ userName: newUserData.userName });
         if (user) {
-            throw new TastyTrialsError('User name already exists');
+            
+            return {user: user, error:'User already exists'};
         }
 
         // Hash the password before saving it to the database
-        newUserData.password = await getHashedPassword(newUserData.password);
+        if(newUserData.password) {
+            newUserData.password = await getHashedPassword(newUserData.password);
+        } 
 
         const newUser = await User.create(newUserData);
 
         const token = generateAuthToken(newUser);
+
+        sendEmail(newUser.emailId);
 
         return { user: newUser, token };
     } catch (error) {
@@ -115,13 +121,13 @@ export const loginUser = async (userData) => {
 
         return { user, token };
     } catch (error) {
-        throw new Error('Error during login');
+                throw new Error('Error during login');
     }
 };
 
 export const authenticateUser = async (userName, password) => {
     try {
-        const user = await User.findOne({ userName });
+                const user = await User.findOne({ userName });
 
         if (!user) {
             throw new TastyTrialsError('User not found');
@@ -135,7 +141,7 @@ export const authenticateUser = async (userName, password) => {
 
         return user;
     } catch (error) {
-        throw new TastyTrialsError('Error authenticating user');
+                throw new TastyTrialsError('Error authenticating user');
     }
 };
 

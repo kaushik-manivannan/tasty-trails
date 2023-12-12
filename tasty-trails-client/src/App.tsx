@@ -19,6 +19,7 @@ import { Suspense } from'react';
 import { useTranslation } from'react-i18next';
 import UserProfileViewPage from './views/UserProfileViewPage/UserProfileViewPage.tsx';
 import UserProfileEditPage from './views/UserProfileEditPage/UserProfileEditPage.tsx';
+import GoogleOAuthSuccess from './containers/GoogleOAuthSucsess.tsx';
 
 const protectedRoutes = [
   { path: '/posts', component: LandingPage },
@@ -43,7 +44,9 @@ const router = createBrowserRouter(createRoutesFromElements([
   // <Route path='/communities/:communityId' element={ <CommunityDetailsContainer /> } />,
   // <Route path='/new-community' element={ <NewCommunityPage /> } />,
   <Route path="/edit-profile/:userId" element={<UserProfileEditPage />} />,
-  <Route path="/profile" element={<UserProfileViewPage />} />,,
+  <Route path="/profile" element={<UserProfileViewPage />} />,
+  <Route path="/google/oauth/success" element={<GoogleOAuthSuccess/>} />,
+
 
   ...protectedRoutes.map(route => (
     <Route key={route.path} path={route.path} element={

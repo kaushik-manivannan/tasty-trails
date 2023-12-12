@@ -18,7 +18,7 @@ export const createUser = async (req, res) => {
     const userData = req.body;
     try {
         const newUser = await userService.createUser(userData);
-        res.status(201).json(newUser);
+        res.status(200).json(newUser);
     } 
     catch (err) {
 

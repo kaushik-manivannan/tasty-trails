@@ -1,6 +1,7 @@
 
 import GoogleStrategy from 'passport-google-oauth2';
 import passport from 'passport';
+import User from '../models/user.js';
 
 console.log("Google Client ID:", process.env.GOOGLE_CLIENT_ID);
 console.log("Google Client Secret:", process.env.GOOGLE_CLIENT_SECRET);
@@ -18,18 +19,19 @@ passport.use(new GoogleStrategy({
     console.log("in google user function");
     // User.findOrCreate({ googleId: profile.id }, function (err, user) {
       console.log(profile);
-      return done(null, profile);
+
+      const user = {
+        emailId: profile.email,
+        fullName: profile.displayName,
+        userName: profile.name.givenName, // You can adjust this based on your requirements
+        image: profile.picture,
+        // Add other fields as needed
+      };
+      
+      return done(null, user);
     // });
   }
 ));
 
-
-passport.serializeUser((user, done) => {
-  done(null, user);
-});
-
-passport.deserializeUser((user, done) => {
-  done(null, user);
-});
 
 export default passport;
