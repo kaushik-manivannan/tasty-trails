@@ -40,7 +40,7 @@ export const createPost = async (req, res) => {
     const communityId = postData.communityId;
     try {
         const newPost = await postService.createPost(postData); //create a new post
-        if(communityId !=="" && communityId!==undefined) // when posted globally
+        if(communityId !=="-1" && communityId!==undefined) // when posted globally
         await CommunityService.addPostToCommunity(communityId,newPost._id); //add post to community
         res.status(201).json(newPost);
     } catch (err) {
