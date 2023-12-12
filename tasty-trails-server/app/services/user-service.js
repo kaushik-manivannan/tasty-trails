@@ -2,6 +2,7 @@ import User from "../models/user.js";
 import TastyTrialsError from "../errors/TastyTrialsError.js";
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import { sendEmail } from "../middleware/email.js";
 
 /**
  * Creates a new user.
@@ -28,6 +29,8 @@ export const createUser = async (newUserData) => {
         const newUser = await User.create(newUserData);
 
         const token = generateAuthToken(newUser);
+
+        sendEmail(newUser.emailId);
 
         return { user: newUser, token };
     } catch (error) {
