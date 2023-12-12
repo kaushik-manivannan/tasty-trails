@@ -38,26 +38,6 @@ const ModifyPostForm: React.FC<PostFormProps> = ({ onSubmit, register, errors = 
           ))}
         </select>
       </div>
-      <div className={styles.inputContainer}>
-        <label htmlFor="image" className={styles.inputLabel}>Image</label>
-        <input 
-          type="file"
-          id="image"
-          {...register('image', {
-            required: 'Please upload an image',
-          })}
-          accept=".jpg, .jpeg, .png"
-          onChange={onImageChange}
-          style={{ display: "none" }}
-        />
-        <button
-          type="button"
-          onClick={() => document.getElementById('image')?.click()}
-          className={styles.fileUploadButton}
-        >
-          Upload Image
-        </button>
-      </div>
       {imagePreview && (
         <div>
           <p className={styles.imagePreviewText}>Image Preview</p>
