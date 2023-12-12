@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import NewComment from '../components/NewComment/NewComment.tsx';
-import '../components/NewComment/NewComment.css';
 import { NewCommentContainerProps } from '../interfaces/newComment-interfaces';
 
 // NewCommentContainer component to manage the state and logic for NewComment
