@@ -26,6 +26,8 @@ export const createPost = (data) => API.post(`/posts`, data);
 //User API's
 export const createUser = (data) => API.post('/users',data);
 export const loginUser = (data) => API.post('/users/login',data);
+export const updateUser = (id,data) => API.put(`/users/${id}`, data);
+export const getUserById = (id) => API.get(`/users/${id}`);
 
 //Community API's
 // export const createCommunity = (data) => API.post('/communities',data);
@@ -33,3 +35,5 @@ export const getAllCommunities = () => API.get(`/communities/`);
 // export const getCommunity = (id) => API.get(`/communities/${id}`);
 export const getAllCommunityDetailsById = (id) => API.get(`/communities/${id}`);
 export const updateCommunityById = (id,data) => API.put(`/communities/${id}`,data);
+
+export const getGoogleAuthUrl = () => API.get('/auth/google/callback');
