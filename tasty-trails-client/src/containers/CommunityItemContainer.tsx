@@ -3,7 +3,11 @@ import {  CommunityItemContainerProps } from "../interfaces/community-interfaces
 import CommunityItem from "../components/CommunityItem/CommunityItem.tsx";
 import { useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
-
+/**
+ * This component is responsible for displaying the details of a community
+ * @param community community object to render 
+ * @returns 
+ */
 const CommunityItemContainer:React.FC<CommunityItemContainerProps> = ({community}) => {
     const navigate = useNavigate();
     const [communityState, setCommunity] = useState(community);
@@ -12,9 +16,12 @@ const CommunityItemContainer:React.FC<CommunityItemContainerProps> = ({community
     var payload ={
     ...communityState
     }
+    // function to view the details of the community. we achive this by navigating to the community details page
     const viewDetails= () => {
         navigate(`/communities/${community._id}`);
     }
+
+    // function to toggle the join status of the community
     const toggleJoin = async () => {
         if(isJoined) {
             payload.members = payload.members.filter((member) => member!== userId);
@@ -31,6 +38,7 @@ const CommunityItemContainer:React.FC<CommunityItemContainerProps> = ({community
         .then((data) => {setCommunity(data)})
         .catch((error) =>console.log(error));
     }
+    
     return(
         <CommunityItem community={communityState} toggleJoin = {toggleJoin} viewDetails={viewDetails}/>
     );

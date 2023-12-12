@@ -3,11 +3,15 @@ import { CommunityItemProps } from "../../interfaces/community-interfaces";
 import styles from './communityItem.module.scss';
 import { useSelector } from 'react-redux';
 
+/**
+ * This component is called when you want to render the commynity item
+ * 
+ */
 const defaultImageUrl = `${process.env.PUBLIC_URL}/assets/communities-default.svg`;
 const CommunityItem:React.FC<CommunityItemProps> = ({community,toggleJoin,viewDetails}) => {
     const imageUrl:string = community.image || defaultImageUrl; // Use the community image or the default one
     const userId = useSelector((state:any) => state.auth.userId);
-    const [isProcessing, setProcessing] = useState(false);
+    const [isProcessing, setProcessing] = useState(false); // use the satte to disply the Loding while the community is joining/ login
     const isJoined:boolean = community.members.includes(userId);
     const toggleJoinOnClick = async()=>{
         setProcessing(true);
