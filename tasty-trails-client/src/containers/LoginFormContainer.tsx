@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { setAuth } from '../auth/authSlice.ts';
 import LoginForm from '../components/LoginForm/LoginForm.tsx';
 import { loginUser } from '../api/index.js';
+import GoogleOAuthSuccess from './GoogleOAuthSucsess.tsx';
 
 
 const LoginFormContainer: React.FC = () => {
@@ -56,6 +57,10 @@ const LoginFormContainer: React.FC = () => {
     navigate('/signup');
   };
 
+  const handleGoogleLogin = () => {
+    window.open("http://localhost:8080/auth/google", "_self");
+  };
+
   return (
     <div>
       {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
@@ -64,6 +69,7 @@ const LoginFormContainer: React.FC = () => {
         onChange={handleChange}
         onSubmit={handleLoginSubmit}
         onSignupClick={handleSignupClick}
+        onGoogleLogin = {handleGoogleLogin}
       />
     </div>
   );
