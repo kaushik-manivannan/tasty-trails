@@ -12,6 +12,8 @@ export interface Post {
     createdAt: Date;
     updatedAt: Date;
     communityId: string;
+    latitude: number;
+    longitude: number;
 }
 
 export interface PostItemProps {
