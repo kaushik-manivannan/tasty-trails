@@ -4,14 +4,20 @@ import CommunityDetails from '../components/CommunityDetails/CommunityDetails.ts
 import { getAllCommunityDetailsById } from '../api/index.js';
 import { useSelector } from 'react-redux';
 import {updateCommunityById} from '../api/index.js';
-
+/**
+ * This component is responsible for populating the details of a community
+ * @returns React.FC
+ * 
+ */
 
 const CommunityDetailsContainer:React.FC =()=>{
-    const [community, setCommunity] = useState(null);
-    const [PostList,setPostList] = useState([]);
-    const [isEditable, setIsEditable] = useState(false);
+    const [community, setCommunity] = useState(null); //will be used to store the details of the community
+    const [PostList,setPostList] = useState([]); //will be used to store the post list of the community
+    const [isEditable, setIsEditable] = useState(false); //will be used to store if the community is editable or not
     const {communityId} = useParams();
     const userId = useSelector((state:any) => state.auth.userId);
+
+    // function to update the details of the community 
     const updateCommunity = async (payload:any) => {
       try {
         const response = await updateCommunityById(communityId,payload);
@@ -23,6 +29,8 @@ const CommunityDetailsContainer:React.FC =()=>{
         throw new Error(`Error occured while fetching communities Error`);
       }
     };
+
+    // function to fetch the post list of the community
     const fetchPostByCommunityId = async () => {
         try {
             const response = await getAllCommunityDetailsById(communityId);
@@ -38,6 +46,7 @@ const CommunityDetailsContainer:React.FC =()=>{
             console.log("Error fetching CommunityDetails: ", error);
         }
     }
+    
     useEffect(() => {
         const fetchData = async () => {
           try {

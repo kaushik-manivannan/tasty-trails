@@ -4,7 +4,7 @@ export interface Community{
     communityName: string;
     description: string;
     communityAdmin: string;
-    image:string;
+    image?:string;
     members:string[];
     postIds?:string[];
          
@@ -28,6 +28,8 @@ export interface CommunityFormData {
     description: string;
     image?: string;
     communityAdmin?:string;
+    members?:string[];
+    postIds?:string[];
 }
 
 export interface NewCommunityProps {

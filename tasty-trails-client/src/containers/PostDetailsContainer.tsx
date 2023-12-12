@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { getPost } from '../api/index.js';
 import PostDetails from '../components/PostDetails/PostDetails.tsx';
-import { useForm, SubmitHandler } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
 import {useSelector} from 'react-redux';
-import { PostFormData } from "../interfaces/post-interfaces";
 import {deletePost} from '../api/index.js';
-
+/**
+ * This component is called when you want to view the details of a specific post
+ * @returns React.FC
+ */
 const PostDetailsContainer: React.FC = () => {
   const [post, setPost] = useState(null);
   const [canModify,setCanModify] = useState(false);
   const { postId } = useParams();
   const navigate = useNavigate();
-  const { register, handleSubmit, formState: { errors },getValues,setValue } = useForm<PostFormData>({
-    mode: 'onChange',
-  });
   const userId = useSelector((state:any) => state.auth.userId);
+
+  // function to delete the post
   const onDelete = async() => {
     try{
     const response = await deletePost(postId);
@@ -27,7 +27,11 @@ const PostDetailsContainer: React.FC = () => {
       throw new Error("some error occured while deleting the post");
     }
   }; 
+
+
   useEffect(() => {
+
+    // Function to fetch the post by id 
     const fetchPostById = async () => {
       try {
         const response = await getPost(postId);

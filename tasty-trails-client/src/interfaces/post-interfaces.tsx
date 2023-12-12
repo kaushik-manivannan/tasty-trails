@@ -18,8 +18,6 @@ export interface Post {
 
 export interface PostItemProps {
     post: Post;
-    onDelete : Function;
-    canModify: boolean;
 }
 
 export interface PostListProps {
@@ -57,4 +55,10 @@ export interface PostFormProps {
 export interface ModifyPostContainerProps{
   setIsOnEdit: Function;
   post: Post;
+}
+
+export interface PostDetailsProps{
+  post: Post;
+  onDelete: Function;
+  canModify: boolean;
 }

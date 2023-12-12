@@ -1,6 +1,11 @@
 import React,{useState,useEffect} from 'react';
 import CommunityList from '../components/CommunityList/CommunityList.tsx';
 import { getAllCommunities } from '../api/index.js';
+/**
+ * 
+ * This component is responsible for fetching all communities from the database
+ * @returns React.FC
+ *  */
 const CommunityListContainer: React.FC = () => {
     const  [communities, setCommunities] = useState([]);
 
@@ -17,7 +22,7 @@ const CommunityListContainer: React.FC = () => {
           }
         };
         fetchCommunities();
-    }, []);
+    }, []); //will be called only once
 
     return <CommunityList communities={communities} />;
 }
