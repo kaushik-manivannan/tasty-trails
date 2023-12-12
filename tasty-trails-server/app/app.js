@@ -9,7 +9,6 @@ import mongoose from "mongoose";
 import registerRouter from "./routes/index.js"
 import dotenv from "dotenv";
 import passport from "./middleware/googleAuth.js";
-import GoogleStrategy from 'passport-google-oauth2';
 
 
 /**
