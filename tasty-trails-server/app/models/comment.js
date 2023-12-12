@@ -33,6 +33,10 @@ const CommentSchema = new Schema({
     userName: {
         type: String,
         required: false
+    },
+    userImage: {
+        type: String,
+        required: false
     }
 },
 {
