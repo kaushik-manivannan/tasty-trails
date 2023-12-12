@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector} from 'react-redux';
-import UserProfileEditComponent from '../components/UserProfileEditComponent.tsx';
+import UserProfileEditComponent from '../components/UserProfile/UserProfileEditComponent.tsx';
 import { getUserById, updateUser } from '../api/index.js';
 import { useNavigate} from 'react-router-dom';
 

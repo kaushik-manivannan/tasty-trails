@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import UserProfileViewComponent from '../components/UserProfileViewComponent.tsx';
+import UserProfileViewComponent from '../components/UserProfile/UserProfileViewComponent.tsx';
 import { useNavigate } from 'react-router-dom';
 import { getUserById } from '../api/index.js'; // adjust the path as necessary
 
