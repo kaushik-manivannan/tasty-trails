@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { PostItemProps } from '../../interfaces/post-interfaces';
 import styles from './PostItem.module.scss';
+import TimeAgo from 'react-timeago';
+
 import { useNavigate } from'react-router-dom';
 const PostItem: React.FC<PostItemProps> = ({ post }) => {
   const navigate = useNavigate();
@@ -8,18 +10,18 @@ const PostItem: React.FC<PostItemProps> = ({ post }) => {
   const longitude = post.longitude;
   const isValidLocation = latitude!==0 && longitude!=0;
   const mapUrl = `https://www.google.com/maps?q=${latitude},${longitude}`;
-  const date = new Date(post.createdAt);
-  const options: Intl.DateTimeFormatOptions = {
-    month: 'short', 
-    day: '2-digit',
-    hour: 'numeric',
-    minute: '2-digit',
-    hour12: true
-  };
-  const formattedDate = date.toLocaleDateString('en-US', options);
+  const [date, setDate] = useState(new Date(post.createdAt));
+
   const handleOnClick = () => {
     navigate(`/posts/${post._id}`);
-  };
+  }
+
+  useEffect(() => {
+    const interval = setInterval(() => setDate(date), 60000);
+    return () => clearInterval(interval);
+  }, []);
+
+
   return (
     <div className={styles.cardLink} onClick={handleOnClick}>
       <div className={styles.card}>
@@ -36,13 +38,24 @@ const PostItem: React.FC<PostItemProps> = ({ post }) => {
                   window.open(mapUrl, '_blank');
                 }}
                 target="_blank"
-                rel="noopener noreferrer">
+                rel="noopener noreferrer"
+                className={styles.locationLink}>
                   <p className={styles.locationText}>{post.location}</p>
               </a>):(
                 <p className={styles.locationText}>{post.location}</p>
                 )}
             </div>
-            <p className={styles.date}>{formattedDate}</p>
+            <TimeAgo 
+              date={date} 
+              minPeriod={60} 
+              className={styles.date}
+              formatter={(value, unit) => {
+                if(value === 1) {
+                  return `${value} ${unit} ago`;
+                } else {
+                  return `${value} ${unit}s ago`;
+                }
+              }}/>
           </div>
         </div>
       </div>

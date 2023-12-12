@@ -80,7 +80,7 @@ const UserProfileEditComponent: React.FC<UserProfileEditProps> = ({
                     />
                 </div>
                 <div className={styles.inputContainer}>
-                    <label className={styles.inputLabel}>Location</label>
+                    <label className={styles.inputLabel}>Address</label>
                     <input 
                         type="text" 
                         name="location" 

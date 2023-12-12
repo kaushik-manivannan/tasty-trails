@@ -74,8 +74,6 @@ const CommentItemContainer: React.FC<CommentItemProps1> = ({ commentValue, onEdi
       mouseLeaveHandler={mouseLeaveHandler}
       editCommentHandler={editCommentHandler}
     />
-    <AlertBox type={'succehthss'}
-              message={'Saved Successfully!'}/>
     </>
   );
 };

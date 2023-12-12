@@ -48,15 +48,26 @@
             .location {
                 display: flex;
                 align-items: center;
-            }
-            
-            .locationIcon {
-                margin-right: 5px;
-            }
-            
-            .locationText {
-                font-size: 0.9rem;
-                font-weight: set-weight(medium);
+
+                .locationIcon {
+                    margin-right: 5px;
+                }
+
+                .locationLink {
+
+                    cursor: pointer;
+                    font-size: 0.9rem;
+
+                    &:hover {
+                        text-decoration: underline;
+                        text-underline-offset: 0.3rem;
+                    }
+
+                    .locationText {
+                        font-size: 0.9rem;
+                        font-weight: set-weight(medium);
+                    }
+                }
             }
 
             .date {

@@ -1,9 +1,10 @@
-import React,{useState} from 'react';
+import React,{useEffect, useState} from 'react';
 import { PostItemProps } from '../../interfaces/post-interfaces';
 import styles from './PostDetails.module.scss';
 import { useNavigate } from 'react-router-dom';
 import ModifyPostFormContainer from '../../containers/ModifyPostFormContainer.tsx'
 import CommentListContainer from '../../containers/CommentListContainer';
+import TimeAgo from 'react-timeago';
 
 const PostDetails: React.FC<PostItemProps> = ({ post, onDelete, canModify }) => {
   const [isOnEdit, setIsOnEdit] = useState(false);
@@ -11,18 +12,14 @@ const PostDetails: React.FC<PostItemProps> = ({ post, onDelete, canModify }) => 
   const longitude = post.longitude;
   const isValidLocation = latitude!==0 && longitude!=0;
   const mapUrl = `https://www.google.com/maps?q=${latitude},${longitude}`;
-  const date = new Date(post.createdAt);
-  const options: Intl.DateTimeFormatOptions = {
-    year: 'numeric',
-    month: 'short', 
-    day: '2-digit',
-    hour: 'numeric',
-    minute: '2-digit',
-    hour12: true
-  };
-  const formattedDate = date.toLocaleDateString('en-US', options);
-
+  const [date, setDate] = useState(new Date(post.createdAt));
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const interval = setInterval(() => setDate(date), 60000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
 
         <div className={styles.postDetails}>
@@ -32,9 +29,13 @@ const PostDetails: React.FC<PostItemProps> = ({ post, onDelete, canModify }) => 
         {!isOnEdit ? (<>
         <div className={styles.card}>
           { canModify && (
-          <div>
-            <button onClick={()=>{setIsOnEdit(true)}}>Edit</button>
-            <button  onClick={()=>{onDelete()}} >Delete </button>
+          <div className={styles.modifyPostButtons}>
+            <button onClick={()=>{setIsOnEdit(true)}}>
+              <img src={`${process.env.PUBLIC_URL}/assets/edit.svg`} alt="Edit" className={styles.editButton}/>
+            </button>
+            <button onClick={()=>{onDelete()}}>
+              <img src={`${process.env.PUBLIC_URL}/assets/delete.svg`} alt="Delete" className={styles.deleteButton}/>
+            </button>
           </div>
           )}
             <img src={post.image} className={styles.image}/>
@@ -47,13 +48,24 @@ const PostDetails: React.FC<PostItemProps> = ({ post, onDelete, canModify }) => 
                   (<a
                     href={mapUrl}
                     target="_blank"
-                    rel="noopener noreferrer">
+                    rel="noopener noreferrer"
+                    className={styles.locationLink}>
                       <p className={styles.locationText}>{post.location}</p>
                   </a>):(
                     <p className={styles.locationText}>{post.location}</p>
                     )}
                 </div>
-                <p className={styles.date}>{formattedDate}</p>
+                <TimeAgo 
+                  date={date} 
+                  minPeriod={60} 
+                  className={styles.date}
+                  formatter={(value, unit) => {
+                    if(value === 1) {
+                      return `${value} ${unit} ago`;
+                    } else {
+                      return `${value} ${unit}s ago`;
+                    }
+                }}/>
                 </div>
             </div>
             </div>
