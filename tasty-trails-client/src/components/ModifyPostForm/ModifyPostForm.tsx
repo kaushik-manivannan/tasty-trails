@@ -2,17 +2,19 @@ import React from "react";
 import { PostFormProps } from "../../interfaces/post-interfaces";
 import styles from "./ModifyPostForm.module.scss";
 import Location from "../Location/Location.tsx";
+import { useTranslation } from 'react-i18next';
 const ModifyPostForm: React.FC<PostFormProps> = ({ onSubmit, register, errors = {}, imagePreview, onImageChange, communities, setValue }) => {
+  const { t } = useTranslation();
   return (
     <div>
       <form onSubmit={onSubmit} className={styles.form}>
       <h2 className={styles.heading}>Modify Post</h2>
       <div className={styles.inputContainer}>
-        <label htmlFor="description" className={styles.inputLabel}>Description</label>
+        <label htmlFor="description" className={styles.inputLabel}>{t('Description')}</label>
         <input
           id="description"
           className={styles.input}
-          placeholder="Enter a description of your food"
+          placeholder={t("Enter a description of your food")}
           {...register('description', {
             required: 'Please enter a description',
           })}
@@ -21,12 +23,12 @@ const ModifyPostForm: React.FC<PostFormProps> = ({ onSubmit, register, errors = 
       </div>
 
       <div className={styles.inputContainer}>
-        <label htmlFor="location" className={styles.inputLabel}>Location</label>
+        <label htmlFor="location" className={styles.inputLabel}>{t('Location')}</label>
         <Location register = {register} errors={errors} setValue={setValue}/>
       </div>
       
       <div className={styles.inputContainer}>
-        <label htmlFor="community" className={styles.inputLabel}>Community</label>
+        <label htmlFor="community" className={styles.inputLabel}>{t('Community')}</label>
         <select
           id="community"
           className={styles.input}
@@ -40,12 +42,12 @@ const ModifyPostForm: React.FC<PostFormProps> = ({ onSubmit, register, errors = 
       </div>
       {imagePreview && (
         <div>
-          <p className={styles.imagePreviewText}>Image Preview</p>
+          <p className={styles.imagePreviewText}>{t('Image Preview')}</p>
           <img src={imagePreview} alt="Preview" className={styles.imagePreview} />
         </div>
       )}
 
-      <button type="submit" className={styles.createButton}>Modify Post</button>
+      <button type="submit" className={styles.createButton}>{t('Modify Post')}</button>
       </form>
     </div>
   );

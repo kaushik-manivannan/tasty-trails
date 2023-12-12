@@ -7,6 +7,7 @@ import { faPaperPlane, faImage, faSmile, faTimes } from '@fortawesome/free-solid
 import EmojiPicker from 'emoji-picker-react';
 import './NewComment.css';
 import { TiAttachment } from "react-icons/ti";
+import { useTranslation } from 'react-i18next';
 
 // Default user image URL
 const userDefault = `${process.env.PUBLIC_URL}/assets/user.png`;
@@ -26,7 +27,7 @@ const NewComment: React.FC<NewCommentProps> = ({
 }) => {
   // Check if the submit button should be disabled
   const isSubmitDisabled = comment.trim() === '' && !selectedImage;
-  
+  const { t } = useTranslation();
   return (
     <form onSubmit={handleAddComment} className={styles.newCommentContainer}>
     <div className={styles.userImageContainer}>
@@ -38,13 +39,13 @@ const NewComment: React.FC<NewCommentProps> = ({
           type='text'
           value={comment}
           onChange={commentChangeHandler}
-          placeholder="Enter your Comments"
+          placeholder={t("Enter your Comments")}
           className={styles.newCommentInput}
         />
         {selectedImage && (
           <div className={styles.newCommentAttachmentContainer}>
           <TiAttachment className={styles.newCommentAttachment} />
-          <span className={styles.newCommentAttachmentWord}>Attached</span>
+          <span className={styles.newCommentAttachmentWord}>{t('Attached')}</span>
           <FontAwesomeIcon 
             icon={faTimes} 
             className={styles.removeAttachment}
