@@ -1,4 +1,4 @@
-import { SubmitHandler, UseFormRegister, FieldValues, UseFormSetValue } from "react-hook-form";
+import { SubmitHandler, UseFormRegister, UseFormSetValue } from "react-hook-form";
 import {Community} from "../interfaces/community-interfaces";
 export interface Post {
     _id: {
@@ -11,10 +11,14 @@ export interface Post {
     availabilityStatus: string;
     createdAt: Date;
     updatedAt: Date;
+    communityId: string;
 }
 
 export interface PostItemProps {
     post: Post;
+    handleDelete : Function;
+    handleEdit: Function;
+    canModify: boolean;
 }
 
 export interface PostListProps {
@@ -32,7 +36,7 @@ export interface PostFormData {
     longitude?: Number;
 }
 
-export interface CreatePostFormProps {
+export interface PostFormProps {
     onSubmit: SubmitHandler<any>;
     register: UseFormRegister<PostFormData>;
     errors: {
@@ -47,4 +51,9 @@ export interface CreatePostFormProps {
     onImageChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
     communities:Community[];
     setValue: UseFormSetValue<PostFormData>;
+}
+
+export interface ModifyPostContainerProps{
+  setIsEditable: Function;
+  post: Post;
 }

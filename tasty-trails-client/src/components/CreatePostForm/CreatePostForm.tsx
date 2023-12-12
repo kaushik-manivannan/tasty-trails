@@ -1,8 +1,8 @@
 import React from "react";
-import { CreatePostFormProps } from "../../interfaces/post-interfaces";
+import { PostFormProps } from "../../interfaces/post-interfaces";
 import styles from "./CreatePostForm.module.scss";
 import Location from "../Location/Location.tsx";
-const CreatePostForm: React.FC<CreatePostFormProps> = ({ onSubmit, register, errors = {}, imagePreview, onImageChange, communities, setValue }) => {
+const CreatePostForm: React.FC<PostFormProps> = ({ onSubmit, register, errors = {}, imagePreview, onImageChange, communities, setValue }) => {
   return (
     <div className={styles.coverImage}>
       <form onSubmit={onSubmit} className={styles.form}>
@@ -58,7 +58,7 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({ onSubmit, register, err
           className={styles.input}
           {...register('community', {})}
         >
-          <option value="">Select a Community</option>
+          <option value="-1">Select a Community</option>
           {communities.map((community, index) => (
             <option key={community.communityName+index} value={community._id}>{community.communityName}</option>
           ))}

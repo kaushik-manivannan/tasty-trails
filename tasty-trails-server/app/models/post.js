@@ -34,6 +34,9 @@ const PostSchema = new Schema({
         type: Number,
         required: true
     },
+    communityId: {
+        type: String,
+    },
     availabilityStatus: {
         type: String,
         required: true
