@@ -1,3 +1,4 @@
+// Import React and required styles/icons
 import React from 'react';
 import styles from './NewComment.module.scss';
 import { NewCommentProps } from '../../interfaces/newComment-interfaces';
@@ -6,8 +7,11 @@ import { faPaperPlane, faImage, faSmile, faTimes } from '@fortawesome/free-solid
 import EmojiPicker from 'emoji-picker-react';
 import './NewComment.css';
 import { TiAttachment } from "react-icons/ti";
+
+// Default user image URL
 const userDefault = `${process.env.PUBLIC_URL}/assets/user.png`;
 
+// NewComment component
 const NewComment: React.FC<NewCommentProps> = ({ 
   comment, 
   commentChangeHandler,  
@@ -18,8 +22,9 @@ const NewComment: React.FC<NewCommentProps> = ({
   handleRemoveImage,
   emojiPickerVisible, 
   selectedImage, 
-  userImage = userDefault,
+  userImage,
 }) => {
+  // Check if the submit button should be disabled
   const isSubmitDisabled = comment.trim() === '' && !selectedImage;
   
   return (
@@ -79,5 +84,5 @@ const NewComment: React.FC<NewCommentProps> = ({
     </form>
   );
 };
-
+// Export the NewComment component
 export default NewComment;

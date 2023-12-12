@@ -2,8 +2,10 @@ import React from 'react';
 import { CommentItemProps } from '../../interfaces/comment-interfaces';
 import styles from './CommentItem.module.scss';
 
+// Default user image URL
 const userDefault = `${process.env.PUBLIC_URL}/assets/user.png`;
 
+// CommentItem component
 const CommentItem: React.FC<CommentItemProps> = ({
   commentValue,
   showOptions,
@@ -24,7 +26,7 @@ const CommentItem: React.FC<CommentItemProps> = ({
   return (
     <div className={styles.commentItemContainer}>
       <div className={styles.userImageContainer}>
-        <img src={userDefault}
+        <img src={commentValue.userImage? commentValue.userImage : userDefault}
               alt=""
               className={styles.userImage} />
       </div>
@@ -81,4 +83,5 @@ const CommentItem: React.FC<CommentItemProps> = ({
   );
 };
 
+// Export the CommentItem component
 export default CommentItem;

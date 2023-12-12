@@ -12,11 +12,12 @@ const CommentListContainer: React.FC = () => {
   // State variables for managing comments and user name
   const [comments, setComments] = useState<Comment[]>([]);
   const [userName, setUserName] = useState<string>('');
+  const [userImage, setuserImage] = useState<string>('');
   // Extract postId from URL parameters and userId from Redux store
   const { postId } = useParams<{ postId: string }>();
   const userId = useSelector((state) => state.auth.userId);
   // const userId = user ? user.id : '';
- const userImage = "";
+//  const userImage = "";
 
  // useEffect to fetch comments and user data on component mount
   useEffect(() => {
@@ -41,6 +42,7 @@ const CommentListContainer: React.FC = () => {
           throw new Error(`Error occured while fetching communities with response : ${response.data}`);
         }
         setUserName(response.data.userName);
+        setuserImage(response.data.image);
       } catch (error) {
         console.log("Error fetching data: ", error);
       }

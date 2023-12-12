@@ -2,6 +2,7 @@ import React from 'react';
 import { CommentListProps } from '../../interfaces/comment-interfaces';
 import CommentItemContainer from '../../containers/CommentItemContainer.tsx';
  
+// CommentList component
 const CommentList: React.FC<CommentListProps & { onEdit: (commentId: { $oid: string }, editedComment: string) => void; onDelete: (commentId: { $oid: string }) => void }> = ({ comments, onEdit, onDelete }) => {
   return (
     <div>
@@ -18,4 +19,5 @@ const CommentList: React.FC<CommentListProps & { onEdit: (commentId: { $oid: str
   );
 };
  
+// Export the CommentList component
 export default CommentList;

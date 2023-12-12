@@ -73,6 +73,7 @@ const NewCommentContainer: React.FC<NewCommentContainerProps> = ({ userId, userN
       dateTime,
       image: selectedImage,
       userName: userName,
+      userImage: userImage,
     };
     // Send a POST request to save the new comment
     fetch('http://localhost:8080/comments', {
