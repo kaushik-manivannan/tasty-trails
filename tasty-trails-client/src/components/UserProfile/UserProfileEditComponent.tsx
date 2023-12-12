@@ -3,6 +3,7 @@ import styles from './UserProfileEditComponent.module.scss'
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
+// Props interface for UserProfileEditComponent
 interface UserProfileEditProps {
     user: {
         emailId: string;
@@ -25,11 +26,17 @@ const UserProfileEditComponent: React.FC<UserProfileEditProps> = ({
     onSubmit,
     onBack,
 }) => {
+    // Using the translation hook from react-i18next
     const { t } = useTranslation();
+
     return (
         <div className={styles.userProfileEditContainer}>
+            {/* User profile editing form */}
             <form onSubmit={onSubmit} className={styles.userProfileEdit}>
+                {/* Back button */}
                 <img src={`${process.env.PUBLIC_URL}/assets/back-arrow.svg`} onClick={onBack} className={styles.backButton}></img>
+                
+                {/* Image upload */}
                 <div className={styles.inputContainer}>
                     <input
                         id="image"
@@ -43,13 +50,15 @@ const UserProfileEditComponent: React.FC<UserProfileEditProps> = ({
                         type="button"
                         onClick={() => document.getElementById('image')?.click()}
                         className={styles.fileUploadButton}
-                        >
+                    >
                         {imagePreviewUrl && (
-                        <img src={imagePreviewUrl} alt="Profile Preview" className={styles.imagePreview} />
+                            <img src={imagePreviewUrl} alt="Profile Preview" className={styles.imagePreview} />
                         )}
                         {!imagePreviewUrl && <p>{t("Upload Image")}</p>}
                     </button>
                 </div>
+                
+                {/* Email Input (Disabled) */}
                 <div className={styles.inputContainer}>
                     <label className={styles.inputLabel}>{t('Email')}</label>
                     <input 
@@ -61,6 +70,8 @@ const UserProfileEditComponent: React.FC<UserProfileEditProps> = ({
                         disabled
                     />
                 </div>
+                
+                {/* Full Name Input */}
                 <div className={styles.inputContainer}>
                     <label className={styles.inputLabel}>{t("Full Name")}</label>
                     <input 
@@ -71,6 +82,8 @@ const UserProfileEditComponent: React.FC<UserProfileEditProps> = ({
                         className={styles.input}
                     />
                 </div>
+                
+                {/* Username Input */}
                 <div className={styles.inputContainer}>
                     <label className={styles.inputLabel}>{t('Username')}</label>
                     <input 
@@ -81,6 +94,8 @@ const UserProfileEditComponent: React.FC<UserProfileEditProps> = ({
                         className={styles.input}
                     />
                 </div>
+                
+                {/* Address Input */}
                 <div className={styles.inputContainer}>
                     <label className={styles.inputLabel}>{t('Address')}</label>
                     <input 
@@ -91,6 +106,8 @@ const UserProfileEditComponent: React.FC<UserProfileEditProps> = ({
                         className={styles.input}
                     />
                 </div>
+                
+                {/* Save Changes Button */}
                 <button type="submit" className={styles.createButton}>{t("Save Changes")}</button>
             </form>
         </div>
