@@ -46,7 +46,7 @@ const PostDetails: React.FC<PostItemProps> = ({ post, handleDelete, canModify })
             </div>
             </>
           ): (<>
-              <ModifyPostFormContainer setIsEditable={setIsEditable} post={post}/>
+              <ModifyPostFormContainer setIsEditable={(isEditable:boolean)=>setIsEditable(isEditable)} post={post}/>
           </>)}
         </div>
         <div className={styles.commentSection}>
