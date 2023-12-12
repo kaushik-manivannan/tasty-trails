@@ -1,0 +1,23 @@
+@import "../../scss/base/variables";
+@import "../../scss/mixins";
+@import "../../scss/base/globals";
+@import "../../scss/functions";
+
+.searchContainer {
+    @include flexbox(flex, $alignItems: center);
+    gap: 10px;
+}
+
+.searchIcon {
+    width: 40px;
+}
+
+.searchBar {
+    padding: 7px 10px;
+    border-radius: 10px;
+    border: 2px solid $primary-color;
+
+    &:focus {
+        outline: none;
+    }
+}

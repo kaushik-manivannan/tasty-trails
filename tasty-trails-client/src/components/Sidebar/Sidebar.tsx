@@ -21,7 +21,7 @@ const Sidebar: React.FC = () => {
             <img src={`${process.env.PUBLIC_URL}/assets/create-outline.svg`} alt="Create" className={styles.navIcon}/>
             <p className={styles.navText}>Create</p>
           </NavLink>
-          <NavLink to="/user-profile" className={styles.navLink}>
+          <NavLink to="/profile" className={styles.navLink}>
             <img src={`${process.env.PUBLIC_URL}/assets/profile-outline.svg`} alt="Profile" className={styles.navIcon}/>
             <p className={styles.navText}>Profile</p>
           </NavLink>

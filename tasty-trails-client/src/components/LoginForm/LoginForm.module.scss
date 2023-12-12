@@ -31,17 +31,22 @@
     bottom: 30px;
     text-align: center;
     color: $primary-color;
+    font-size: 1.7rem;
 }
 
 .loginForm {
     width: 55%;
-    margin: 0 auto
+    margin: 0 auto;
 }
 
 .inputContainer {
     @include flexbox(flex, column);
     margin: 20px 0;
     width: 100%;
+
+    &:first-of-type {
+        margin-top: 0;
+    }
 }
 
 .inputLabel {

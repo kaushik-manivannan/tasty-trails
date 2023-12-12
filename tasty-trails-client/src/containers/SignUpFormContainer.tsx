@@ -1,7 +1,7 @@
 // SignupFormContainer.tsx
 import React, { useState } from 'react';
 import SignupForm from '../components/SignUpForm/SignUpForm.tsx';
-import { createUser } from '../api/index.js';
+import { createUser} from '../api/index.js';
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { setAuth } from '../auth/authSlice.ts';
@@ -65,6 +65,11 @@ const SignupFormContainer: React.FC = () => {
     navigate('/login');
   };
 
+  const handleGoogleSignup = () => {
+    window.open("http://localhost:8080/auth/google", "_self");
+  };
+
+
   return (
     <div>
       {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
@@ -73,6 +78,7 @@ const SignupFormContainer: React.FC = () => {
         onChange={handleChange} 
         onSubmit={handleSubmit} 
         onLoginClick={handleLoginClick}
+        onGoogleSignup = {handleGoogleSignup}
       />
     </div>
   );

@@ -63,8 +63,9 @@ const Location: FC<PlacesAutocompleteProps> = ({ register, errors={},setValue })
         >
           <input
             type="text"
-            placeholder="Enter location"
-            {...register("location", { required: "Enter the location of the food" })}
+            placeholder="Enter the location of your food"
+            {...register("location", { required: "Enter the location of your food" })}
+            className={styles.input}
           />
         </Autocomplete>
       )}

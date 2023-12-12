@@ -26,12 +26,12 @@
             gap: 20px;
             margin: 20px 0;
             width: 100%;
+            flex-wrap: nowrap;
         }
         
         .inputLabel {
             font-size: 1.1rem;
             font-weight: set-weight(medium);
-            flex-wrap: nowrap;
         }
         
         .input {
