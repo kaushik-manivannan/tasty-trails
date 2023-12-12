@@ -1,17 +1,15 @@
 import React, { useState,useEffect } from "react";
 import { useForm, SubmitHandler } from 'react-hook-form';
-import CreatePostForm from "../components/CreatePostForm/CreatePostForm";
-import { PostFormData } from "../interfaces/post-interfaces";
+import ModifyPostForm from "../components/ModifyPostForm/ModifyPostForm";
+import { PostFormData,ModifyPostContainerProps } from "../interfaces/post-interfaces";
 import {useSelector} from'react-redux';
 import {getuserCommunities} from "../api/index.js";
-import {createPost} from "../api/index.js";
-import { useNavigate } from 'react-router-dom';
+import {updatePost} from "../api/index.js";
 
-const CreatePostContainer: React.FC = () => {
-  const { register, handleSubmit, formState: { errors },getValues,setValue } = useForm<PostFormData>({
+const ModifyPostContainer: React.FC<ModifyPostContainerProps> = ({setIsEditable, post}) => {
+  const { register, handleSubmit, formState: { errors },setValue } = useForm<PostFormData>({
     mode: 'onChange',
   });
-  const navigate = useNavigate();
   const [communites, setCommunities] = useState([]);
   const userId = useSelector((state:any) => state.auth.userId);
   const fetchUserCommunities = async () => {
@@ -21,13 +19,24 @@ const CreatePostContainer: React.FC = () => {
         throw new Error("error occured while fetching communities of specific user");
       }
       setCommunities(resposne.data);
+      updateFormValues();
       console.log(resposne.data);
     }catch(error){
       throw new Error("error occured while fetching communities of specific user");
     }
   }
+  const updateFormValues = () => {
+    setValue('description', post.description);
+    setValue('location', post.location);
+    setImagePreview(post.image);
+    setValue('community', post.communityId);
+    if(post.image){
+      setValue('image', "/DummyPath/image.jpg");  // added dummy value for image path sinse we are seting teh image preview
+    }
+  }
   useEffect(() => {
     fetchUserCommunities();
+    console.log(communites);
   },[]);
   const onSubmit: SubmitHandler<PostFormData> = async (data) => {
     const payload = {
@@ -36,18 +45,18 @@ const CreatePostContainer: React.FC = () => {
       location: data.location,
       image: imagePreview,
       availabilityStatus:"true",
-      latitude: getValues("latitude"),
-      longitude: getValues("longitude"),
+      latitude: data.latitude,
+      longitude: data.longitude,
       communityId: data.community
     };
 
     try {
-      const response = await createPost(payload);
-      if (response.status!== 201) {
+      const response = await updatePost(post._id,payload);
+      if (response.status!== 200) {
         throw new Error('Failed to create post');
       }
-      alert('Post created successfully');
-      navigate(-1);
+      alert('Post updated successfully');
+      setIsEditable(false);
       console.log(response.data);
     } catch (error) {
       console.error('Failed to create post');
@@ -68,7 +77,7 @@ const CreatePostContainer: React.FC = () => {
   };
 
   return (
-    <CreatePostForm
+    <ModifyPostForm
       onSubmit={handleSubmit(onSubmit)}
       register={register}
       errors={errors}
@@ -80,4 +89,4 @@ const CreatePostContainer: React.FC = () => {
   );
 };
 
-export default CreatePostContainer;
+export default ModifyPostContainer;

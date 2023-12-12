@@ -22,10 +22,13 @@ API.interceptors.request.use((req) => {
 export const getAllPosts = () => API.get('/posts');
 export const getPost = (id) => API.get(`/posts/${id}`);
 export const createPost = (data) => API.post(`/posts`, data);
+export const updatePost = (id, data) => API.put(`/posts/${id}`, data);
 
 //User API's
 export const createUser = (data) => API.post('/users',data);
 export const loginUser = (data) => API.post('/users/login',data);
+export const updateUser = (id,data) => API.put(`/users/${id}`, data);
+export const getUserById = (id) => API.get(`/users/${id}`);
 export const getuserCommunities = (id)=> API.get(`/users/${id}/communities`);
 
 //Community API's

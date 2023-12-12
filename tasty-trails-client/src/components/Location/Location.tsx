@@ -34,12 +34,12 @@ const Location: FC<PlacesAutocompleteProps> = ({ register, errors={},setValue })
       const location = place.geometry?.location;
   
       if (location) {
-        setLatitude((prevLatitude) => {
+        setLatitude(() => {
           setValue('latitude', location.lat()); // Update form value for latitude
           return location.lat();
         });
   
-        setLongitude((prevLongitude) => {
+        setLongitude(() => {
           setValue('longitude', location.lng()); // Update form value for longitude
           return location.lng();
         });
@@ -47,7 +47,14 @@ const Location: FC<PlacesAutocompleteProps> = ({ register, errors={},setValue })
         console.log(`location: recived from the method :${location.lat()}, ${location.lng()}`);
         
       } else {
-        console.log('Autocomplete is not loaded yet!');
+        setLatitude(()=>{
+          setValue('latitude', 0); 
+          return 0;
+        });
+        setLongitude(() => {
+          setValue('longitude',0);
+          return 0;
+        });
       }
     }
   };
@@ -63,8 +70,9 @@ const Location: FC<PlacesAutocompleteProps> = ({ register, errors={},setValue })
         >
           <input
             type="text"
-            placeholder="Enter location"
-            {...register("location", { required: "Enter the location of the food" })}
+            placeholder="Enter the location of your food"
+            {...register("location", { required: "Enter the location of your food" })}
+            className={styles.input}
           />
         </Autocomplete>
       )}

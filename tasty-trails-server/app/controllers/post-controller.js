@@ -36,8 +36,8 @@ export const getAllPosts = async (req, res) => {
  * @param {Object} res - Express response object.
  */
 export const createPost = async (req, res) => {
-    const postData = req.body.postDetails;
-    const communityId = req.body.communityId;
+    const postData = req.body;
+    const communityId = postData.communityId;
     try {
         const newPost = await postService.createPost(postData); //create a new post
         if(communityId !=="" && communityId!==undefined) // when posted globally

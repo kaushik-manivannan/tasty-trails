@@ -38,10 +38,34 @@ const NewCommunity: React.FC<NewCommunityProps> = ({postNewCommunity}) => {
   return (
     <div className={styles.coverImage}>
       <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-      <h2 className={styles.heading}>Create your community</h2>
+      <h2 className={styles.heading}>Create Your Community</h2>
+
+      {/* Image (optional) */}
+      <div className={styles.inputContainer}>
+          <input 
+            id="image"
+            type="file"
+            {...register('image')}
+            accept=".jpg, .jpeg, .png, .gif"
+            onChange={handleImageChange}
+            style={{display: "none"}}
+          />
+          <button
+          type="button"
+          onClick={() => document.getElementById('image')?.click()}
+          className={styles.fileUploadButton}
+          >
+          {imagePreview && (
+            <div>
+              <img src={imagePreview} alt="Preview" className={styles.imagePreview} />
+            </div>
+          )}
+          {!imagePreview && <p>Upload Image</p>}
+          </button>
+      </div>
+
       {/* Community Name */}
       <div className={styles.inputContainer}>
-        <label htmlFor="communityName" className={styles.inputLabel}>Community Name</label>
           <input
             id="communityName"
             className={styles.input}
@@ -55,45 +79,16 @@ const NewCommunity: React.FC<NewCommunityProps> = ({postNewCommunity}) => {
 
       {/* Description */}
       <div className={styles.inputContainer}>
-        <label htmlFor="description" className={styles.inputLabel}>Description</label>
-          <input
+          <textarea
             id="description"
-            className={styles.input}
+            className={styles.textarea}
             placeholder="Enter a description of your community"
             {...register('description', {
               required: 'Description is required',
             })}
           />
           {errors.description && <p className={styles.errorMessage}>{errors.description.message}</p>}
-      </div>
-
-      {/* Image (optional) */}
-      <div className={styles.inputContainer}>
-        <label htmlFor="image" className={styles.inputLabel}>Image</label>
-          <input 
-            id="image"
-            type="file"
-            {...register('image')}
-            accept=".jpg, .jpeg, .png, .gif"
-            onChange={handleImageChange}
-            style={{display: "none"}}
-          />
-          <button
-          type="button"
-          onClick={() => document.getElementById('image')?.click()}
-          className={styles.fileUploadButton}
-        >
-          Upload Image
-        </button>
-      </div>
-
-        {/* Image Preview */}
-        {imagePreview && (
-        <div>
-          <p className={styles.imagePreviewText}>Community Image Preview</p>
-          <img src={imagePreview} alt="Preview" className={styles.imagePreview} />
-        </div>
-      )}
+      </div>      
 
       {/* Submit button */}
       <button type="submit" className={styles.createButton}>Create Community</button>
