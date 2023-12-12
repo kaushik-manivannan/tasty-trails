@@ -1,8 +1,9 @@
 import React from 'react';
 import { PostItemProps } from '../../interfaces/post-interfaces';
-import { Link } from 'react-router-dom';
 import styles from './PostItem.module.scss';
+import { useNavigate } from'react-router-dom';
 const PostItem: React.FC<PostItemProps> = ({ post }) => {
+  const navigate = useNavigate();
   const latitude = post.latitude;
   const longitude = post.longitude;
   const isValidLocation = latitude!==0 && longitude!=0;
@@ -16,14 +17,11 @@ const PostItem: React.FC<PostItemProps> = ({ post }) => {
     hour12: true
   };
   const formattedDate = date.toLocaleDateString('en-US', options);
-  const handleLinkClick = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-    if (event.target instanceof HTMLAnchorElement) {
-      return;
-    }
-
+  const handleOnClick = () => {
+    navigate(`/posts/${post._id}`);
   };
   return (
-    <Link to={`/posts/${post._id}`} className={styles.cardLink} onClick={handleLinkClick}>
+    <div className={styles.cardLink} onClick={handleOnClick}>
       <div className={styles.card}>
         <img src={post.image} className={styles.image}/>
         <div className={styles.content}>
@@ -33,7 +31,10 @@ const PostItem: React.FC<PostItemProps> = ({ post }) => {
               <img src={`${process.env.PUBLIC_URL}/assets/location.svg`} alt="Location" className={styles.locationIcon}/>
               {isValidLocation?
               (<a
-                href={mapUrl}
+                onClick = {(event) => {
+                  event.stopPropagation();
+                  window.open(mapUrl, '_blank');
+                }}
                 target="_blank"
                 rel="noopener noreferrer">
                   <p className={styles.locationText}>{post.location}</p>
@@ -45,7 +46,7 @@ const PostItem: React.FC<PostItemProps> = ({ post }) => {
           </div>
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 
