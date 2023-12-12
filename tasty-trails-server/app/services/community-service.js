@@ -127,3 +127,23 @@ export const addPostToCommunity = async (communityId, postId) => {
     throw new Error("Error adding post to the community");
   }
 }
+
+/**
+ * Removes a post from a community.
+ *
+ * @param {string} communityId - The ID of the community from which to remove the post.
+ * @param {string} postId - The ID of the post to be removed from the community.
+ * @returns {Promise<object|null>} A Promise that resolves to the updated community or null if not found.
+ * @throws {Error} Throws an error if there is an issue removing the post from the community.
+ */
+export const removePostFromCommunity = async (communityId, postId) => {
+  try {
+    const updatedCommunity = await CommunityModel.findByIdAndUpdate(
+      communityId,
+      { $pull: { postIds: postId } }, { new: true }// Return the updated document
+    );
+    return updatedCommunity;
+  } catch (error) {
+    throw new Error("Error removing post from the community");
+  } 
+}

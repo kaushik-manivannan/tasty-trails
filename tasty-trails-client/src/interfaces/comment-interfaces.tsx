@@ -7,6 +7,7 @@ export interface Comment {
   comment: string;
   dateTime: string;
   image: string;
+  userName: string;
 }
 
 export interface CommentItemProps {

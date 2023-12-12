@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './UserProfileViewComponent.module.scss'
 
 interface UserProfileViewComponentProps {
     user: {
@@ -13,14 +14,16 @@ interface UserProfileViewComponentProps {
 
 const UserProfileViewComponent: React.FC<UserProfileViewComponentProps> = ({ user, navigateToEdit }) => {
     return (
-        <div>
-            <h1>User Profile</h1>
-            <p><strong>Email:</strong> {user.emailId}</p>
-            <p><strong>Full Name:</strong> {user.fullName}</p>
-            <p><strong>Username:</strong> {user.userName}</p>
-            {user.image && <img src={user.image} alt="Profile" />}
-            <p><strong>Location:</strong> {user.location}</p>
-            <button onClick={navigateToEdit}>Edit Profile</button>
+        <div className={styles.userProfileContainer}>
+            <div className={styles.userProfile}>
+            <h1 className={styles.heading}>Your Profile</h1>
+                {user.image && <img src={user.image} alt="Profile" className={styles.profilePic}/>}
+                <p className={styles.userInfo}><strong>Full Name:</strong> {user.fullName}</p>
+                <p className={styles.userInfo}><strong>Email:</strong> {user.emailId}</p>
+                <p className={styles.userInfo}><strong>Username:</strong> {user.userName}</p>
+                <p className={styles.userInfo}><strong>Address:</strong> {user.location}</p>
+                <button onClick={navigateToEdit} className={styles.editButton}>Edit Profile</button>
+            </div>
         </div>
     );
 };

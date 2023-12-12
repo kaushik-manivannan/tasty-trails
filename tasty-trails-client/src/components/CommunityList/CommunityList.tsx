@@ -5,6 +5,10 @@ import styles from './CommunityList.module.scss';
 import { Link } from 'react-router-dom';
 
 const CommunityList : React.FC<CommunityListProps> = ({communities}) => {
+
+    // Check if the communities array is empty
+    const isEmpty = communities.length === 0;
+
     return (
         <div className={styles.parentContainer}>
             <div className={styles.communityListWithHeading}>
@@ -15,6 +19,9 @@ const CommunityList : React.FC<CommunityListProps> = ({communities}) => {
                     </Link>
                 </div>
                 <div className={styles.communityListContainer}>
+                    {isEmpty ? (
+                        <p className={styles.noCommunities}>No Communities Found!</p>
+                    ) : (
                     <ul className={styles.communityList}>
                         {communities.map((community, idx) => (
                             <li className={styles.communityItem} key={`community-${idx + 1}`}>
@@ -22,6 +29,7 @@ const CommunityList : React.FC<CommunityListProps> = ({communities}) => {
                             </li>
                         ))}
                     </ul>
+                )}
                 </div>
             </div>
         </div>

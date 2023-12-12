@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import ModifyPostFormContainer from '../../containers/ModifyPostFormContainer.tsx'
 import CommentListContainer from '../../containers/CommentListContainer';
 
-const PostDetails: React.FC<PostItemProps> = ({ post, handleDelete, canModify }) => {
+const PostDetails: React.FC<PostItemProps> = ({ post, onDelete, canModify }) => {
   const [isEditable, setIsEditable] = useState(false);
   const date = new Date(post.createdAt);
   const options: Intl.DateTimeFormatOptions = {
@@ -29,7 +29,7 @@ const PostDetails: React.FC<PostItemProps> = ({ post, handleDelete, canModify })
           {canModify && (
           <div>
             <button onClick={()=>{setIsEditable(true)}}>Edit</button>
-            <button >Delete</button>
+            <button  onClick={()=>{onDelete()}} >Delete </button>
           </div>
           )}
           {!isEditable ? (<>
@@ -46,7 +46,7 @@ const PostDetails: React.FC<PostItemProps> = ({ post, handleDelete, canModify })
             </div>
             </>
           ): (<>
-              <ModifyPostFormContainer setIsEditable={setIsEditable} post={post}/>
+              <ModifyPostFormContainer setIsEditable={(isEditable:boolean)=>setIsEditable(isEditable)} post={post}/>
           </>)}
         </div>
         <div className={styles.commentSection}>

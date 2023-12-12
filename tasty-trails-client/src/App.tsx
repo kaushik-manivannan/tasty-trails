@@ -1,24 +1,24 @@
 import './App.scss';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route, Navigate} from 'react-router-dom';
 import { Provider} from 'react-redux';
 import {store , persistor } from './auth/store.js';
 import { PersistGate } from 'redux-persist/integration/react';
 import CommentListContainer from './containers/CommentListContainer.tsx';
-import CommunityListContainer from './containers/CommunityListContainer.tsx';
-import CommunityDetailsContainer from './containers/CommunityDetailsContainer.tsx';
 import LandingPage from './views/LandingPage/LandingPage.tsx';
 import PostDetailsPage from './views/PostDetailsPage/PostDetailsPage.tsx';
 import SignupFormContainer from './containers/SignUpFormContainer.tsx';
 import LoginFormContainer from './containers/LoginFormContainer.tsx';
 import NewCommunityPage from './views/NewCommunityPage/NewCommunityPage.tsx';
-import CreatePostContainer from './containers/CreatePostContainer.tsx';
 import CreatePostPage from './views/CreatePostPage/CreatePostPage.tsx';
 import CommunityListPage from './views/CommunityListPage/CommunityListPage.tsx';
 import CommunityDetailsPage from './views/CommunityDetailsPage/CommunityDetailsPage.tsx';
 import ProtectedRoute from './protectedRoute.js';
-import UserProfileViewContainer from './containers/UserProfileViewContainer.tsx';
-import UserProfileEditContainer from './containers/UserProfileEditContainer.tsx';
+import i18n from './i18n';
+import { Suspense } from'react';
+import { useTranslation } from'react-i18next';
+import UserProfileViewPage from './views/UserProfileViewPage/UserProfileViewPage.tsx';
+import UserProfileEditPage from './views/UserProfileEditPage/UserProfileEditPage.tsx';
 import GoogleOAuthSuccess from './containers/GoogleOAuthSucsess.tsx';
 
 const protectedRoutes = [
@@ -27,7 +27,8 @@ const protectedRoutes = [
   { path:'/communities',component: CommunityListPage },
   { path:'/communities/:communityId', component: CommunityDetailsPage},
   { path:'/new-community',component: NewCommunityPage},
-
+  { path: '/profile', component: UserProfileViewPage},
+  { path: '/edit-profile/:userId', component: UserProfileEditPage}
   // ... add other protected routes here ...
 ];
 
@@ -42,8 +43,8 @@ const router = createBrowserRouter(createRoutesFromElements([
   // <Route path='/communities' element={ <CommunityListPage /> }/>,
   // <Route path='/communities/:communityId' element={ <CommunityDetailsContainer /> } />,
   // <Route path='/new-community' element={ <NewCommunityPage /> } />,
-  <Route path="/edit-profile/:userId" element={<UserProfileEditContainer />} />,
-  
+  <Route path="/edit-profile/:userId" element={<UserProfileEditPage />} />,
+  <Route path="/profile" element={<UserProfileViewPage />} />,
   <Route path="/google/oauth/success" element={<GoogleOAuthSuccess/>} />,
 
 
@@ -56,11 +57,24 @@ const router = createBrowserRouter(createRoutesFromElements([
   )),
 ]));
 
+function Loading() {
+  return <>Loading...</>;
+}
 function App() {
+  const { t, i18n } = useTranslation();
+
+  useEffect(() => {
+    const lng = navigator.language;
+    i18n.changeLanguage(lng);
+  }, []);
+
+  const lng = navigator.language;
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <RouterProvider router={router}/>
+        <Suspense fallback={<Loading />}>
+          <RouterProvider router={router}/>
+        </Suspense>
       </PersistGate>
     </Provider>
   );

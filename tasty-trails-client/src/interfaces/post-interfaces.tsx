@@ -12,12 +12,13 @@ export interface Post {
     createdAt: Date;
     updatedAt: Date;
     communityId: string;
+    latitude: number;
+    longitude: number;
 }
 
 export interface PostItemProps {
     post: Post;
-    handleDelete : Function;
-    handleEdit: Function;
+    onDelete : Function;
     canModify: boolean;
 }
 
