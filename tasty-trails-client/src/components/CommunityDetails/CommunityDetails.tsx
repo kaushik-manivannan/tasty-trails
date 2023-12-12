@@ -3,22 +3,29 @@ import PostList from '../PostList/PostList';
 import {CommunityDetailsProps} from '../../interfaces/community-interfaces';
 import styles from './CommunityDetails.module.scss';
 import { Post } from "../../interfaces/post-interfaces";
-
+/**
+ * 
+ * This component is called when you want to view the details of a specific community
+ * 
+ */
 const CommunityDetails:React.FC<CommunityDetailsProps> = ({community,postList,isEditable,updateCommunityById})=>{
-    const [editedCommunityName, setEditedCommunityName] = useState(community.communityName);
-    const [editedCommunityDescription, setEditedCommunityDescription] = useState(community.description);
+    const [editedCommunityName, setEditedCommunityName] = useState(community.communityName);    // Name of the community
+    const [editedCommunityDescription, setEditedCommunityDescription] = useState(community.description);    // Description of the community 
     const [updateMessage, setUpdateMessage] = useState("");
     const [isEditClicked, setIsEditClicked] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
 
+    //onchange functonality for the community name field
     const handleCommunityNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setEditedCommunityName(event.target.value);
     };
 
+    //onchange functonality for the community description field
     const handleCommunityDescriptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setEditedCommunityDescription(event.target.value);
     };
 
+    //Function to update search query
     const onSearch = (query: string) => {
         setSearchQuery(query);
     };
@@ -27,6 +34,7 @@ const CommunityDetails:React.FC<CommunityDetailsProps> = ({community,postList,is
         post.description.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
+    //Function to update the community
     const updateCommunity = async ()=>{
         setIsEditClicked(true);
         if( editedCommunityName.trim().length === 0|| editedCommunityDescription.trim().length === 0 || (editedCommunityName==community.communityName&&editedCommunityDescription==community.description)){
@@ -71,17 +79,20 @@ const CommunityDetails:React.FC<CommunityDetailsProps> = ({community,postList,is
                     </div>
                 )}
                 {(isEditable&& isEditClicked)?(<>
-                <div className={styles.inputContainer}>
+                <div className={styles.inputContainer}> 
+                {/* Div for community Name */}
                     <label htmlFor="communityName" className={styles.inputLabel}>Community Name</label>
                     <input id="communityName" type="text" value={editedCommunityName} onChange={handleCommunityNameChange} className={styles.input}/>   
                 </div>
                 <div className={styles.inputContainer}>
+                    {/* Div for community Description */}
                     <label htmlFor="communityDescription" className={styles.inputLabel}>Community Description</label>
                     <input id="communityDescription" type="text" value={editedCommunityDescription} onChange={handleCommunityDescriptionChange} className={styles.input}/>
                 </div>
                 </>
                 ):(<>
                 <div className={styles.inputContainer}>
+                    {/* This block is used when he is not the admin */}
                     <strong className={styles.inputLabel}>Community Name</strong> {editedCommunityName}
                 </div>
                 <div className={styles.inputContainer}>
@@ -90,6 +101,7 @@ const CommunityDetails:React.FC<CommunityDetailsProps> = ({community,postList,is
                 </>
                 )}
                 <div className={styles.inputContainer}>
+                    {/* This will shot the members list */}
                     <strong className={styles.inputLabel}>Community Members</strong>
                     <p className={styles.memberCount}>{community?community.members.length:""}</p>
                 </div>

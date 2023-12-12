@@ -3,6 +3,10 @@ import NewCommunity from '../components/NewCommunity/NewCommunity';
 import {CommunityFormData} from '../interfaces/community-interfaces';
 import { useNavigate } from 'react-router-dom';
 
+/**
+ * This component is called when you want to create a new community.
+ * @returns React.FC
+ */
 const NewCommunityContaier: React.FC = () => {
 
   const navigate = useNavigate();
@@ -15,9 +19,8 @@ const NewCommunityContaier: React.FC = () => {
         },
         body: JSON.stringify(payload) // Convert the payload into a JSON string
       }).then((response) => response.json())
+      .then(()=> {navigate("/communities");})
       .catch((error) =>console.log(error));
-
-      navigate("/communities");
     }
 return (
     <NewCommunity postNewCommunity={postNewCommunity} />

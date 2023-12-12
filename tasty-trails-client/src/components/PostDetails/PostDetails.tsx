@@ -1,11 +1,11 @@
 import React,{useState} from 'react';
-import { PostItemProps } from '../../interfaces/post-interfaces';
+import { PostDetailsProps } from '../../interfaces/post-interfaces';
 import styles from './PostDetails.module.scss';
 import { useNavigate } from 'react-router-dom';
 import ModifyPostFormContainer from '../../containers/ModifyPostFormContainer.tsx'
 import CommentListContainer from '../../containers/CommentListContainer';
 
-const PostDetails: React.FC<PostItemProps> = ({ post, onDelete, canModify }) => {
+const PostDetails: React.FC<PostDetailsProps> = ({ post, onDelete, canModify }) => {
   const [isOnEdit, setIsOnEdit] = useState(false);
   const latitude = post.latitude;
   const longitude = post.longitude;

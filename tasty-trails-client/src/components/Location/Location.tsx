@@ -1,6 +1,6 @@
 import React, { useState, FC, useEffect } from 'react';
 import { useLoadScript, Autocomplete } from '@react-google-maps/api';
-import  {UseFormRegister, FieldValues, UseFormSetValue } from "react-hook-form";
+import  {UseFormRegister, UseFormSetValue } from "react-hook-form";
 import {PostFormData} from "../../interfaces/post-interfaces";
 import styles from "./Location.module.scss";
 interface PlacesAutocompleteProps {
@@ -15,7 +15,12 @@ interface PlacesAutocompleteProps {
   };
   setValue: UseFormSetValue<PostFormData>;
 }
-
+/**
+ * 
+ * This compent is used for storing the Location of the post.
+ * This component has google maps api integrated so there will be suggestions for the location.
+ * 
+ */
 const Location: FC<PlacesAutocompleteProps> = ({ register, errors={},setValue }) => {
   const [latitude, setLatitude] = useState(0);
   const [longitude, setLongitude] = useState(0);
@@ -28,6 +33,7 @@ const Location: FC<PlacesAutocompleteProps> = ({ register, errors={},setValue })
   
   const onLoad = (autoC: google.maps.places.Autocomplete) => setAutocomplete(autoC);
   
+  // Function to trigger when the user selects a location
   const onPlaceChanged = () => {
     if (autocomplete !== null) {
       const place = autocomplete.getPlace();
@@ -43,9 +49,6 @@ const Location: FC<PlacesAutocompleteProps> = ({ register, errors={},setValue })
           setValue('longitude', location.lng()); // Update form value for longitude
           return location.lng();
         });
-        console.log(`location: stored in state: ${latitude}, ${longitude}`);
-        console.log(`location: recived from the method :${location.lat()}, ${location.lng()}`);
-        
       } else {
         setLatitude(()=>{
           setValue('latitude', 0); 
