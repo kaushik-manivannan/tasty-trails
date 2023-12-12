@@ -8,6 +8,9 @@ import express from "express";
 import mongoose from "mongoose";
 import registerRouter from "./routes/index.js"
 import dotenv from "dotenv";
+import passport from "./middleware/googleAuth.js";
+import GoogleStrategy from 'passport-google-oauth2';
+
 
 /**
  * @function initialize
@@ -15,12 +18,14 @@ import dotenv from "dotenv";
  * @param {object} app - The Express application instance.
  */
 const initialize = async (app) => {
+    dotenv.config();
     app.use(cors()); // Enable Cross-Origin Resource Sharing (CORS)
     app.use(express.urlencoded()); // Parse incoming URL-encoded requests
     app.use(express.json({ limit: '50mb' }));  // Parse incoming JSON requests
-    dotenv.config();
+    app.use(passport.initialize());
+    //app.use(passport.session());
     // Connect to the MongoDB database using Mongoose
-    mongoose.connect("mongodb+srv://vijay:vijay@vijay.pu330la.mongodb.net/tasty-trails?retryWrites=true&w=majority");
+    mongoose.connect("mongodb+srv://ramachandranshr:HEyzsgy2j0dkTkWi@mongoatlas1.rnu9y.mongodb.net/tasteyTrialsDB?retryWrites=true&w=majority");
     registerRouter(app); // Register routes for the application
 }
 
