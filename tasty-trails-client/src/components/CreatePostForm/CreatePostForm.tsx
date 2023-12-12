@@ -2,13 +2,13 @@ import React from "react";
 import { PostFormProps } from "../../interfaces/post-interfaces";
 import styles from "./CreatePostForm.module.scss";
 import Location from "../Location/Location.tsx";
-
+import { useTranslation } from 'react-i18next';
 const CreatePostForm: React.FC<PostFormProps> = ({ onSubmit, register, errors = {}, imagePreview, onImageChange, communities, setValue }) => {
+  const { t } = useTranslation();
   return (
     <div className={styles.coverImage}>
       <form onSubmit={onSubmit} className={styles.form}>
-        {/* Form heading */}
-        <h2 className={styles.heading}>Create Your Tasty Trail</h2>
+      <h2 className={styles.heading}>{t('Create Your Tasty Trail')}</h2>
 
         {/* Input for uploading an image */}
         <div className={styles.inputContainer}>
@@ -34,7 +34,7 @@ const CreatePostForm: React.FC<PostFormProps> = ({ onSubmit, register, errors = 
               </div>
             )}
             {/* Display upload message if no image is selected */}
-            {!imagePreview && <p>Upload Image</p>}
+            {!imagePreview && <p>{t('Upload Image')}</p>}
           </button>
         </div>
 
@@ -43,7 +43,7 @@ const CreatePostForm: React.FC<PostFormProps> = ({ onSubmit, register, errors = 
           <textarea
             id="description"
             className={styles.textarea}
-            placeholder="Enter a description of your food"
+            placeholder={t("Enter the location of your food")}
             {...register('description', {
               required: 'Please enter a description',
             })}
@@ -64,7 +64,7 @@ const CreatePostForm: React.FC<PostFormProps> = ({ onSubmit, register, errors = 
             className={styles.input}
             {...register('community', {})}
           >
-            <option value="-1">Select a Community</option>
+            <option value="-1">{t('Select a Community')}</option>
             {/* Map through communities to create options */}
             {communities.map((community, index) => (
               <option key={community.communityName + index} value={community._id}>{community.communityName}</option>
@@ -73,7 +73,7 @@ const CreatePostForm: React.FC<PostFormProps> = ({ onSubmit, register, errors = 
         </div>
 
         {/* Button to submit the form */}
-        <button type="submit" className={styles.createButton}>Create Post</button>
+        <button type="submit" className={styles.createButton}>{t('Create Post')}</button>
       </form>
     </div>
   );

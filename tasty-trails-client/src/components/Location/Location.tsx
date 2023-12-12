@@ -3,6 +3,7 @@ import { useLoadScript, Autocomplete } from '@react-google-maps/api';
 import  {UseFormRegister, UseFormSetValue } from "react-hook-form";
 import {PostFormData} from "../../interfaces/post-interfaces";
 import styles from "./Location.module.scss";
+import { useTranslation } from 'react-i18next';
 interface PlacesAutocompleteProps {
   register:UseFormRegister<PostFormData>;
   errors: {
@@ -64,6 +65,7 @@ const Location: FC<PlacesAutocompleteProps> = ({ register, errors={},setValue })
   useEffect(() => {
     console.log(`location: stored in state: ${latitude}, ${longitude}`);
   }, [latitude, longitude]);
+  const { t } = useTranslation();
   return (
     <>
       {isLoaded && (
@@ -73,7 +75,7 @@ const Location: FC<PlacesAutocompleteProps> = ({ register, errors={},setValue })
         >
           <input
             type="text"
-            placeholder="Enter the location of your food"
+            placeholder={t('Enter the location of your food')}
             {...register("location", { required: "Enter the location of your food" })}
             className={styles.input}
           />

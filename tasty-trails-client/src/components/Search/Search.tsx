@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Search.module.scss';
+import { useTranslation } from 'react-i18next';
 
 // Defining the props interface for the Search component
 interface SearchProps {
@@ -12,7 +13,7 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
     const query = event.target.value;
     onSearch(query);
   };
-
+  const { t } = useTranslation();
   return (
     <div className={styles.searchContainer}>
       {/* Search icon */}
@@ -21,7 +22,7 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
       {/* Input field for the search query */}
       <input
         type="text"
-        placeholder="Search trails..."
+        placeholder={t("Search trails...")}
         onChange={handleSearch}
         className={styles.searchBar}
       />

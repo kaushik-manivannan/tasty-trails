@@ -2,6 +2,8 @@ import React ,{useState,useEffect} from "react";
 import PostList from '../PostList/PostList';
 import {CommunityDetailsProps} from '../../interfaces/community-interfaces';
 import styles from './CommunityDetails.module.scss';
+import { useTranslation } from 'react-i18next';
+
 import { Post } from "../../interfaces/post-interfaces";
 /**
  * 
@@ -69,10 +71,11 @@ const CommunityDetails:React.FC<CommunityDetailsProps> = ({community,postList,is
             document.removeEventListener("click", clearUpdateMessage);
         };
     }, []);
+    const { t } = useTranslation();
     return(
         <div className={styles.parentContainer}>
             <div className={styles.communityDetailsContainer}>
-                <h2 className={styles.communityDetailsHeading}>Community Details</h2>
+                <h2 className={styles.communityDetailsHeading}>{t('Community Details')}</h2>
                 {updateMessage && (
                     <div className={styles.updateMessage}>
                         {updateMessage}
@@ -84,7 +87,7 @@ const CommunityDetails:React.FC<CommunityDetailsProps> = ({community,postList,is
                     <label 
                         htmlFor="communityName" 
                         className={styles.inputLabel}>
-                        Community Name
+                        t('Community Name')
                     </label>
                     <input 
                         id="communityName" 
@@ -98,7 +101,7 @@ const CommunityDetails:React.FC<CommunityDetailsProps> = ({community,postList,is
                     <label 
                         htmlFor="communityDescription" 
                         className={styles.inputLabel}>
-                        Community Description
+                        {t('Community Description')}
                     </label>
                     <input 
                         id="communityDescription" 
@@ -110,17 +113,16 @@ const CommunityDetails:React.FC<CommunityDetailsProps> = ({community,postList,is
                 </>
                 ):(<>
                 <div className={styles.inputContainer}>
-                    {/* This block is used when he is not the admin */}
-                    <strong className={styles.inputLabel}>Community Name</strong> {editedCommunityName}
+                {/* This block is used when he is not the admin */}
+                    <strong className={styles.inputLabel}>{t('Community Name')}</strong> {editedCommunityName}
                 </div>
                 <div className={styles.inputContainer}>
-                    <strong className={styles.inputLabel}>Community Description</strong> {editedCommunityDescription}
+                    <strong className={styles.inputLabel}>{t('Community Description')}</strong> {editedCommunityDescription}
                 </div>
                 </>
                 )}
                 <div className={styles.inputContainer}>
-                    {/* This will shot the members list */}
-                    <strong className={styles.inputLabel}>Community Members</strong>
+                    <strong className={styles.inputLabel}>{t('Community Members')}</strong>
                     <p className={styles.memberCount}>{community?community.members.length:""}</p>
                 </div>
                 {isEditable && (
@@ -128,14 +130,14 @@ const CommunityDetails:React.FC<CommunityDetailsProps> = ({community,postList,is
                         <div>
                             <button 
                             className={styles.updateButton} 
-                            onClick={updateCommunity}>Update</button>
+                            onClick={updateCommunity}>{t('Update')}</button>
                         </div>
                     ) : (
                         <div>
                             <button
                                 className={styles.updateButton} 
                                 onClick={()=>{setIsEditClicked(true)}}>
-                                Edit
+                                {t('Edit')}
                             </button>
                         </div>
                     )

@@ -4,6 +4,7 @@ import {CommunityFormData} from '../../interfaces/community-interfaces';
 import {NewCommunityProps} from '../../interfaces/community-interfaces';
 import { useSelector } from 'react-redux';
 import styles from './NewCommunity.module.scss';
+import { useTranslation } from 'react-i18next';
 
 /**
  * This component is used for creating a new community
@@ -41,10 +42,11 @@ const NewCommunity: React.FC<NewCommunityProps> = ({postNewCommunity}) => {
       reader.readAsDataURL(file);
     }
   };
+  const { t } = useTranslation();
   return (
     <div className={styles.coverImage}>
       <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-      <h2 className={styles.heading}>Create Your Community</h2>
+      <h2 className={styles.heading}>{t('Create Your Community')}</h2>
 
       {/* Image (optional) */}
       <div className={styles.inputContainer}>
@@ -66,7 +68,7 @@ const NewCommunity: React.FC<NewCommunityProps> = ({postNewCommunity}) => {
               <img src={imagePreview} alt="Preview" className={styles.imagePreview} />
             </div>
           )}
-          {!imagePreview && <p>Upload Image</p>}
+          {!imagePreview && <p>{t('Upload Image')}</p>}
           </button>
       </div>
 
@@ -75,7 +77,7 @@ const NewCommunity: React.FC<NewCommunityProps> = ({postNewCommunity}) => {
           <input
             id="communityName"
             className={styles.input}
-            placeholder="Enter the name of your community"
+            placeholder={t("Enter the name of your community")}
             {...register('communityName', {
               required: 'Community Name is required',
             })}
@@ -88,7 +90,7 @@ const NewCommunity: React.FC<NewCommunityProps> = ({postNewCommunity}) => {
           <textarea
             id="description"
             className={styles.textarea}
-            placeholder="Enter a description of your community"
+            placeholder={t("Enter a description of your community")}
             {...register('description', {
               required: 'Description is required',
             })}
@@ -97,7 +99,7 @@ const NewCommunity: React.FC<NewCommunityProps> = ({postNewCommunity}) => {
       </div>      
 
       {/* Submit button */}
-      <button type="submit" className={styles.createButton}>Create Community</button>
+      <button type="submit" className={styles.createButton}>{t('Create Community')}</button>
       </form>
     </div>
   );
