@@ -1,6 +1,24 @@
+@import "../../scss/base/variables";
+@import "../../scss/mixins";
+@import "../../scss/base/globals";
+@import "../../scss/functions";
+
 .postFeed {
-    width: 30vw;
+    width: 35vw;
     margin: 0 auto;
+}
+
+.search {
+    display: flex;
+    justify-content: end;
+    margin-bottom: 15px;
+}
+
+.noPosts {
+    text-align: center;
+    margin-top: 70px;
+    font-size: 1.5rem;
+    font-weight: set-weight(medium);
 }
 
 .heading {

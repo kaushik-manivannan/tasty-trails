@@ -1,35 +1,57 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { useForm, SubmitHandler } from 'react-hook-form';
 import CreatePostForm from "../components/CreatePostForm/CreatePostForm";
 import { PostFormData } from "../interfaces/post-interfaces";
+import {useSelector} from'react-redux';
+import {getuserCommunities} from "../api/index.js";
+import {createPost} from "../api/index.js";
+import { useNavigate } from 'react-router-dom';
 
 const CreatePostContainer: React.FC = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm<PostFormData>({
+  const { register, handleSubmit, formState: { errors },getValues,setValue } = useForm<PostFormData>({
     mode: 'onChange',
   });
-
+  const navigate = useNavigate();
+  const [communites, setCommunities] = useState([]);
+  const userId = useSelector((state:any) => state.auth.userId);
+  const fetchUserCommunities = async () => {
+    const resposne = await getuserCommunities(userId);
+    try{
+      if(resposne.status !== 200) {
+        throw new Error("error occured while fetching communities of specific user");
+      }
+      setCommunities(resposne.data);
+      console.log(resposne.data);
+    }catch(error){
+      throw new Error("error occured while fetching communities of specific user");
+    }
+  }
+  useEffect(() => {
+    fetchUserCommunities();
+  },[]);
   const onSubmit: SubmitHandler<PostFormData> = async (data) => {
-    const payload = {
+    const payload = {postDetails:{
+      userId: userId,
       description: data.description,
       location: data.location,
-      image: imagePreview
+      image: imagePreview,
+      availabilityStatus:"true",
+      latitude: getValues("latitude"),
+      longitude: getValues("longitude"),
+      },
+      communityId: data.community
     };
 
     try {
-      const response = await fetch('http://localhost:8080/posts', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(payload)
-      });
-
-      if (response.ok) {
-      } else {
-        console.error('Failed to create post');
+      const response = await createPost(payload);
+      if (response.status!== 201) {
+        throw new Error('Failed to create post');
       }
+      alert('Post created successfully');
+      navigate(-1);
+      console.log(response.data);
     } catch (error) {
-      console.error(error);
+      console.error('Failed to create post');
     }
   };
 
@@ -53,6 +75,8 @@ const CreatePostContainer: React.FC = () => {
       errors={errors}
       imagePreview={imagePreview}
       onImageChange={handleImageChange}
+      setValue={setValue}
+      communities={communites}
     />
   );
 };

@@ -30,6 +30,10 @@ const CommentSchema = new Schema({
         type: String,
         required: false
     },
+    userName: {
+        type: String,
+        required: false
+    }
 },
 {
     versionKey: false

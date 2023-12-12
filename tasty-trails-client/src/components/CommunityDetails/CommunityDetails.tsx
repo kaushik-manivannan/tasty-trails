@@ -18,6 +18,7 @@ const CommunityDetails:React.FC<CommunityDetailsProps> = ({community,postList,is
     const updateCommunity = async ()=>{
         setIsEditClicked(true);
         if( editedCommunityName.trim().length === 0|| editedCommunityDescription.trim().length === 0 || (editedCommunityName==community.communityName&&editedCommunityDescription==community.description)){
+            setIsEditClicked(false);
             return;
         }
         const updatedCommunity = {
@@ -27,6 +28,7 @@ const CommunityDetails:React.FC<CommunityDetailsProps> = ({community,postList,is
         try{
             await updateCommunityById(updatedCommunity);
             setUpdateMessage("Community updated successfully!");
+            setIsEditClicked(false);
         }catch(error){
             setUpdateMessage("Community updated successfully!");
         }
@@ -68,10 +70,10 @@ const CommunityDetails:React.FC<CommunityDetailsProps> = ({community,postList,is
                 </>
                 ):(<>
                 <div className={styles.inputContainer}>
-                    <strong>Community Name:</strong> {editedCommunityName}
+                    <strong className={styles.inputLabel}>Community Name</strong> {editedCommunityName}
                 </div>
                 <div className={styles.inputContainer}>
-                    <strong>Community Description:</strong> {editedCommunityDescription}
+                    <strong className={styles.inputLabel}>Community Description</strong> {editedCommunityDescription}
                 </div>
                 </>
                 )}

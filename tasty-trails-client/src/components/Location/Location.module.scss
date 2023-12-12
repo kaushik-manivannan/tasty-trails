@@ -1,0 +1,21 @@
+@import "../../scss/base/variables";
+@import "../../scss/mixins";
+@import "../../scss/base/globals";
+@import "../../scss/functions";
+
+.errorMessage {
+    font-size: 0.9rem;
+    color: $accent-color;
+    margin-top: 5px;
+}
+
+.input {
+    padding: 12px 6px;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+
+    &::placeholder {
+        color: $primary-color;
+    }
+}

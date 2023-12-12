@@ -23,9 +23,9 @@ import UserProfileEditContainer from './containers/UserProfileEditContainer.tsx'
 const protectedRoutes = [
   { path: '/posts', component: LandingPage },
   { path: '/posts/:postId', component: PostDetailsPage },
-  {path:'/communities',component:CommunityListContainer},
-  {path:'/communities/:communityId',component:CommunityDetailsContainer},
-  {path:'/new-community',component:NewCommunityPage},
+  { path:'/communities',component: CommunityListPage },
+  { path:'/communities/:communityId', component: CommunityDetailsPage},
+  { path:'/new-community',component: NewCommunityPage},
 
   // ... add other protected routes here ...
 ];
@@ -38,7 +38,7 @@ const router = createBrowserRouter(createRoutesFromElements([
   // <Route path='/posts/:postId' element={ <PostDetailsPage /> } />,
   <Route path='/posts/create' element={ <CreatePostPage /> } />,
   <Route path='/comments' element={ <CommentListContainer /> }/>,
-  // <Route path='/communities' element={ <CommunityListContainer /> }/>,
+  // <Route path='/communities' element={ <CommunityListPage /> }/>,
   // <Route path='/communities/:communityId' element={ <CommunityDetailsContainer /> } />,
   // <Route path='/new-community' element={ <NewCommunityPage /> } />,
   <Route path="/edit-profile/:userId" element={<UserProfileEditContainer />} />,

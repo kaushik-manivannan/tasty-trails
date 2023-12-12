@@ -1,5 +1,5 @@
-import { SubmitHandler, UseFormRegister} from "react-hook-form";
-
+import { SubmitHandler, UseFormRegister, FieldValues, UseFormSetValue } from "react-hook-form";
+import {Community} from "../interfaces/community-interfaces";
 export interface Post {
     _id: {
       $oid: string;
@@ -19,6 +19,7 @@ export interface PostItemProps {
 
 export interface PostListProps {
     posts: Post[];
+    onSearch: (query: string) => void;
 }
 
 export interface PostFormData {
@@ -26,6 +27,9 @@ export interface PostFormData {
     location: string;
     availabilityStatus: string;
     image?: string;
+    community?: string;
+    latitude?: Number;
+    longitude?: Number;
 }
 
 export interface CreatePostFormProps {
@@ -41,4 +45,6 @@ export interface CreatePostFormProps {
     };
     imagePreview: string | null;
     onImageChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    communities:Community[];
+    setValue: UseFormSetValue<PostFormData>;
 }

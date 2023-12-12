@@ -86,3 +86,44 @@ export const updateCommunityById = async (communityId, communityData) => {
     throw new Error("Error updating community by ID");
   }
 };
+
+/**
+ * Retrieves communities associated with a user based on their userId.
+ *
+ * @param {string} userId - The ID of the user for whom communities are to be retrieved.
+ * @returns {Promise<Array>} - A promise that resolves to an array of communities associated with the user.
+ * @throws {Error} - Throws an error if there's an issue fetching communities for the user.
+ */
+
+export const getUserCommunities = async(userId) =>{
+  try {
+    const communties = await CommunityModel.find({ members: userId });
+    if (!communties) {
+      throw new Error("No communites found");
+    }
+    return communties;
+  } catch (error) {
+    throw new Error("Error fetching communites for the user ID");
+  }
+}
+
+/**
+ * Adds a post to the specified community's postIds array.
+ *
+ * @param {string} communityId - The ID of the community to which the post will be added.
+ * @param {string} postId - The ID of the post to be added.
+ * @returns {Promise<object>} - A promise that resolves to the updated community object after adding the post.
+ * @throws {Error} - Throws an error if there's an issue adding the post to the community.
+ */
+
+export const addPostToCommunity = async (communityId, postId) => {
+  try {
+    const updatedCommunity = await CommunityModel.findByIdAndUpdate(
+      communityId,
+      { $addToSet: { postIds: postId } }, { new: true }// Return the updated document
+    );
+    return updatedCommunity;
+  } catch (error) {
+    throw new Error("Error adding post to the community");
+  }
+}

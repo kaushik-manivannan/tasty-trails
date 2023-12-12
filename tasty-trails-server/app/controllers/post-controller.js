@@ -4,6 +4,7 @@
 
 import * as postService from "../services/post-service.js";
 import * as responses from "./response-handler.js";
+import * as CommunityService from "../services/community-service.js";
 
 /**
  * Handles the retrieval of all posts.
@@ -35,9 +36,12 @@ export const getAllPosts = async (req, res) => {
  * @param {Object} res - Express response object.
  */
 export const createPost = async (req, res) => {
-    const postData = req.body;
+    const postData = req.body.postDetails;
+    const communityId = req.body.communityId;
     try {
-        const newPost = await postService.createPost(postData);
+        const newPost = await postService.createPost(postData); //create a new post
+        if(communityId !=="" && communityId!==undefined) // when posted globally
+        await CommunityService.addPostToCommunity(communityId,newPost._id); //add post to community
         res.status(201).json(newPost);
     } catch (err) {
         responses.set400ErrorResponse(err, res);

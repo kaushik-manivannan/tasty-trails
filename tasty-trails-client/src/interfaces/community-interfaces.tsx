@@ -1,13 +1,12 @@
 import {Post} from './post-interfaces';
 export interface Community{
-    _id: {
-        $oid: string;
-        };
+    _id: string;
     communityName: string;
     description: string;
     communityAdmin: string;
     image:string;
     members:string[];
+    postIds?:string[];
          
 }
 

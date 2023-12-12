@@ -6,7 +6,7 @@ import styles from './LandingPage.module.scss';
 const LandingPage: React.FC = () => {
     return (
         <div>
-            <h2 className={styles.heading}>Your Posts</h2>
+            <h2 className={styles.heading}>Explore Tasty Trails</h2>
             <PostListContainer />
             <Sidebar />
         </div>

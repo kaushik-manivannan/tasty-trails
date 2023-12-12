@@ -15,6 +15,7 @@ export interface NewCommentProps {
 
   export interface NewCommentContainerProps {
     userId: string;
+    userName: string;
     postId: string;
     addComment: (newComment: any) => void; // Replace 'any' with the actual type of newComment
     userImage: string;
