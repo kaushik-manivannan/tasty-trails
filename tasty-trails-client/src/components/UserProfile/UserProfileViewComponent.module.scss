@@ -11,7 +11,8 @@
     .userProfile {
         padding: 30px 80px;
         border-radius: 40px;
-        width: 35vw;
+        width: 45vw;
+        margin-left: 150px;
         background-color: $secondary-color;
 
         .heading {
@@ -41,5 +42,29 @@
             border-radius: 25px;
         }
     }
-    
+}
+
+@media screen and (min-width: 600px) and (max-width: 914px) {
+    .userProfileContainer {
+        .userProfile {
+            margin-top: 80vh;
+            width: 80vw;
+            margin-left: 0px;
+        }
+    }
+}
+
+@media screen and (max-width: 600px){
+    .userProfileContainer {
+        .userProfile {
+            margin-top: 60vh;
+            width: 85vw;
+            padding: 30px 30px;
+            margin-left: 0px;
+
+            .email {
+                word-break: break-all;
+            }
+        }
+    }
 }

@@ -29,7 +29,7 @@ const UserProfileViewComponent: React.FC<UserProfileViewComponentProps> = ({ use
         
         {/* User Information */}
         <p className={styles.userInfo}><strong>{t('Full Name')}:</strong> {user.fullName}</p>
-        <p className={styles.userInfo}><strong>{t('Email')}:</strong> {user.emailId}</p>
+        <p className={`${styles.userInfo} ${styles.email}`}><strong>{t('Email')}:</strong> {user.emailId}</p>
         <p className={styles.userInfo}><strong>{t('Username')}:</strong> {user.userName}</p>
         <p className={styles.userInfo}><strong>{t('Address')}:</strong> {user.location}</p>
         

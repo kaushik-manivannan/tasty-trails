@@ -11,6 +11,7 @@
 
 .parentContainer {
     @include flexbox(flex, column, $justifyContent: center, $alignItems: center);
+    margin-left: 150px;
 
     .communityDetailsContainer {
         padding: 50px;
@@ -51,6 +52,42 @@
             @extend .button-primary;
             width: 100%;
             border-radius: 25px;
+        }
+    }
+}
+
+@media screen and (min-width: 600px) and (max-width: 914px) {
+    .parentContainer {
+        width: 80vw;
+        margin: 60vh auto 0 auto;
+
+        .communityDetailsContainer {
+            width: 80vw;
+            margin: 0 auto;
+        }
+
+        .postListContainer {
+            .postList {
+                margin-top: -62vh;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 600px){
+    .parentContainer {
+        width: 80vw;
+        margin: 50vh auto 0 auto;
+
+        .communityDetailsContainer {
+            width: 80vw;
+            margin: 0 auto;
+        }
+
+        .postListContainer {
+            .postList {
+                margin-top: -50vh;
+            }
         }
     }
 }

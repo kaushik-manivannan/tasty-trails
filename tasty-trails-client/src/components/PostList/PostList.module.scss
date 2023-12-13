@@ -6,6 +6,7 @@
 .postFeed {
     width: 35vw;
     margin: 50px auto 0 auto;
+    max-width: 520px;
 
     .search {
         display: flex;
@@ -20,3 +21,18 @@
         font-weight: set-weight(medium);
     }
 }
+
+@media screen and (min-width: 600px) and (max-width: 914px) {
+    .postFeed {
+        width: 80vw;
+        margin-top: 66vh;
+    }
+}
+
+@media screen and (max-width: 600px){
+    .postFeed {
+        width: 80vw;
+        margin-top: 54vh;
+    }
+}
+

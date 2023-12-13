@@ -54,7 +54,7 @@ const CommunityItem: React.FC<CommunityItemProps> = ({ community, toggleJoin, vi
                 {isJoined && (
                     // View community details button (visible only if joined)
                     <button onClick={() => { viewDetails(community._id) }} className={styles.viewCommunityButton}>
-                        {t('View Community')}
+                        {t('View')}
                     </button>
                 )}
             </div>
