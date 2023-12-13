@@ -3,6 +3,7 @@ import {  CommunityItemContainerProps } from "../interfaces/community-interfaces
 import CommunityItem from "../components/CommunityItem/CommunityItem.tsx";
 import { useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
+import {updateCommunityById} from "../api/index.js";
 /**
  * This component is responsible for displaying the details of a community
  * @param community community object to render 
@@ -28,15 +29,16 @@ const CommunityItemContainer:React.FC<CommunityItemContainerProps> = ({community
         }else {
             payload.members.push(userId);
         }
-        fetch(`http://localhost:8080/communities/${community._id}`, {
-            method: 'put',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(payload) // Convert the payload into a JSON string
-        }).then( response => response.json())
-        .then((data) => {setCommunity(data)})
-        .catch((error) =>console.log(error));
+        try{
+            const response = await updateCommunityById(community._id, payload);
+            if(response.status !==200){
+                throw new Error('Error updating community');
+            }
+            setCommunity(response.data);
+        }catch(error){
+            throw new Error('Error updating community');
+
+        }
     }
     
     return(
