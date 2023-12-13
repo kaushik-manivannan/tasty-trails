@@ -31,7 +31,7 @@ const CommunityItemContainer:React.FC<CommunityItemContainerProps> = ({community
             payload.members.push(userId);
         }
         try{
-            const response = await updateCommunityById(payload);
+            const response = await updateCommunityById(community._id,payload);
             if(response.status!== 200){
                 throw new Error(`Error occured while updating communities `);
             }
