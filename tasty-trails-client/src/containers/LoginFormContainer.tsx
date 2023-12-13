@@ -1,26 +1,24 @@
-// LoginFormContainer.tsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setAuth } from '../auth/authSlice.ts';
 import LoginForm from '../components/LoginForm/LoginForm.tsx';
 import { loginUser } from '../api/index.js';
-import GoogleOAuthSuccess from './GoogleOAuthSucsess.tsx';
-
-
+ 
+ 
 const LoginFormContainer: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
+ 
   const [formData, setFormData] = useState({
     userName: '',
     password: '',
   });
-
+ 
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [usernameError, setUsernameError] = useState<string>('');
   const [passwordError, setPasswordError] = useState<string>('');
-
+ 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -28,48 +26,48 @@ const LoginFormContainer: React.FC = () => {
       [name]: value,
     }));
   };
-
+ 
   const validateForm = () => {
     let isValid = true;
-
+ 
     if (formData.userName.trim() === '') {
       setUsernameError('Username is required');
       isValid = false;
     } else {
       setUsernameError('');
     }
-
+ 
     if (formData.password.trim() === '') {
       setPasswordError('Password is required');
       isValid = false;
     } else {
       setPasswordError('');
     }
-
+ 
     return isValid;
   };
-
+ 
   const handleLoginSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
+ 
     //setErrorMessage('Invalid credentials. Please try again.');
     if (!validateForm()) {
       setErrorMessage('Please fill in the required fields.');
       return;
     }
-
+ 
     try {
       const response = await loginUser(formData);
-
+ 
       if (response.status === 200) {
         console.log('Login successful!');
-
+ 
         const { userId, token } = {
           userId: response.data.user._id,
           token: response.data.token,
         };
         dispatch(setAuth({ userId, token }));
-
+ 
         navigate('/posts', { state: { userId } });
       } else {
         setErrorMessage('Invalid credentials. Please try again.');
@@ -78,17 +76,17 @@ const LoginFormContainer: React.FC = () => {
       console.error('Error during login:', error);
       setErrorMessage('An error occurred during login. Please try again.');
     }
-
+ 
   };
-
+ 
   const handleSignupClick = () => {
     navigate('/signup');
   };
-
+ 
   const handleGoogleLogin = () => {
     window.open("http://localhost:8080/auth/google", "_self");
   };
-
+ 
   return (
     <div>
       <LoginForm
@@ -104,5 +102,5 @@ const LoginFormContainer: React.FC = () => {
     </div>
   );
 };
-
+ 
 export default LoginFormContainer;

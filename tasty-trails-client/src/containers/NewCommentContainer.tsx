@@ -57,7 +57,7 @@ const NewCommentContainer: React.FC<NewCommentContainerProps> = ({ userId, userN
   };
 
   // Handler for emoji click event
-  const handleEmojiClick = (event: async) => {
+  const handleEmojiClick = (event: { emoji: any; }) => {
     const emoji = event.emoji;
     setComment(prevComment => prevComment + emoji);
     setEmojiPickerVisible(false);
