@@ -47,7 +47,7 @@
     "Enter the name of your community": "Enter the name of your community",
     "Enter a description of your community": "Enter a description of your community",
     "No Trails Found!": "No Trails Found!",
-    "Search trails..." : "Search Trail...",
+    "Search trails..." : "Search trails...",
     "First Name": "First Name",
     "Enter your first name": "Enter your first name",
     "Enter your last name": "Enter your last name",
@@ -58,5 +58,6 @@
     "Address": "Address",
     "Save Changes": "Save Changes",
     "Your Profile": "Your Profile",
-    "Edit Profile": "Edit Profile"
+    "Edit Profile": "Edit Profile",
+    "View":"View"
 }
