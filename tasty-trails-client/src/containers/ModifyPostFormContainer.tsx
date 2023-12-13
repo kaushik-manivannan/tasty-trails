@@ -80,7 +80,6 @@ const ModifyPostContainer: React.FC<ModifyPostContainerProps> = ({ setIsOnEdit, 
       }
       alert('Post updated successfully');
       setIsOnEdit(false); // Exit edit mode
-      console.log(response.data);
     } catch (error) {
       console.error('Failed to update post');
     }

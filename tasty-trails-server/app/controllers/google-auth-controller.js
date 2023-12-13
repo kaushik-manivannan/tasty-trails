@@ -18,8 +18,6 @@ export const googleCallback = (req, res, next) => {
         return res.redirect('/users/login/failed');
       }
 
-      console.log('inside google callback');
-      console.log(user);
       
       // Create a user or retrieve existing user and get the result
       const result = await createUser(user);

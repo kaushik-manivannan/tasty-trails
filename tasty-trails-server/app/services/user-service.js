@@ -35,7 +35,7 @@ export const createUser = async (newUserData) => {
         return { user: newUser, token };
     } catch (error) {
         console.log(error);
-        if (error instanceof TastyTrialsError) {
+        if (error instanceof TastyTrialsError) { 
             throw error;
         } else {
             throw new Error('Error creating user');

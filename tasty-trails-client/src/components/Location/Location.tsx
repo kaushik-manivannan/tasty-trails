@@ -63,7 +63,6 @@ const Location: FC<PlacesAutocompleteProps> = ({ register, errors={},setValue })
     }
   };
   useEffect(() => {
-    console.log(`location: stored in state: ${latitude}, ${longitude}`);
   }, [latitude, longitude]);
   const { t } = useTranslation();
   return (
