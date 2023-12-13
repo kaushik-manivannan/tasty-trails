@@ -5,7 +5,7 @@ import { PostListProps } from '../../interfaces/post-interfaces.tsx';
 import Search from '../Search/Search.tsx';
 import { useTranslation } from 'react-i18next';
 
-const PostList: React.FC<PostListProps> = ({ posts, onSearch }) => {
+const PostList: React.FC<PostListProps> = ({ posts, onSearch, isLoading }) => {
 
   // Check if the posts array is empty
   const isEmpty = posts.length === 0;
@@ -19,7 +19,7 @@ const PostList: React.FC<PostListProps> = ({ posts, onSearch }) => {
 
       {/* Render posts or show a message if no posts */}
       {isEmpty ? (
-        <p className={styles.noPosts}>{t('No Trails Found!')}</p>
+        <p className={styles.noPosts}>{isLoading?"Loading...":t('No Trails Found!')}</p>
       ) : (
         // Map through the posts array and render PostItem for each post
         posts.slice(0).reverse().map((post, idx) => {

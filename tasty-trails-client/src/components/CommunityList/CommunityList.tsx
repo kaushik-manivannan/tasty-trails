@@ -11,7 +11,7 @@ import { useTranslation } from 'react-i18next';
  * @param {CommunityListProps} communities - List of communities.
  * @returns {React.FC} - React functional component.
  */
-const CommunityList: React.FC<CommunityListProps> = ({ communities }) => {
+const CommunityList: React.FC<CommunityListProps> = ({ communities ,isLoading}) => {
 
     // Check if the communities array is empty
     const isEmpty = communities.length === 0;
@@ -34,7 +34,7 @@ const CommunityList: React.FC<CommunityListProps> = ({ communities }) => {
                 <div className={styles.communityListContainer}>
                     {/* Display communities or a message if empty */}
                     {isEmpty ? (
-                        <p className={styles.noCommunities}>{t('No Communities Found!')}</p>
+                        <p className={styles.noCommunities}>{isLoading?"Loading...":t('No Communities Found!')}</p>
                     ) : (
                         <ul className={styles.communityList}>
                             {communities.map((community, idx) => (
