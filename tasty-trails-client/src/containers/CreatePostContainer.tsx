@@ -1,68 +1,77 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm, SubmitHandler } from 'react-hook-form';
 import CreatePostForm from "../components/CreatePostForm/CreatePostForm";
 import { PostFormData } from "../interfaces/post-interfaces";
-import {useSelector} from'react-redux';
-import {getuserCommunities} from "../api/index.js";
-import {createPost} from "../api/index.js";
+import { useSelector } from 'react-redux';
+import { getuserCommunities } from "../api/index.js";
+import { createPost } from "../api/index.js";
 import { useNavigate } from 'react-router-dom';
+
 /**
- * The component is responsible for the creation of a new post. It contains a form to create a new post
- * @returns React.FC
+ * CreatePostContainer component is responsible for the creation of a new post.
+ * It contains a form to create a new post.
  */
 const CreatePostContainer: React.FC = () => {
-  const { register, handleSubmit, formState: { errors },getValues,setValue } = useForm<PostFormData>({
+  const { register, handleSubmit, formState: { errors }, getValues, setValue } = useForm<PostFormData>({
     mode: 'onChange',
   });
   const navigate = useNavigate();
-  const [communites, setCommunities] = useState([]);
-  const userId = useSelector((state:any) => state.auth.userId);
-  // function to fetch all communities of the user
+  const [communities, setCommunities] = useState([]);
+  const userId = useSelector((state: any) => state.auth.userId);
+
+  // Function to fetch all communities of the user
   const fetchUserCommunities = async () => {
-    const resposne = await getuserCommunities(userId);
-    try{
-      if(resposne.status !== 200) {
-        throw new Error("error occured while fetching communities of specific user");
+    try {
+      const response = await getuserCommunities(userId);
+      
+      // Check if the response status is not 200 (OK)
+      if (response.status !== 200) {
+        throw new Error("Error occurred while fetching communities of a specific user");
       }
-      setCommunities(resposne.data);
-      console.log(resposne.data);
-    }catch(error){
-      throw new Error("error occured while fetching communities of specific user");
+      
+      // Set the retrieved communities in the state
+      setCommunities(response.data);
+    } catch (error) {
+      console.error("Error fetching communities of a specific user:", error);
     }
   }
 
   useEffect(() => {
     fetchUserCommunities();
-  },[]);
+  }, []);
+
   const onSubmit: SubmitHandler<PostFormData> = async (data) => {
     const payload = {
       userId: userId,
       description: data.description,
       location: data.location,
       image: imagePreview,
-      availabilityStatus:"true",
+      availabilityStatus: "true",
       latitude: getValues("latitude"),
       longitude: getValues("longitude"),
       communityId: data.community
     };
 
-    // Api call to create a post
+    // API call to create a post
     try {
       const response = await createPost(payload);
-      if (response.status!== 201) {
+      
+      // Check if the response status is not 201 (Created)
+      if (response.status !== 201) {
         throw new Error('Failed to create post');
       }
+      
+      // Display success message and navigate back to the home page
       alert('Post created successfully');
-      navigate(-1); //Navigate back to the home page
-      console.log(response.data);
+      navigate(-1);
     } catch (error) {
       console.error('Failed to create post');
     }
   };
 
-  const [imagePreview, setImagePreview] = useState<string | null>(null); //state to store the image preview
+  const [imagePreview, setImagePreview] = useState<string | null>(null); // State to store the image preview
 
-  // function to handle the image preview, get the file and read  it into base 64
+  // Function to handle the image preview, get the file and read it into base 64
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files ? event.target.files[0] : null;
     if (file) {
@@ -82,7 +91,7 @@ const CreatePostContainer: React.FC = () => {
       imagePreview={imagePreview}
       onImageChange={handleImageChange}
       setValue={setValue}
-      communities={communites}
+      communities={communities}
     />
   );
 };

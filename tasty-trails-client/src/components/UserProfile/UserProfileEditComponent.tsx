@@ -1,8 +1,7 @@
 import React from 'react';
 import styles from './UserProfileEditComponent.module.scss';
-import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-
+ 
 // Props interface for UserProfileEditComponent
 interface UserProfileEditProps {
   user: {
@@ -19,7 +18,7 @@ interface UserProfileEditProps {
   fullNameError: string;
   userNameError: string;
 }
-
+ 
 const UserProfileEditComponent: React.FC<UserProfileEditProps> = ({
   user,
   imagePreviewUrl,
@@ -30,6 +29,9 @@ const UserProfileEditComponent: React.FC<UserProfileEditProps> = ({
   fullNameError,
   userNameError,
 }) => {
+
+  const { t } = useTranslation();
+
   return (
     <div className={styles.userProfileEditContainer}>
       <form onSubmit={onSubmit} className={styles.userProfileEdit}>
@@ -56,11 +58,11 @@ const UserProfileEditComponent: React.FC<UserProfileEditProps> = ({
             {imagePreviewUrl && (
               <img src={imagePreviewUrl} alt="Profile Preview" className={styles.imagePreview} />
             )}
-            {!imagePreviewUrl && <p>Upload Image</p>}
+            {!imagePreviewUrl && <p>{t('Upload Image')}</p>}
           </button>
         </div>
         <div className={styles.inputContainer}>
-          <label className={styles.inputLabel}>Email</label>
+          <label className={styles.inputLabel}>{t('Email')}</label>
           <input
             type="text"
             name="emailId"
@@ -71,7 +73,7 @@ const UserProfileEditComponent: React.FC<UserProfileEditProps> = ({
           />
         </div>
         <div className={styles.inputContainer}>
-          <label className={styles.inputLabel}>Full Name</label>
+          <label className={styles.inputLabel}>{t('Full Name')}</label>
           <input
             type="text"
             name="fullName"
@@ -82,7 +84,7 @@ const UserProfileEditComponent: React.FC<UserProfileEditProps> = ({
           <div className={styles.errorMessage}>{fullNameError}</div>
         </div>
         <div className={styles.inputContainer}>
-          <label className={styles.inputLabel}>Username</label>
+          <label className={styles.inputLabel}>{t('Username')}</label>
           <input
             type="text"
             name="userName"
@@ -93,7 +95,7 @@ const UserProfileEditComponent: React.FC<UserProfileEditProps> = ({
           <div className={styles.errorMessage}>{userNameError}</div>
         </div>
         <div className={styles.inputContainer}>
-          <label className={styles.inputLabel}>Location</label>
+          <label className={styles.inputLabel}>{t('Address')}</label>
           <input
             type="text"
             name="location"
@@ -103,11 +105,11 @@ const UserProfileEditComponent: React.FC<UserProfileEditProps> = ({
           />
         </div>
         <button type="submit" className={styles.createButton}>
-          Save Changes
+            {t('Save Changes')}
         </button>
       </form>
     </div>
   );
 };
-
+ 
 export default UserProfileEditComponent;
