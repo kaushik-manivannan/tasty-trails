@@ -45,8 +45,10 @@ const SignupFormContainer: React.FC = () => {
  
     switch (name) {
       case 'firstName':
+        errorMessage = value.trim() === '' ? 'First Name is required' : '';
+        break;
       case 'lastName':
-        errorMessage = value.trim() === '' ? 'This field is required' : '';
+        errorMessage = value.trim() === '' ? 'Last Name is required' : '';
         break;
       case 'emailId':
         errorMessage = validateEmail(value);

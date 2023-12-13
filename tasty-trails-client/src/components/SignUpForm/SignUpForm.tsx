@@ -34,7 +34,6 @@ const SignupForm: React.FC<SignupFormProps> = ({ formData, onChange, onSubmit, o
       <div className={styles.signupPage}>
         {/* Tasty Trails Logo */}
         <img src={`${process.env.PUBLIC_URL}/assets/logo.svg`} alt="Tasty Trails Logo" className={styles.logo}/>
-        <h1 className={styles.heading}>Sign Up</h1>
         {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
  
         {/* Heading */}
@@ -47,6 +46,7 @@ const SignupForm: React.FC<SignupFormProps> = ({ formData, onChange, onSubmit, o
             <label htmlFor="firstName" className={styles.inputLabel}>{t('First Name')}</label>
             <input
               type="text"
+              pattern="^[a-zA-Z]+$"
               id="firstName"
               name="firstName"
               value={formData.firstName}
@@ -72,22 +72,6 @@ const SignupForm: React.FC<SignupFormProps> = ({ formData, onChange, onSubmit, o
               className={styles.input}
             />
             <div className={styles.errorMessage}>{formErrors.lastName}</div>
-          </div>
- 
-          {/* Email Input */}
-          <div className={styles.inputContainer}>
-            <label htmlFor="emailId" className={styles.inputLabel}>{t('Email')}</label>
-            <input
-              type="email"
-              id="emailId"
-              name="emailId"
-              value={formData.emailId}
-              onChange={onChange}
-              placeholder={t("Enter your email")}
-              required
-              className={styles.input}
-            />
-            <div className={styles.errorMessage}>{formErrors.emailId}</div>
           </div>
  
           {/* Username Input */}
@@ -120,6 +104,22 @@ const SignupForm: React.FC<SignupFormProps> = ({ formData, onChange, onSubmit, o
               className={styles.input}
             />
             <div className={styles.errorMessage}>{formErrors.password}</div>
+          </div>
+
+          {/* Email Input */}
+          <div className={styles.inputContainer}>
+            <label htmlFor="emailId" className={styles.inputLabel}>{t('Email')}</label>
+            <input
+              type="email"
+              id="emailId"
+              name="emailId"
+              value={formData.emailId}
+              onChange={onChange}
+              placeholder={t("Enter your email")}
+              required
+              className={styles.input}
+            />
+            <div className={styles.errorMessage}>{formErrors.emailId}</div>
           </div>
  
           {/* Signup Button */}
