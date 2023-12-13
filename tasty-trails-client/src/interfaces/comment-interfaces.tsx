@@ -1,4 +1,5 @@
 export interface Comment {
+  userImage?: string;
   _id: {
     $oid: string;
   };
