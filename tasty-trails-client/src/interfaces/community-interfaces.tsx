@@ -12,6 +12,7 @@ export interface Community{
 
 export interface CommunityListProps{
     communities: Community[];
+    isLoading : boolean;
 }
 
 export interface CommunityItemContainerProps{

@@ -10,6 +10,7 @@ import { Post } from '../interfaces/post-interfaces.tsx';
 const PostListContainer: React.FC = () => {
   const [posts, setPosts] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   // Handles the search query change.
   const handleSearch = (query: string) => {
@@ -24,13 +25,17 @@ const PostListContainer: React.FC = () => {
   useEffect(() => {
     // Fetches posts from the API when the component mounts
     const fetchPosts = async () => {
+      setIsLoading(true);
       try {
         const response = await getAllPosts();
         if (response.status !== 200) {
+          setIsLoading(false);
           throw new Error('Failed to fetch posts.');
         }
         setPosts(response.data);
+        setIsLoading(false);
       } catch (error) {
+        setIsLoading(false);
         console.error('Error fetching posts: ', error);
       }
     };
@@ -39,7 +44,7 @@ const PostListContainer: React.FC = () => {
     fetchPosts();
   }, []);
 
-  return <PostList posts={filteredPosts} onSearch={handleSearch} />;
+  return <PostList posts={filteredPosts} onSearch={handleSearch} isLoading={isLoading} />;
 };
 
 export default PostListContainer;

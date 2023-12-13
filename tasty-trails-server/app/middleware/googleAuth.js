@@ -15,8 +15,6 @@ passport.use(new GoogleStrategy({
   function(request, accessToken, refreshToken, profile, done) {
     console.log("in google user function");
     
-      console.log(profile);
-
       // Creating a simplified user object from Google profile data
       const user = {
         emailId: profile.email,
