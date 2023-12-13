@@ -30,53 +30,47 @@
             @include flexbox(flex, column);
             margin: 18px 0;
             width: 100%;
-        }
-        
-        .inputLabel {
-            font-weight: set-weight(medium);
-            margin-bottom: 6px;
-        }
-        
-        .input {
-            padding: 12px 6px;
-            font-size: 1rem;
-            border: none;
-            border-radius: 5px;
-            color: $primary-color;
-        
-            &::placeholder {
+
+            .inputLabel {
+                font-weight: set-weight(medium);
+                margin-bottom: 6px;
+            }
+            
+            .input {
+                padding: 12px 6px;
+                font-size: 1rem;
+                border: none;
+                border-radius: 5px;
                 color: $primary-color;
+            
+                &::placeholder {
+                    color: $primary-color;
+                }
             }
-        }
 
-
-        .imagePreviewText {
-            font-weight: set-weight(medium);
-            margin-bottom: 7px;
-        }
-
-        .imagePreview {
-            border-radius: 50%;
-            border: none;
-            width: 150px;
-            height: 150px;
-            display: inline-block;
-
-            &:hover {
-                opacity: 0.85;
+            .imagePreview {
+                border-radius: 50%;
+                border: none;
+                width: 150px;
+                height: 150px;
+                display: inline-block;
+    
+                &:hover {
+                    opacity: 0.85;
+                }
             }
-        }
-
-        .fileUploadButton {
-            font-size: 0.9rem;
-            background-color: #fff;
-            border-radius: 50%;
-            border: none;
-            width: 150px;
-            height: 150px;
-            margin: 0 auto;
-            display: inline-block;
-            margin-bottom: 10px;
+    
+            .fileUploadButton {
+                font-size: 0.9rem;
+                background-color: #fff;
+                border-radius: 50%;
+                border: none;
+                width: 150px;
+                height: 150px;
+                margin: 0 auto;
+                display: inline-block;
+                margin-bottom: 10px;
+            }
         }
         
         .createButton {

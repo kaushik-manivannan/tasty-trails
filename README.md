@@ -16,16 +16,13 @@ For users, Tasty Trails means more than just access to surplus food; it's an opp
 ### 🗺️ **Intuitive User Experience**
 
 - **Multiple UI Routes:**
-  Utilizing Next.js for efficient routing, Tasty Trails offers separate pages for the home feed, user profiles, and detailed post views.
+  Tasty Trails offers efficient routing for separate pages like the home feed, community feed, user profile, and detailed post views.
 
 - **Redux State Management:**
-  A smooth and responsive user interface is ensured through Redux, efficiently managing application state for posts and comments.
+  A smooth and responsive user interface is ensured through Redux, efficiently managing application state for users.
 
 - **Internationalization:**
   Tasty Trails speaks your language! Enjoy the application in multiple languages for a global, inclusive experience.
-
-- **Progressive Web App (PWA):**
-  Experience enhanced usability with offline capabilities, ensuring you can engage with the community even without a stable internet connection.
 
 ### 🍽️ **Professional UI Design**
 
@@ -48,7 +45,7 @@ For users, Tasty Trails means more than just access to surplus food; it's an opp
 ### 🎉 **Additional Features**
 
 - **Search Functionality:**
-  Easily find specific food items or explore posts based on various criteria.
+  Easily find specific food items or explore posts.
 
 - **User Authentication:**
   Secure your account and personalize your Tasty Trails experience with user authentication.
@@ -59,7 +56,10 @@ For users, Tasty Trails means more than just access to surplus food; it's an opp
 ## Tech Stack
 
 - **Frontend (UI):**
-  - Next.js
+  - SCSS
+  - React
+  - Node.js
+  - Typescript
   - Redux
   - Internationalization (i18n)
 

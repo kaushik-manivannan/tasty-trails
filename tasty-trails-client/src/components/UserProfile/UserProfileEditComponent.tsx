@@ -1,7 +1,9 @@
 import React from 'react';
 import styles from './UserProfileEditComponent.module.scss';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
+// Props interface for UserProfileEditComponent
 interface UserProfileEditProps {
   user: {
     emailId: string;

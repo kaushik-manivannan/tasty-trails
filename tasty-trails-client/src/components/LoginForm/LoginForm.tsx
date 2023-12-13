@@ -17,14 +17,24 @@ interface LoginFormProps {
 }
 
 const LoginForm: React.FC<LoginFormProps> = ({ formData, onChange, onSubmit, onSignupClick, onGoogleLogin, usernameError, passwordError, errorMessage,}) => {
+  // Translation hook
   const { t } = useTranslation();
+
   return (
+    // Container with background image
     <div className={styles.coverImage}>
       <div className={styles.loginPage}>
-        <img src={`${process.env.PUBLIC_URL}/assets/logo.png`} alt="Tasty Trails Logo" className={styles.logo}/>
+
+        {/* Tasty Trails logo */}
+        <img src={`${process.env.PUBLIC_URL}/assets/logo.png`} alt="Tasty Trails Logo" className={styles.logo} />
+
+        {/* Heading for the login form */}
         <h1 className={styles.heading}>{t('Sign in to Tasty Trails')}</h1>
         {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+
+        {/* Login form */}
         <form onSubmit={onSubmit} className={styles.loginForm}>
+          {/* Username input */}
           <div className={styles.inputContainer}>
             <label htmlFor="userName" className={styles.inputLabel}>{t('Username')}</label>
             <input
@@ -39,6 +49,8 @@ const LoginForm: React.FC<LoginFormProps> = ({ formData, onChange, onSubmit, onS
             />
             <div className={styles.errorMessage}>{usernameError}</div>
           </div>
+
+          {/* Password input */}
           <div className={styles.inputContainer}>
             <label htmlFor="password" className={styles.inputLabel}>{t('Password')}</label>
             <input
@@ -53,15 +65,24 @@ const LoginForm: React.FC<LoginFormProps> = ({ formData, onChange, onSubmit, onS
             />
             <div className={styles.errorMessage}>{passwordError}</div>
           </div>
+
+          {/* Submit button */}
           <button type="submit" className={styles.loginButton}>{t('Login')}</button>
+
+          {/* Horizontal division line */}
           <hr className={styles.loginDivision}/>
         </form>
+
+        {/* Secondary login option (Sign in with Google) */}
         <div className={styles.secondaryLogin}>
-          <button type="submit" className={styles.secondaryLoginButton} onClick={onGoogleLogin}>{t('Sign in with Google')}
+          <button type="submit" className={styles.secondaryLoginButton} onClick={onGoogleLogin}>
+            {t('Sign in with Google')}
           </button>
         </div>
+
+        {/* Signup Redirection */}
         <div className={styles.signup}>
-          <span className={styles.signupText}>Don't have an account?</span>
+          <span className={styles.signupText}>{t("Don't have an account?")}</span>
           <button onClick={onSignupClick} className={styles.signupButton}>{t('Sign up')}</button>
         </div>
       </div>

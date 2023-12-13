@@ -2,17 +2,6 @@
 @import "../../scss/mixins";
 @import "../../scss/base/globals";
 @import "../../scss/functions";
-
-.userImageContainer {
-    margin-right: 12px;
-  
-    .userImage {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      object-fit: cover;
-    }
-  }
   
   .newCommentContainer {
     display: flex;
@@ -20,70 +9,81 @@
     padding: 10px 0;
     width: 100%;
     box-sizing: border-box;
-  }
-  
-  .newCommentContainerInput {
-    display: flex;
-    align-items: flex-start;
-    border: 1px solid #ddd;
-    padding: 10px;
-    width: 100%;
-    box-sizing: border-box;
-    border-radius: 12px;
-    background-color: #ebebeb;
-  
-    .newCommentInputContainer {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      margin-right: 10px; 
-  
-      .newCommentInput {
-        width: 100%;
-        padding: 8px;
-        border-radius: 8px;
-        margin-bottom: 8px;
-        border: 1px solid #ccc;
-        box-sizing: border-box;
+
+    .userImageContainer {
+      margin-right: 12px;
+    
+      .userImage {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
       }
     }
-  }
-  
-  .newCommentButtonsContainer {
-    display: flex;
-    align-items: center;
-  
-    .newCommentButton {
-      margin-right: 8px;
-      background-color: $primary-color;
-      color: #ffffff;
-      border: none;
-      border-radius: 4px;
-      padding: 8px;
-      cursor: pointer;
-    }
-  }
-  
-  .newCommentAttachment {
-    color: #007bff;
-  }
-  
-  .newCommentAttachmentWord {
-    font-size: 12px;
-    margin-left: 4px;
-    color: #007bff;
-  }
-  
-  .newCommentAttachmentContainer {
-    display: flex;
-    align-items: center;
-    margin-top: 8px;
-    margin-bottom: 10px;
-  
-    .removeAttachment {
-      cursor: pointer;
-      margin-left: 4px; 
-      color: red; 
+
+    .newCommentContainerInput {
+      display: flex;
+      align-items: flex-start;
+      border: 1px solid #ddd;
+      padding: 10px;
+      width: 100%;
+      box-sizing: border-box;
+      border-radius: 12px;
+      background-color: #ebebeb;
+    
+      .newCommentInputContainer {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        margin-right: 10px; 
+    
+        .newCommentInput {
+          width: 100%;
+          padding: 8px;
+          border-radius: 8px;
+          margin-bottom: 8px;
+          border: 1px solid #ccc;
+          box-sizing: border-box;
+        }
+
+        .newCommentAttachmentContainer {
+          display: flex;
+          align-items: center;
+          margin-top: 8px;
+          margin-bottom: 10px;
+
+          .newCommentAttachment {
+            color: #007bff;
+          }
+
+          .newCommentAttachmentWord {
+            font-size: 12px;
+            margin-left: 4px;
+            color: #007bff;
+          }
+        
+          .removeAttachment {
+            cursor: pointer;
+            margin-left: 4px; 
+            color: red; 
+          }
+        }
+
+        .newCommentButtonsContainer {
+          display: flex;
+          align-items: center;
+        
+          .newCommentButton {
+            margin-right: 8px;
+            background-color: $primary-color;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            padding: 8px;
+            cursor: pointer;
+          }
+        }
+      }
     }
   }
   
