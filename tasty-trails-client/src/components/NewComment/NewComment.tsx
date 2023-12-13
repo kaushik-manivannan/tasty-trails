@@ -19,7 +19,8 @@ const NewComment: React.FC<NewCommentProps> = ({
   handleImageUpload,
   handleRemoveImage,
   emojiPickerVisible,
-  selectedImage
+  selectedImage,
+  userImage
 }) => {
   // Check if the submit button should be disabled
   const isSubmitDisabled = comment.trim() === '' && !selectedImage;
