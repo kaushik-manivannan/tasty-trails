@@ -60,7 +60,6 @@ const LoginFormContainer: React.FC = () => {
       const response = await loginUser(formData);
  
       if (response.status === 200) {
-        console.log('Login successful!');
  
         const { userId, token } = {
           userId: response.data.user._id,

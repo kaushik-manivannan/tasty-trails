@@ -39,7 +39,7 @@ const CommunityDetailsContainer: React.FC = () => {
                 setIsEditable(true);
             }
         } catch (error) {
-            console.log("Error fetching CommunityDetails: ", error);
+            throw new Error(`Error fetching Community Details: ${error}`);
         }
     };
 
@@ -49,7 +49,7 @@ const CommunityDetailsContainer: React.FC = () => {
             try {
                 await fetchPostByCommunityId();
             } catch (error) {
-                console.log("Error fetching data: ", error);
+              throw new Error(`Error fetching Post: ${error}`);
             }
         };
 

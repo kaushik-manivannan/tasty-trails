@@ -95,14 +95,12 @@ const SignupFormContainer: React.FC = () => {
       try {
           const { firstName, lastName, ...restFormData } = formData;
           const fullName = `${firstName} ${lastName}`;
-      console.log('in handle submit');
    
           const response = await createUser({ ...restFormData, fullName });
  
         if (response.status === 200) {
-          console.log('User created successfully!');
+          
           // Add any additional logic after successful user creation
-         
           const { userId, token } = {
             userId: response.data.user._id,
             token: response.data.token,
