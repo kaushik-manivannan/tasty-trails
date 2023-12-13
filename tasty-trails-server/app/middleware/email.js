@@ -51,6 +51,5 @@ export const sendEmail = async (to, userName) => {
   }
 }
 
-sendEmail("balajivasanrj@gmail.com", "Balaji");
 
 
