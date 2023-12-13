@@ -7,7 +7,7 @@
     "Log in":"Acceso",
     "Enter your username": "Ingresa tu nombre de usuario",
     "Enter your password":"Ingresa tu contraseña",
-    "Sign up with Google": "Iniciar sesión con Google",
+    "Sign in with Google": "Iniciar sesión con Google",
     "Logout": "Cerrar sesión",
     "Home": "Hogar",
     "Sign in to Tasty Trails":"Iniciar sesión en Tasty Trails",
@@ -62,5 +62,6 @@
     "Signup":"Inscribirse",
     "Leave": "Dejar",
     "Last Name": "Apellido",
-    "View": "Ver"
+    "View": "Ver",
+    "Don't have an account?":"No tienes una cuenta?"
 }

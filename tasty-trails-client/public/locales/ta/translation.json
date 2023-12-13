@@ -8,7 +8,7 @@
     "Signup": "பதிவு செய்யவும்",
     "Enter your username": "உங்கள் பயனர்பெயரை உள்ளிடவும்",
     "Enter your password": "உங்கள் கடவுச்சொல்லை உள்ளிடவும்",
-    "Sign up with Google": "Google உடன் பதிவு செய்க",
+    "Sign in with Google": "Google உடன் பதிவு செய்க",
     "Logout": "வெளியேறு",
     "Home": "முகப்பு",
     "Sign in to Tasty Trails": "Tasty Trails க்கு உள்நுழைக",
@@ -58,5 +58,6 @@
     "Address": "முகவரி",
     "Save Changes": "மாற்றங்களை சேமி",
     "Your Profile": "உங்கள் சுயவிவரம்",
-    "Edit Profile": "சுயவிவரத்தை திருத்து"
+    "Edit Profile": "சுயவிவரத்தை திருத்து",
+    "Don't have an account?":"கணக்கு இல்லையா?"
 }

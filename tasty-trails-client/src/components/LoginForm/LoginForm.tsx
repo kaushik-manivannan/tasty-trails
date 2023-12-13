@@ -75,8 +75,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ formData, onChange, onSubmit, onS
  
         {/* Secondary login option (Sign in with Google) */}
         <div className={styles.secondaryLogin}>
-          <button type="submit" className={styles.secondaryLoginButton} onClick={onGoogleLogin}>
-            {t('Sign in with Google')}
+          <button type="submit" className={styles.secondaryLoginButton} onClick={onGoogleLogin}>{t("Sign in with Google")}
           </button>
         </div>
  
