@@ -40,6 +40,15 @@ const UserSchema = new Schema({
     versionKey: false
 });
 
+
+
+/**
+ * Compares a candidate password with the hashed password stored in the UserSchema.
+ *
+ * @param {string} candidatePassword - The candidate password to compare.
+ * @returns {Promise<boolean>} A promise that resolves to a boolean indicating whether the passwords match.
+ * @throws {Error} Throws an error if there is an issue comparing the passwords.
+ */
 UserSchema.methods.comparePassword = async function (candidatePassword) {
     try {
         return await bcrypt.compare(candidatePassword, this.password);
