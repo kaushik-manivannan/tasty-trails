@@ -30,7 +30,7 @@ const NewComment: React.FC<NewCommentProps> = ({
     <form onSubmit={handleAddComment} className={styles.newCommentContainer}>
       {/* Container for the user's image */}
       <div className={styles.userImageContainer}>
-        <img src={userDefault} alt="" className={styles.userImage} />
+        <img src={userImage ? userImage : userDefault} alt="" className={styles.userImage} />
       </div>
 
       {/* Container for the new comment input */}
