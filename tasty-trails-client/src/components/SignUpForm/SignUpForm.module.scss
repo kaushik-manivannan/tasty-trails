@@ -10,96 +10,112 @@
     width: 100vw;
     height: 100vh;
     background-image: url("../../../public/assets/cover-image.jpg");
-}
 
-.signupPage {
-    position: relative;
-    padding-bottom: 5px;
-    border-radius: 25px;
-    width: 30vw;
-    background-color: $secondary-color;
-}
+    .signupPage {
+        position: relative;
+        padding-bottom: 5px;
+        border-radius: 25px;
+        width: 40vw;
+        background-color: $secondary-color;
 
-.logo {
-    display: block;
-    margin: -15px auto 15px auto;
-    width: 40%;
-}
+        .logo {
+            display: block;
+            margin: -15px auto 15px auto;
+            width: 35%;
+        }
+        
+        .heading {
+            position: relative;
+            bottom: 55px;
+            text-align: center;
+            color: $primary-color;
+            font-size: 1.7rem;
+            margin-bottom: 20px;
+        }
 
-.heading {
-    position: relative;
-    bottom: 55px;
-    text-align: center;
-    color: $primary-color;
-    font-size: 1.7rem;
-    margin-bottom: 20px;
-}
+        .signupForm {
+            width: 80%;
+            margin: -60px auto 0 auto;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            justify-items: center;
+            align-items: center;
+            gap: 10px;
 
-.signupForm {
-    width: 55%;
-    margin: -60px auto 0 auto;
-}
+            .inputContainer {
+                @include flexbox(flex, column);
+                margin: 15px 0;
+                width: 48%;
+                height: 65px;
 
-.inputContainer {
-    @include flexbox(flex, column);
-    margin: 15px 0;
-    width: 100%;
-}
+                .inputLabel {
+                    font-size: 0.95rem;
+                    font-weight: set-weight(medium);
+                    margin-bottom: 5px;
+                }
+                
+                .input {
+                    padding: 9px 7px;
+                    border: 1px solid $primary-color;
+                    border-radius: 5px;
+                    background-color: $secondary-color;
+                }
 
-.inputLabel {
-    font-size: 0.95rem;
-    font-weight: set-weight(medium);
-    margin-bottom: 5px;
-}
+                .errorMessage {
+                    color: $accent-color;
+                    font-size: 0.9rem;
+                    margin-top: 5px;
+                    margin-left: 5px;
+                }
+            }
 
-.input {
-    padding: 9px 7px;
-    border: 1px solid $primary-color;
-    border-radius: 5px;
-    background-color: $secondary-color;
-}
+            .signupButton {
+                @extend .button-primary;
+                width: 60%;
+                margin: 20px auto 0 auto;
+                border-radius: 25px;
+                position: relative;
+                left: 7px;
+            }
+            
+            .signupDivision {
+                position: relative;
+                top: 15px;
+            }
+        }
 
-.signupButton {
-    @extend .button-primary;
-    padding: 10px 35px;
-    width: 100%;
-    border-radius: 25px;
-}
+        .secondarySignup {
+            @include flexbox(flex, $justifyContent: center);
 
-.signupDivision {
-    position: relative;
-    top: 15px;
-}
+            .secondarySignupButton {
+                @extend .button-primary;
+                padding: 10px;
+                margin: 30px auto 0 auto;
+                background-color: $secondary-color;
+                width: 40%;
+                border-radius: 25px;
+            
+                &:hover {
+                    background-color: $accent-color;
+                    transition: background-color 500ms;
+                }
+            }
+        }
 
-.secondarySignup {
-    @include flexbox(flex, $justifyContent: center);
-}
+        .login {
+            width: fit-content;
+            margin: 15px auto;
 
-.secondarySignupButton {
-    @extend .button-primary;
-    padding: 10px;
-    margin: 30px auto 0 auto;
-    background-color: $secondary-color;
-    width: 55%;
-    border-radius: 25px;
-
-    &:hover {
-        background-color: $accent-color;
-        transition: background-color 500ms;
+            .loginText {
+                margin-right: 10px;
+            }
+            
+            .loginButton {
+                font-size: 1rem;
+                color: $accent-color;
+                font-weight: set-weight(medium);
+            }
+        }
     }
-}
-
-.login {
-    width: fit-content;
-    margin: 15px auto;
-}
-
-.loginText {
-    margin-right: 10px;
-}
-
-.loginButton {
-    font-size: 1rem;
-    color: $accent-color;
-    font-weight: set-weight(medium);
 }

@@ -14,12 +14,11 @@ import CreatePostPage from './views/CreatePostPage/CreatePostPage.tsx';
 import CommunityListPage from './views/CommunityListPage/CommunityListPage.tsx';
 import CommunityDetailsPage from './views/CommunityDetailsPage/CommunityDetailsPage.tsx';
 import ProtectedRoute from './protectedRoute.js';
-import i18n from './i18n';
 import { Suspense } from'react';
 import { useTranslation } from'react-i18next';
 import UserProfileViewPage from './views/UserProfileViewPage/UserProfileViewPage.tsx';
 import UserProfileEditPage from './views/UserProfileEditPage/UserProfileEditPage.tsx';
-import GoogleOAuthSuccess from './containers/GoogleOAuthSucsess.tsx';
+import GoogleOAuthSuccess from './containers/GoogleOAuthSuccess.tsx';
 
 const protectedRoutes = [
   { path: '/posts', component: LandingPage },
@@ -28,7 +27,11 @@ const protectedRoutes = [
   { path:'/communities/:communityId', component: CommunityDetailsPage},
   { path:'/new-community',component: NewCommunityPage},
   { path: '/profile', component: UserProfileViewPage},
-  { path: '/edit-profile/:userId', component: UserProfileEditPage}
+  { path: '/edit-profile/:userId', component: UserProfileEditPage},
+  { path: '/posts/create', component: CreatePostPage},
+  { path: '/comments', component: CommentListContainer},
+  { path: '/edit-profile/:userId', component: UserProfileEditPage},
+  { path: '/profile', component: UserProfileViewPage},
   // ... add other protected routes here ...
 ];
 
@@ -36,15 +39,6 @@ const router = createBrowserRouter(createRoutesFromElements([
   <Route path='/' element={<Navigate to='/posts'/>}/>,
   <Route path='/signUp' element={ <SignupFormContainer/> }/>,
   <Route path='/login' element = {<LoginFormContainer/>}/>,
-  // <Route path='/posts' element={ <LandingPage /> }/>,
-  // <Route path='/posts/:postId' element={ <PostDetailsPage /> } />,
-  <Route path='/posts/create' element={ <CreatePostPage /> } />,
-  <Route path='/comments' element={ <CommentListContainer /> }/>,
-  // <Route path='/communities' element={ <CommunityListPage /> }/>,
-  // <Route path='/communities/:communityId' element={ <CommunityDetailsContainer /> } />,
-  // <Route path='/new-community' element={ <NewCommunityPage /> } />,
-  <Route path="/edit-profile/:userId" element={<UserProfileEditPage />} />,
-  <Route path="/profile" element={<UserProfileViewPage />} />,
   <Route path="/google/oauth/success" element={<GoogleOAuthSuccess/>} />,
 
 
@@ -61,14 +55,13 @@ function Loading() {
   return <>Loading...</>;
 }
 function App() {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
 
   useEffect(() => {
     const lng = navigator.language;
     i18n.changeLanguage(lng);
   }, []);
 
-  const lng = navigator.language;
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>

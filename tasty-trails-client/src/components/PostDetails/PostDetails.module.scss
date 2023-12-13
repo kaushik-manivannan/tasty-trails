@@ -24,10 +24,31 @@
     border-radius: 25px;
     text-align: center;
     padding: 0px 0px 5px 0px;
-    margin-bottom: 40px;
+    margin-bottom: 25px;
     width: 100%;
     transition: box-shadow .3s;
     background-color: $secondary-color;
+    position: relative;
+
+    .modifyPostButtons {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        opacity: 0.9;
+
+        .editButton {
+            padding: 10px;
+            border-radius: 50%;
+            background-color: $secondary-color;
+            margin-right: 10px;
+        }
+
+        .deleteButton {
+            padding: 10px;
+            border-radius: 50%;
+            background-color: $secondary-color;
+        }
+    }
 
     .image {
         width: 100%;
@@ -56,15 +77,26 @@
             .location {
                 display: flex;
                 align-items: center;
-            }
-            
-            .locationIcon {
-                margin-right: 5px;
-            }
-            
-            .locationText {
-                font-weight: set-weight(medium);
-                text-align: left;
+
+                .locationIcon {
+                    margin-right: 5px;
+                }
+
+                .locationLink {
+
+                    cursor: pointer;
+                    color: black;
+    
+                    &:hover {
+                        text-decoration: underline;
+                        text-underline-offset: 0.3rem;
+                    }
+    
+                    .locationText {
+                        font-weight: set-weight(medium);
+                    }
+                }
+
             }
 
             .date {
@@ -75,4 +107,9 @@
         }
 
     }
+}
+
+.commentSection {
+    border-top: 2px solid $secondary-color;
+    padding-top: 15px;
 }

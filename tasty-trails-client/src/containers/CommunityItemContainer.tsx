@@ -13,16 +13,17 @@ const CommunityItemContainer:React.FC<CommunityItemContainerProps> = ({community
     const navigate = useNavigate();
     const [communityState, setCommunity] = useState(community);
     const userId = useSelector((state:any) => state.auth.userId);
-    const isJoined:boolean = communityState.members.includes(userId);
-    var payload ={
-    ...communityState
+    const isJoined : boolean = communityState.members.includes(userId);
+    var payload = {
+        ...communityState
     }
-    // function to view the details of the community. we achive this by navigating to the community details page
+
+    // Function to view the details of the community. we achive this by navigating to the community details page
     const viewDetails= () => {
         navigate(`/communities/${community._id}`);
     }
 
-    // function to toggle the join status of the community
+    // Function to toggle the join status of the community
     const toggleJoin = async () => {
         if(isJoined) {
             payload.members = payload.members.filter((member) => member!== userId);
@@ -30,15 +31,15 @@ const CommunityItemContainer:React.FC<CommunityItemContainerProps> = ({community
             payload.members.push(userId);
         }
         try{
-            const response = await updateCommunityById(community._id, payload);
-            if(response.status !==200){
-                throw new Error('Error updating community');
+            const response = await updateCommunityById(payload);
+            if(response.status!== 200){
+                throw new Error(`Error occured while updating communities `);
             }
-            setCommunity(response.data);
-        }catch(error){
-            throw new Error('Error updating community');
-
+            setCommunity(response.data)
+        }catch{
+            throw new Error(`Error occured while updating communities `);
         }
+
     }
     
     return(
