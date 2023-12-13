@@ -18,6 +18,8 @@ const LoginFormContainer: React.FC = () => {
   });
 
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [usernameError, setUsernameError] = useState<string>('');
+  const [passwordError, setPasswordError] = useState<string>('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -27,8 +29,34 @@ const LoginFormContainer: React.FC = () => {
     }));
   };
 
+  const validateForm = () => {
+    let isValid = true;
+
+    if (formData.userName.trim() === '') {
+      setUsernameError('Username is required');
+      isValid = false;
+    } else {
+      setUsernameError('');
+    }
+
+    if (formData.password.trim() === '') {
+      setPasswordError('Password is required');
+      isValid = false;
+    } else {
+      setPasswordError('');
+    }
+
+    return isValid;
+  };
+
   const handleLoginSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    //setErrorMessage('Invalid credentials. Please try again.');
+    if (!validateForm()) {
+      setErrorMessage('Please fill in the required fields.');
+      return;
+    }
 
     try {
       const response = await loginUser(formData);
@@ -42,7 +70,6 @@ const LoginFormContainer: React.FC = () => {
         };
         dispatch(setAuth({ userId, token }));
 
-        
         navigate('/posts', { state: { userId } });
       } else {
         setErrorMessage('Invalid credentials. Please try again.');
@@ -51,6 +78,7 @@ const LoginFormContainer: React.FC = () => {
       console.error('Error during login:', error);
       setErrorMessage('An error occurred during login. Please try again.');
     }
+
   };
 
   const handleSignupClick = () => {
@@ -63,13 +91,15 @@ const LoginFormContainer: React.FC = () => {
 
   return (
     <div>
-      {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
       <LoginForm
         formData={formData}
         onChange={handleChange}
         onSubmit={handleLoginSubmit}
         onSignupClick={handleSignupClick}
         onGoogleLogin = {handleGoogleLogin}
+        usernameError={usernameError}
+        passwordError={passwordError}
+        errorMessage={errorMessage}
       />
     </div>
   );
