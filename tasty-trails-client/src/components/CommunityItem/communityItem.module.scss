@@ -9,14 +9,14 @@
     padding: 10px;
   
     .communityImage {
-      margin-right: 20px; // Adds some space between the image and the details
+      margin-right: 20px;
   
       img {
         display: block;
-        width: 80px; // Set this to the desired image width
-        height: 80px; // Set this to the desired image height
-        object-fit: cover; // Ensures the image covers the area, useful for non-square images
-        border-radius: 40px; // Makes the image round
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 40px;
       }
     }
   

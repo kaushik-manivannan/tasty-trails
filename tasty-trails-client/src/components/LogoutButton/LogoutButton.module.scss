@@ -16,16 +16,16 @@
         border-radius: 50px;
         background-color: $tertiary-color;
     }
-}
 
-.logoutIcon {
-    margin-right: 15px;
-    width: 40px;
-}
-
-.logoutButton {
-    font-weight: set-weight(medium);
-    font-size: 1.4rem;
-    border: none;
-    background: none;
+    .logoutIcon {
+        margin-right: 15px;
+        width: 40px;
+    }
+    
+    .logoutButton {
+        font-weight: set-weight(medium);
+        font-size: 1.4rem;
+        border: none;
+        background: none;
+    }
 }
