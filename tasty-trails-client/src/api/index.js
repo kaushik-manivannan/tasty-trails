@@ -42,3 +42,5 @@ export const updateCommunityById = (id,data) => API.put(`/communities/${id}`,dat
 //Comment API's
 export const getAllCommentsByPostId = (postId) => API.get(`/comments/${postId}`);
 export const getAllCommentsByUserId = (userId) => API.get(`/users/${userId}`);
+export const updateCommentById = (id,data) => API.put(`/comments/${id}`,data);
+export const createComment = (data) => API.post(`/comments`,data);

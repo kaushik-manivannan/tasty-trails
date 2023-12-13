@@ -14,5 +14,5 @@ export default (app) => {
     app.use("/communities", communityRouter); // Registers the Community API routes under the "/communities" endpoint.
     app.use("/users", userRouter.router); // Registers the User API routes under the "/users" endpoint.
     app.use("/users", userRouter.authRouter); // Registers the User API routes under the "/users" endpoint.
-    app.use("/auth",googleOAuthRouter); // Register routes for oauth
+    app.use("/auth",googleOAuthRouter); // Register routes for google oauth
 }

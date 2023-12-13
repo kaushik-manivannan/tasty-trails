@@ -18,7 +18,7 @@ import { Suspense } from'react';
 import { useTranslation } from'react-i18next';
 import UserProfileViewPage from './views/UserProfileViewPage/UserProfileViewPage.tsx';
 import UserProfileEditPage from './views/UserProfileEditPage/UserProfileEditPage.tsx';
-import GoogleOAuthSuccess from './containers/GoogleOAuthSucsess.tsx';
+import GoogleOAuthSuccess from './containers/GoogleOAuthSuccess.tsx';
 
 const protectedRoutes = [
   { path: '/posts', component: LandingPage },

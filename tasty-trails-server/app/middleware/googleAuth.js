@@ -1,12 +1,8 @@
 
 import GoogleStrategy from 'passport-google-oauth2';
 import passport from 'passport';
-import User from '../models/user.js';
 
-console.log("Google Client ID:", process.env.GOOGLE_CLIENT_ID);
-console.log("Google Client Secret:", process.env.GOOGLE_CLIENT_SECRET);
-
-
+// Configuring Passport to use Google OAuth2.0 strategy
 passport.use(new GoogleStrategy({
     clientID:  '667246635703-lem5b8on251scfb07rbdcr86tbnd48to.apps.googleusercontent.com',
     clientSecret: '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',
@@ -15,23 +11,21 @@ passport.use(new GoogleStrategy({
     scope:["profile","email"],
   },
   
+  // Callback function when Google authentication is successful
   function(request, accessToken, refreshToken, profile, done) {
     console.log("in google user function");
-    // User.findOrCreate({ googleId: profile.id }, function (err, user) {
-      console.log(profile);
-
+    
+      // Creating a simplified user object from Google profile data
       const user = {
         emailId: profile.email,
         fullName: profile.displayName,
-        userName: profile.name.givenName, // You can adjust this based on your requirements
-        image: profile.picture,
-        // Add other fields as needed
+        userName: profile.name.givenName, 
+       
       };
       
-      return done(null, user);
-    // });
+    return done(null, user);
   }
 ));
 
-
+// Exporting the configured Passport instance
 export default passport;

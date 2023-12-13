@@ -30,12 +30,12 @@ export const createUser = async (newUserData) => {
 
         const token = generateAuthToken(newUser);
 
-        sendEmail(newUser.emailId);
+        sendEmail(newUser.emailId, newUser.userName);
 
         return { user: newUser, token };
     } catch (error) {
         console.log(error);
-        if (error instanceof TastyTrialsError) {
+        if (error instanceof TastyTrialsError) { 
             throw error;
         } else {
             throw new Error('Error creating user');
@@ -108,6 +108,14 @@ export const getUserById = async (userId) => {
 };
 
 
+
+/**
+ * Authenticates a user by checking the provided username and password.
+ *
+ * @param {Object} userData - User data containing username and password.
+ * @returns {Promise<Object>} An object containing the authenticated user and a JWT token.
+ * @throws {Error} Throws an error if authentication fails.
+ */
 export const loginUser = async (userData) => {
     try {
         // Assuming you have a function to authenticate the user in your service
@@ -125,6 +133,16 @@ export const loginUser = async (userData) => {
     }
 };
 
+
+
+/**
+ * Authenticates a user based on the provided username and password.
+ *
+ * @param {string} userName - The username to authenticate.
+ * @param {string} password - The password to authenticate.
+ * @returns {Promise<Object>} The authenticated user.
+ * @throws {TastyTrialsError} Throws an error if authentication fails.
+ */
 export const authenticateUser = async (userName, password) => {
     try {
                 const user = await User.findOne({ userName });
@@ -146,7 +164,13 @@ export const authenticateUser = async (userName, password) => {
 };
 
 
-
+/**
+ * Generates a JWT authentication token for a user.
+ *
+ * @param {Object} user - The user for whom the token is generated.
+ * @returns {string} The generated JWT token.
+ * @throws {TastyTrialsError} Throws an error if token generation fails.
+ */
 export const generateAuthToken = (user) => {
     try {
         // Assuming you have a secret key for signing the token
@@ -167,6 +191,13 @@ export const generateAuthToken = (user) => {
     }
 };
 
+
+/**
+ * Generates a hashed password using bcrypt with a salt.
+ *
+ * @param {string} password - The password to be hashed.
+ * @returns {Promise<string>} The hashed password.
+ */
 const getHashedPassword = async (password) => {
 
     const salt = await bcrypt.genSalt(10);

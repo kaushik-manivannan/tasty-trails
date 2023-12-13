@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import CommentList from '../components/CommentList/CommentList.tsx';
 import NewCommentContainer from './NewCommentContainer.tsx';
 import { Comment } from '../interfaces/comment-interfaces';
-import { getAllCommentsByPostId, getAllCommentsByUserId } from '../api/index.js';
+import { getAllCommentsByPostId, getAllCommentsByUserId, updateCommentById } from '../api/index.js';
  
 // Define the CommentListContainer component
 const CommentListContainer: React.FC = () => {
@@ -15,7 +15,7 @@ const CommentListContainer: React.FC = () => {
   const [userImage, setuserImage] = useState<string>('');
   // Extract postId from URL parameters and userId from Redux store
   const { postId } = useParams<{ postId: string }>();
-  const userId = useSelector((state) => state.auth.userId);
+  const userId = useSelector((state:any) => state.auth.userId);
   // const userId = user ? user.id : '';
 //  const userImage = "";
 
@@ -57,30 +57,23 @@ const CommentListContainer: React.FC = () => {
   const addComment = (newComment: Comment) => {
     setComments((prevComments) => [...prevComments, newComment]);
   };
-  
-  // Function to edit a comment using an API call
-  const editComment = (commentId: { $oid: string; }, editedComment: string) => {
-    fetch(`http://localhost:8080/comments/${commentId}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ comment: editedComment }),
-    })
-      .then((response) => response.json())
-      .then((updatedComment: Comment) => {
+ 
+  const editComment = async (commentId: { $oid: string; }, editedComment: string) => {
+    try {
+      const response = await updateCommentById(commentId,{ comment: editedComment }); 
+      if(response.status!== 200){
+        throw new Error(`Error occured while editing comment`);
+      }
         // Update the state with the edited comment
         setComments((prevComments) =>
         prevComments.map((comment) =>
-          comment._id === commentId ? updatedComment : comment
+          comment._id === commentId ? response.data : comment
         )
       );
-      console.log('Updated comment:', comment);
-    })
-      .catch((error) => {
+    }catch (error) {
         console.error('Error updating comment:', error);
         // Handle error accordingly
-      });
+    };
   };
   
   // Function to delete a comment using an API call

@@ -48,7 +48,67 @@
         
         .logout {
             position: absolute;
-            bottom: 0;
+            bottom: 0px;
+        }
+    }
+}
+
+@media screen and (min-width: 600px) and (max-width: 914px) {
+    .sidebar {
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 60vh;
+
+        .logo {
+            width: 30%;
+        }
+
+        .navLinks {
+            margin-top: -30px;
+
+            .navLink {
+
+                margin: 5px 0;
+
+                .navIcon {
+                    width: 30px;
+                }
+
+                .navText {
+                    font-size: 1rem;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 600px){
+    .sidebar {
+        position: absolute;
+        width: 100%;
+        height: 50vh;
+
+        .logo {
+            width: 30%;
+        }
+
+        .navLinks {
+            margin-top: -30px;
+
+            .navLink {
+
+                margin: 5px 0;
+
+                .navIcon {
+                    width: 30px;
+                }
+
+                .navText {
+                    font-size: 1rem;
+                }
+            }
         }
     }
 }

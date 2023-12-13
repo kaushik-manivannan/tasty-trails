@@ -3,11 +3,11 @@ import { useSelector} from 'react-redux';
 import UserProfileEditComponent from '../components/UserProfile/UserProfileEditComponent.tsx';
 import { getUserById, updateUser } from '../api/index.js';
 import { useNavigate} from 'react-router-dom';
-
+ 
 const UserProfileEditContainer: React.FC = () => {
-
-    const userId = useSelector((state: any) => state.auth.userId); // Adjust based on your state structure
-
+ 
+    const userId = useSelector((state: any) => state.auth.userId);
+ 
     const [user, setUser] = useState({
         emailId: '',
         fullName: '',
@@ -17,23 +17,26 @@ const UserProfileEditContainer: React.FC = () => {
     const [image, setImage] = useState<string | null>(null);
     const [imagePreviewUrl, setImagePreviewUrl] = useState<string>('');
     const navigate = useNavigate();
-
+ 
+    const [fullNameError, setFullNameError] = useState<string>('');
+    const [userNameError, setUserNameError] = useState<string>('');
+   
     useEffect(() => {
         if (userId) {
             fetchUserData();
         }
     }, [userId]);
-
+ 
     const fetchUserData = async () => {
         try {
             const response = await getUserById(userId);
             setUser(response.data);
-            setImagePreviewUrl(response.data.image || ''); // Assuming the image is a URL
+            setImagePreviewUrl(response.data.image || '');
         } catch (error) {
             console.error('Failed to fetch user data:', error);
         }
     };
-
+ 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
         setUser((prevUser) => ({
@@ -41,43 +44,65 @@ const UserProfileEditContainer: React.FC = () => {
             [name]: value,
         }));
     };
-
+ 
     const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.files && event.target.files[0]) {
             const file = event.target.files[0];
-
+ 
             convertFileToBase64(file, (base64Image: string) => {
                 setImage(base64Image);
                 setImagePreviewUrl(base64Image);
             });
         }
     };
-
+ 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
-      
-         const data = {
-            "fullName":user.fullName,
-            "userName":user.userName,
-            "location":user.location,
-            ...(image && { image: image })
-        }
-
-        try {
-            await updateUser(userId,data);
-            alert('Profile updated successfully');
-            navigate('/profile');
-            
-        } catch (error) {
-            console.error('Error updating profile:', error);
-            alert('Error updating profile');
+     
+        if(validateForm()) {
+            const data = {
+                "fullName":user.fullName,
+                "userName":user.userName,
+                "location":user.location,
+                ...(image && { image: image })
+            }
+ 
+            try {
+                await updateUser(userId,data);
+                alert('Profile updated successfully');
+                navigate('/profile');
+               
+            } catch (error) {
+                console.error('Error updating profile:', error);
+                alert('Error updating profile');
+            }
         }
     };
-
+ 
+    const validateForm = () => {
+        let isValid = true;
+   
+        if (!user.fullName?.trim()) {
+          setFullNameError('Full Name is required');
+          isValid = false;
+        } else {
+          setFullNameError('');
+        }
+   
+        if (!user.userName?.trim()) {
+          setUserNameError('Username is required');
+          isValid = false;
+        } else {
+          setUserNameError('');
+        }
+   
+        return isValid;
+      };
+ 
     const handleBack = () => {
         navigate('/profile');
     };
-
+ 
     function convertFileToBase64(file: File, callback: (result: string) => void) {
         const reader = new FileReader();
         reader.readAsDataURL(file);
@@ -88,17 +113,19 @@ const UserProfileEditContainer: React.FC = () => {
             console.error('Error converting file to base64:', error);
         };
     }
-
+ 
     return (
-        <UserProfileEditComponent 
+        <UserProfileEditComponent
             user={user}
             imagePreviewUrl={imagePreviewUrl}
             onInputChange={handleInputChange}
             onImageChange={handleImageChange}
             onSubmit={handleSubmit}
             onBack={handleBack}
+            fullNameError={fullNameError}
+            userNameError={userNameError}
         />
     );
 };
-
+ 
 export default UserProfileEditContainer;

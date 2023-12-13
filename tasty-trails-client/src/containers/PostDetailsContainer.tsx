@@ -4,9 +4,9 @@ import PostDetails from '../components/PostDetails/PostDetails.tsx';
 import { useNavigate, useParams } from 'react-router-dom';
 import {useSelector} from 'react-redux';
 import {deletePost} from '../api/index.js';
+
 /**
  * This component is called when you want to view the details of a specific post
- * @returns React.FC
  */
 const PostDetailsContainer: React.FC = () => {
   const [post, setPost] = useState(null);
@@ -15,7 +15,7 @@ const PostDetailsContainer: React.FC = () => {
   const navigate = useNavigate();
   const userId = useSelector((state:any) => state.auth.userId);
 
-  // function to delete the post
+  // Function to delete the post
   const onDelete = async() => {
     try{
     const response = await deletePost(postId);

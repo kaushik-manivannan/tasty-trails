@@ -43,7 +43,7 @@ const CreatePostForm: React.FC<PostFormProps> = ({ onSubmit, register, errors = 
           <textarea
             id="description"
             className={styles.textarea}
-            placeholder={t("Enter the location of your food")}
+            placeholder={t("Enter a description of your food")}
             {...register('description', {
               required: 'Please enter a description',
             })}
@@ -72,8 +72,7 @@ const CreatePostForm: React.FC<PostFormProps> = ({ onSubmit, register, errors = 
           </select>
         </div>
 
-        {/* Button to submit the form */}
-        <button type="submit" className={styles.createButton}>{t('Create Post')}</button>
+      <button type="submit" className={styles.createButton}>{t('Create Post')}</button>
       </form>
     </div>
   );

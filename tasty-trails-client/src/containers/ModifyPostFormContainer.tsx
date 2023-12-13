@@ -1,84 +1,91 @@
-import React, { useState,useEffect } from "react";
+// ModifyPostContainer.tsx
+import React, { useState, useEffect } from "react";
 import { useForm, SubmitHandler } from 'react-hook-form';
 import ModifyPostForm from "../components/ModifyPostForm/ModifyPostForm";
-import { PostFormData,ModifyPostContainerProps } from "../interfaces/post-interfaces";
-import {useSelector} from'react-redux';
-import {getuserCommunities} from "../api/index.js";
-import {updatePost} from "../api/index.js";
+import { PostFormData, ModifyPostContainerProps } from "../interfaces/post-interfaces";
+import { useSelector } from 'react-redux';
+import { getuserCommunities } from "../api/index.js";
+import { updatePost } from "../api/index.js";
 
 /**
- * 
- * This component is called when you want to modify a post
- * @param {setIsOnEdit, post}  setIsOnEdit is called to set isonedit false after the post has been modified
- *  
+ * ModifyPostContainer is responsible for managing the state and logic
+ * related to modifying a post. It interacts with the API to perform post updates.
  */
-const ModifyPostContainer: React.FC<ModifyPostContainerProps> = ({setIsOnEdit, post}) => {
-  // This is form for modifying the post 
-  const { register, handleSubmit, formState: { errors },setValue } = useForm<PostFormData>({
+const ModifyPostContainer: React.FC<ModifyPostContainerProps> = ({ setIsOnEdit, post }) => {
+  // Form state and validation using react-hook-form
+  const { register, handleSubmit, formState: { errors }, setValue } = useForm<PostFormData>({
     mode: 'onChange',
   });
-  const [communites, setCommunities] = useState([]);
-  const userId = useSelector((state:any) => state.auth.userId);
-  
-  // function to fetch all communities of the user 
+
+  // Local state to manage communities and image preview
+  const [communities, setCommunities] = useState([]);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+
+  // User ID from Redux store
+  const userId = useSelector((state: any) => state.auth.userId);
+
+  // Function to fetch all communities of the user
   const fetchUserCommunities = async () => {
-    const resposne = await getuserCommunities(userId);
-    try{
-      if(resposne.status !== 200) {
-        throw new Error("error occured while fetching communities of specific user");
+    try {
+      const response = await getuserCommunities(userId);
+
+      if (response.status !== 200) {
+        throw new Error("Error occurred while fetching communities of a specific user");
       }
-      setCommunities(resposne.data);
-      updateFormValues(); // to update the form values
-    }catch(error){
-      throw new Error("error occured while fetching communities of specific user");
+
+      // Set communities and update form values
+      setCommunities(response.data);
+      updateFormValues();
+    } catch (error) {
+      throw new Error("Error occurred while fetching communities of a specific user");
     }
   }
-  
-  // This function is called after fetching the values from the DB to update the form values
+
+  // Function to update form values after fetching communities
   const updateFormValues = () => {
     setValue('description', post.description);
     setValue('location', post.location);
     setImagePreview(post.image);
     setValue('community', post.communityId);
-    if(post.image){
-      setValue('image', "/DummyPath/image.jpg");  // added dummy value for image path sinse we are seting teh image preview
+
+    if (post.image) {
+      // Added dummy value for image path since we are setting the image preview
+      setValue('image', "/DummyPath/image.jpg");
     }
   }
-  useEffect(() => {
-    fetchUserCommunities();
-    console.log(communites);
-  },[]);
 
-  // Function to call when a form is submitted
+  useEffect(() => {
+    // Fetch user communities and update form values on component mount
+    fetchUserCommunities();
+  }, []);
+
+  // Function to call when the form is submitted
   const onSubmit: SubmitHandler<PostFormData> = async (data) => {
     const payload = {
       userId: userId,
       description: data.description,
       location: data.location,
       image: imagePreview,
-      availabilityStatus:"true",
+      availabilityStatus: "true",
       latitude: data.latitude,
       longitude: data.longitude,
       communityId: data.community
     };
 
-    // send the request to the API to update the post
+    // Send the request to the API to update the post
     try {
-      const response = await updatePost(post._id,payload);
-      if (response.status!== 200) {
-        throw new Error('Failed to create post');
+      const response = await updatePost(post._id, payload);
+      if (response.status !== 200) {
+        throw new Error('Failed to update post');
       }
       alert('Post updated successfully');
-      setIsOnEdit(false);
-      console.log(response.data);
+      setIsOnEdit(false); // Exit edit mode
     } catch (error) {
-      console.error('Failed to create post');
+      console.error('Failed to update post');
     }
   };
 
-  const [imagePreview, setImagePreview] = useState<string | null>(null);
-
-  // function to the handle the image preview, get the file and read it into base 64
+  // Function to handle image preview, get the file and read it into base64
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files ? event.target.files[0] : null;
     if (file) {
@@ -98,7 +105,7 @@ const ModifyPostContainer: React.FC<ModifyPostContainerProps> = ({setIsOnEdit, p
       imagePreview={imagePreview}
       onImageChange={handleImageChange}
       setValue={setValue}
-      communities={communites}
+      communities={communities}
     />
   );
 };

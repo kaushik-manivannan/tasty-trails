@@ -19,6 +19,7 @@
     "Create Your Tasty Trail":"Crea tu sabroso sendero",
     "Description":"Descripción",
     "Enter the location of your food":"Ingresa la ubicación de tu comida",
+    "Enter a description of your food": "Introduce una descripción de tu comida",
     "Location":"Ubicación",
     "Enter Location":"Ingrese la ubicación",
     "Community" : "Comunidad",
@@ -58,5 +59,8 @@
     "Your Profile": "Tu Perfil",
     "Edit Profile": "Editar perfil",
     "Create Your Community":"Crea tu comunidad",
-    "Signup":"Inscribirse"
+    "Signup":"Inscribirse",
+    "Leave": "Dejar",
+    "Last Name": "Apellido",
+    "View": "Ver"
 }
