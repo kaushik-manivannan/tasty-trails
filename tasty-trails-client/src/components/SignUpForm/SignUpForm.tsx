@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './SignUpForm.module.scss';
 import { useTranslation } from 'react-i18next';
-
+ 
 // Props interface for the SignupForm component
 interface SignupFormProps {
   formData: {
@@ -25,7 +25,7 @@ interface SignupFormProps {
   isFormValid: boolean;
   errorMessage: string | null;
 }
-
+ 
 const SignupForm: React.FC<SignupFormProps> = ({ formData, onChange, onSubmit, onLoginClick, onGoogleSignup, formErrors, isFormValid, errorMessage }) => {
   // Using the translation hook from react-i18next
     const { t } = useTranslation();
@@ -36,10 +36,10 @@ const SignupForm: React.FC<SignupFormProps> = ({ formData, onChange, onSubmit, o
         <img src={`${process.env.PUBLIC_URL}/assets/logo.svg`} alt="Tasty Trails Logo" className={styles.logo}/>
         <h1 className={styles.heading}>Sign Up</h1>
         {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-
+ 
         {/* Heading */}
         <h1 className={styles.heading}>{t('Sign Up')}</h1>
-
+ 
         {/* Signup Form */}
         <form onSubmit={onSubmit} className={styles.signupForm}>
           {/* First Name Input */}
@@ -57,7 +57,7 @@ const SignupForm: React.FC<SignupFormProps> = ({ formData, onChange, onSubmit, o
             />
             <div className={styles.errorMessage}>{formErrors.firstName}</div>
           </div>
-
+ 
           {/* Last Name Input */}
           <div className={styles.inputContainer}>
             <label htmlFor="lastName" className={styles.inputLabel}>{t('Last Name')}</label>
@@ -73,7 +73,7 @@ const SignupForm: React.FC<SignupFormProps> = ({ formData, onChange, onSubmit, o
             />
             <div className={styles.errorMessage}>{formErrors.lastName}</div>
           </div>
-
+ 
           {/* Email Input */}
           <div className={styles.inputContainer}>
             <label htmlFor="emailId" className={styles.inputLabel}>{t('Email')}</label>
@@ -89,7 +89,7 @@ const SignupForm: React.FC<SignupFormProps> = ({ formData, onChange, onSubmit, o
             />
             <div className={styles.errorMessage}>{formErrors.emailId}</div>
           </div>
-
+ 
           {/* Username Input */}
           <div className={styles.inputContainer}>
             <label htmlFor="userName" className={styles.inputLabel}>{t('Username')}</label>
@@ -105,7 +105,7 @@ const SignupForm: React.FC<SignupFormProps> = ({ formData, onChange, onSubmit, o
             />
             <div className={styles.errorMessage}>{formErrors.userName}</div>
           </div>
-
+ 
           {/* Password Input */}
           <div className={styles.inputContainer}>
             <label htmlFor="password" className={styles.inputLabel}>{t('Password')}</label>
@@ -121,21 +121,21 @@ const SignupForm: React.FC<SignupFormProps> = ({ formData, onChange, onSubmit, o
             />
             <div className={styles.errorMessage}>{formErrors.password}</div>
           </div>
-
+ 
           {/* Signup Button */}
           <button type="submit" className={styles.signupButton} disabled={!isFormValid}>{t('Sign Up')}</button>
-
+ 
           {/* Division Line */}
           <hr className={styles.signupDivision}/>
         </form>
-
+ 
         {/* Secondary Signup (Google Signup) */}
         <div className={styles.secondarySignup}>
           <button type="submit" className={styles.secondarySignupButton} onClick={onGoogleSignup}>
             {t('Sign up with Google')}
           </button>
         </div>
-
+ 
         {/* Login Redirection */}
         <div className={styles.login}>
           <span className={styles.loginText}>{t('Have an account already?')}</span>
@@ -145,5 +145,5 @@ const SignupForm: React.FC<SignupFormProps> = ({ formData, onChange, onSubmit, o
     </div>
   );
 };
-
+ 
 export default SignupForm;
