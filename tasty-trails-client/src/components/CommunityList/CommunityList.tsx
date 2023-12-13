@@ -20,7 +20,7 @@ const CommunityList: React.FC<CommunityListProps> = ({ communities ,isLoading}) 
     const { t } = useTranslation();
 
     return (
-        <div className={styles.parentContainer}>
+        <section className={styles.parentContainer}>
             <div className={styles.communityListWithHeading}>
 
                 <div className={styles.titleContainer}>
@@ -46,7 +46,7 @@ const CommunityList: React.FC<CommunityListProps> = ({ communities ,isLoading}) 
                     )}
                 </div>
             </div>
-        </div>
+        </section>
     );
 }
 

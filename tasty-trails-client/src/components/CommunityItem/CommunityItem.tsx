@@ -33,7 +33,7 @@ const CommunityItem: React.FC<CommunityItemProps> = ({ community, toggleJoin, vi
     const { t } = useTranslation();
 
     return (
-        <div className={styles.communityItem}>
+        <article className={styles.communityItem}>
             <div className={styles.communityImage}>
                 <img src={imageUrl} alt={community.communityName} />
             </div>
@@ -58,7 +58,7 @@ const CommunityItem: React.FC<CommunityItemProps> = ({ community, toggleJoin, vi
                     </button>
                 )}
             </div>
-        </div>
+        </article>
     );
 }
 

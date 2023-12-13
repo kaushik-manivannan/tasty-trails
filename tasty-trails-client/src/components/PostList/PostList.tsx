@@ -11,7 +11,7 @@ const PostList: React.FC<PostListProps> = ({ posts, onSearch, isLoading }) => {
   const isEmpty = posts.length === 0;
   const { t } = useTranslation();
   return (
-    <div className={styles.postFeed}>
+    <section className={styles.postFeed}>
       {/* Search component */}
       <div className={styles.search}>
         <Search onSearch={onSearch}/>
@@ -26,7 +26,7 @@ const PostList: React.FC<PostListProps> = ({ posts, onSearch, isLoading }) => {
           return <PostItem key={`post-${idx + 1}`} post={post} />;
         })
       )}
-    </div>
+    </section>
   );
 };
 
