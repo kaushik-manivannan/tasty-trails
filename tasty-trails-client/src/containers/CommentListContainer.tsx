@@ -30,7 +30,7 @@ const CommentListContainer: React.FC = () => {
         }
         setComments(response.data);
       } catch (error) {
-        console.log("Error fetching data: ", error);
+        throw new Error("Error fetching data: " + error);
       }
     };
 
@@ -44,7 +44,7 @@ const CommentListContainer: React.FC = () => {
         setUserName(response.data.userName);
         setuserImage(response.data.image);
       } catch (error) {
-        console.log("Error fetching data: ", error);
+        throw new Error(`Error fetching Comments: ${error}`);
       }
     };
 

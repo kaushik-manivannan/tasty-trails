@@ -42,7 +42,7 @@ const PostDetailsContainer: React.FC = () => {
         if(response.data.userId === userId)
           setCanModify(true);
       } catch(error){
-        console.log("Error fetching post: ", error);
+        throw new Error(`Error fetching post: ${error}`);
       }
     };
     fetchPostById();

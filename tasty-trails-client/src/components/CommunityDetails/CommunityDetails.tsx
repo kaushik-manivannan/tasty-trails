@@ -70,8 +70,8 @@ const CommunityDetails: React.FC<CommunityDetailsProps> = ({ community, postList
     const { t } = useTranslation();
 
     return (
-        <div className={styles.parentContainer}>
-            <div className={styles.communityDetailsContainer}>
+        <section className={styles.parentContainer}>
+            <article className={styles.communityDetailsContainer}>
                 <h2 className={styles.communityDetailsHeading}>{t('Community Details')}</h2>
                 {updateMessage && (
                     <div className={styles.updateMessage}>
@@ -139,14 +139,14 @@ const CommunityDetails: React.FC<CommunityDetailsProps> = ({ community, postList
                         </div>
                     )
                 )}
-            </div>
-            <div className={styles.postListContainer}>
+            </article>
+            <section className={styles.postListContainer}>
                 <h2 className={styles.heading}>{`${community.communityName} ${t('Posts')}`}</h2>
                 <div className={styles.postList}>
                     <PostList posts={filteredPosts} onSearch={onSearch} />
                 </div>
-            </div>
-        </div>
+            </section>
+        </section>
     )
 }
 

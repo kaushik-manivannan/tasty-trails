@@ -25,7 +25,7 @@ const CommentItem: React.FC<CommentItemProps> = ({
   const { t } = useTranslation();
 
   return (
-    <div className={styles.commentItemContainer}>
+    <article className={styles.commentItemContainer}>
       <div className={styles.userImageContainer}>
         {/* Display user image or default if not available */}
         <img src={commentValue.userImage ? commentValue.userImage : userDefault} alt="" className={styles.userImage} />
@@ -71,7 +71,7 @@ const CommentItem: React.FC<CommentItemProps> = ({
           </div>
         )}
       </div>
-    </div>
+    </article>
   );
 };
 

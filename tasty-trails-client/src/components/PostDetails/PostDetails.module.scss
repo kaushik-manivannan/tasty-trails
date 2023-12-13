@@ -114,14 +114,14 @@
     padding-top: 15px;
 }
 
-@media screen and (min-width: 600px) and (max-width: 914px) {
+@media screen and (min-width: $mobile-width) and (max-width: $tablet-width) {
     .postDetails {
         width: 80vw;
         margin-top: 60vh;
     }
 }
 
-@media screen and (max-width: 600px){
+@media screen and (max-width: $mobile-width){
     .postDetails {
         width: 80vw;
         margin-top: 50vh;

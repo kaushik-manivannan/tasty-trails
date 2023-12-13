@@ -106,7 +106,7 @@
     }
 }
 
-@media screen and (min-width: 600px) and (max-width: 914px) {
+@media screen and (min-width: $mobile-width) and (max-width: $tablet-width) {
     .coverImage {
         .loginPage {
             width: 60vw;
@@ -118,7 +118,7 @@
     }
 }
 
-@media screen and (max-width: 600px){
+@media screen and (max-width: $mobile-width){
     .coverImage {
         .loginPage {
             width: 85vw;

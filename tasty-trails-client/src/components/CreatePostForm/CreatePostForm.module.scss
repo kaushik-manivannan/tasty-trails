@@ -20,7 +20,7 @@
         transform: translate(-40%, -50%);
         padding: 30px 50px;
         border-radius: 40px;
-        width: 38vw;
+        width: 32vw;
         background-color: $secondary-color;
 
         .heading {
@@ -105,7 +105,7 @@
     }
 }
 
-@media screen and (min-width: 600px) and (max-width: 914px) {
+@media screen and (min-width: $mobile-width) and (max-width: $tablet-width) {
     .coverImage {
         margin-top: 60vh;
 
@@ -120,7 +120,7 @@
     }
 }
 
-@media screen and (max-width: 600px){
+@media screen and (max-width: $mobile-width){
     .coverImage {
         margin-top: 50vh;
 

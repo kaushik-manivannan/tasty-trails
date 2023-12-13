@@ -7,7 +7,7 @@ const CommentList: React.FC<CommentListProps & { onEdit: (commentId: { $oid: str
   const { t } = useTranslation();
 
   return (
-    <div>
+    <section>
       {/* Loop through comments and render CommentItemContainer for each comment */}
       {comments.map((comment) => (
         <CommentItemContainer
@@ -17,10 +17,10 @@ const CommentList: React.FC<CommentListProps & { onEdit: (commentId: { $oid: str
           onDelete={() => onDelete(comment._id)}
         />
       ))}
-      
+
       {/* Display the total number of comments */}
       <p>{t('Total Comments')}: {comments.length}</p>
-    </div>
+    </section>
   );
 };
 

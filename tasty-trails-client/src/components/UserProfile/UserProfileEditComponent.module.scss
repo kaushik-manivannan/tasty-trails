@@ -83,7 +83,7 @@
     }
 }
 
-@media screen and (min-width: 600px) and (max-width: 914px) {
+@media screen and (min-width: $mobile-width) and (max-width: $tablet-width) {
     .userProfileEditContainer {
         .userProfileEdit {
             margin-top: 105vh;
@@ -93,7 +93,7 @@
     }
 }
 
-@media screen and (max-width: 600px){
+@media screen and (max-width: $mobile-width){
     .userProfileEditContainer {
         .userProfileEdit {
             margin-top: 85vh;

@@ -44,7 +44,7 @@
     }
 }
 
-@media screen and (min-width: 600px) and (max-width: 914px) {
+@media screen and (min-width: $mobile-width) and (max-width: $tablet-width) {
     .userProfileContainer {
         .userProfile {
             margin-top: 80vh;
@@ -54,7 +54,7 @@
     }
 }
 
-@media screen and (max-width: 600px){
+@media screen and (max-width: $mobile-width){
     .userProfileContainer {
         .userProfile {
             margin-top: 60vh;

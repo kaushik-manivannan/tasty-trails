@@ -34,7 +34,7 @@ const PostDetails: React.FC<PostDetailsProps> = ({ post, onDelete, canModify }) 
   }, []);
 
   return (
-    <div className={styles.postDetails}>
+    <section className={styles.postDetails}>
       {/* Back Button */}
       <button onClick={() => navigate(-1)} className={styles.backButton}>
         <img src={`${process.env.PUBLIC_URL}/assets/back-arrow.svg`} alt="Back Button" />
@@ -109,7 +109,7 @@ const PostDetails: React.FC<PostDetailsProps> = ({ post, onDelete, canModify }) 
           <ModifyPostFormContainer setIsOnEdit={(isOnEdit: boolean) => setIsOnEdit(isOnEdit)} post={post} />
         </>
       )}
-    </div>
+    </section>
   );
 };
 
