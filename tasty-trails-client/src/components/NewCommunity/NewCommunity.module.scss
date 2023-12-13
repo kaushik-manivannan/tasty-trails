@@ -104,3 +104,33 @@
         }
     }
 }
+
+@media screen and (min-width: 600px) and (max-width: 914px) {
+    .coverImage {
+        margin-top: 60vh;
+
+        .form {
+            width: 70vw;
+            margin: 55vh auto 0 auto;
+            left: 15%;
+            top: 10%;
+            -webkit-transform: none;
+            transform: none;
+        }
+    }
+}
+
+@media screen and (max-width: 600px){
+    .coverImage {
+        margin-top: 50vh;
+
+        .form {
+            width: 70vw;
+            margin: 50vh auto 0 auto;
+            left: 15%;
+            top: 10%;
+            -webkit-transform: none;
+            transform: none;
+        }
+    }
+}

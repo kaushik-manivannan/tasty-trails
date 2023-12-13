@@ -15,13 +15,13 @@
         position: relative;
         padding: 0 20px 20px 20px;
         border-radius: 25px;
-        width: 30vw;
+        width: 38vw;
         background-color: $secondary-color;
 
         .logo {
             display: block;
             margin: 0 auto;
-            width: 50%;
+            width: 45%;
         }
         
         .heading {
@@ -101,6 +101,30 @@
                 font-size: 1rem;
                 color: $accent-color;
                 font-weight: set-weight(medium);
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 600px) and (max-width: 914px) {
+    .coverImage {
+        .loginPage {
+            width: 60vw;
+
+            .loginForm {
+                width: 70%;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 600px){
+    .coverImage {
+        .loginPage {
+            width: 85vw;
+
+            .loginForm {
+                width: 85%;
             }
         }
     }

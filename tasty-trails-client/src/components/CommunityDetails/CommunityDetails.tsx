@@ -142,7 +142,9 @@ const CommunityDetails: React.FC<CommunityDetailsProps> = ({ community, postList
             </div>
             <div className={styles.postListContainer}>
                 <h2 className={styles.heading}>{`${community.communityName} ${t('Posts')}`}</h2>
-                <PostList posts={filteredPosts} onSearch={onSearch} />
+                <div className={styles.postList}>
+                    <PostList posts={filteredPosts} onSearch={onSearch} />
+                </div>
             </div>
         </div>
     )

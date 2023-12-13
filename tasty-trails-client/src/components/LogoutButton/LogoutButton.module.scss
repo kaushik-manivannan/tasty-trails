@@ -24,8 +24,21 @@
     
     .logoutButton {
         font-weight: set-weight(medium);
-        font-size: 1.4rem;
+        font-size: 1.3rem;
         border: none;
         background: none;
+    }
+}
+
+@media screen and (max-width: 914px) {
+    .logout {
+
+        .logoutIcon {
+            width: 30px;
+        }
+
+        .logoutButton {
+            font-size: 1rem;
+        }
     }
 }

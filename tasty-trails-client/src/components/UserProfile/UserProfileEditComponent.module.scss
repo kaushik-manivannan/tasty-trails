@@ -82,3 +82,24 @@
         }
     }
 }
+
+@media screen and (min-width: 600px) and (max-width: 914px) {
+    .userProfileEditContainer {
+        .userProfileEdit {
+            margin-top: 105vh;
+            width: 80vw;
+            margin-left: 0px;
+        }
+    }
+}
+
+@media screen and (max-width: 600px){
+    .userProfileEditContainer {
+        .userProfileEdit {
+            margin-top: 85vh;
+            width: 85vw;
+            padding: 30px 30px;
+            margin-left: 0px;
+        }
+    }
+}
