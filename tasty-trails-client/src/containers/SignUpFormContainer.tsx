@@ -20,6 +20,16 @@ const SignupFormContainer: React.FC = () => {
   const navigate = useNavigate(); 
   const dispatch = useDispatch();
 
+  const [formErrors, setFormErrors] = useState({
+    firstName: '',
+    lastName: '',
+    emailId: '',
+    userName: '',
+    password: '',
+  });
+
+  const [isFormValid, setIsFormValid] = useState(false);
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -27,37 +37,87 @@ const SignupFormContainer: React.FC = () => {
       ...prevData,
       [name]: value,
     }));
+
+    validateField(name, value);
   };
+
+  const validateField = (name: string, value: string) => {
+    let errorMessage = '';
+
+    switch (name) {
+      case 'firstName':
+      case 'lastName':
+        errorMessage = value.trim() === '' ? 'This field is required' : '';
+        break;
+      case 'emailId':
+        errorMessage = validateEmail(value);
+        break;
+      case 'userName':
+        errorMessage = value.trim() === '' ? 'Username is required' : '';
+        break;
+      case 'password':
+        errorMessage = validatePassword(value);
+        break;
+      default:
+        break;
+    }
+
+    setFormErrors((prevErrors) => ({
+      ...prevErrors,
+      [name]: errorMessage,
+    }));
+
+    updateFormValidity();
+  };
+
+  const validateEmail = (email: string) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ? '' : 'Invalid email address';
+  };
+
+  const validatePassword = (password: string) => {
+    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}$/;
+    return passwordRegex.test(password)
+      ? ''
+      : 'Password must contain one small letter, one uppercase letter, one symbol, one number, and be at least 8 characters long';
+  };
+
+  const updateFormValidity = () => {
+    const isValid = Object.values(formErrors).every((error) => error === '');
+    setIsFormValid(isValid);
+  };
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isFormValid) {
 
-    try {
-        const { firstName, lastName, ...restFormData } = formData;
-        const fullName = `${firstName} ${lastName}`;
-		console.log('in handle submit');
-  
-        const response = await createUser({ ...restFormData, fullName });
+      try {
+          const { firstName, lastName, ...restFormData } = formData;
+          const fullName = `${firstName} ${lastName}`;
+      console.log('in handle submit');
+    
+          const response = await createUser({ ...restFormData, fullName });
 
-      if (response.status === 200) {
-        console.log('User created successfully!');
-        // Add any additional logic after successful user creation
-        
-        const { userId, token } = {
-          userId: response.data.user._id,
-          token: response.data.token,
-        };
-        dispatch(setAuth({ userId, token }));
+        if (response.status === 200) {
+          console.log('User created successfully!');
+          // Add any additional logic after successful user creation
+          
+          const { userId, token } = {
+            userId: response.data.user._id,
+            token: response.data.token,
+          };
+          dispatch(setAuth({ userId, token }));
 
-        navigate('/posts', { state: { userId } });
-      } else {
+          navigate('/posts', { state: { userId } });
+        } else {
 
-        setErrorMessage('Failed to create user. Please try again.');
+          setErrorMessage('Failed to create user. Please try again.');
+        }
+      } catch (error) {
+        console.error('Error creating user:', error);
+        setErrorMessage('An error occurred while creating the user. Please try again.');
+        // Handle error as needed
       }
-    } catch (error) {
-      console.error('Error creating user:', error);
-      setErrorMessage('An error occurred while creating the user. Please try again.');
-      // Handle error as needed
     }
   };
 
@@ -72,13 +132,15 @@ const SignupFormContainer: React.FC = () => {
 
   return (
     <div>
-      {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
       <SignupForm 
         formData={formData} 
         onChange={handleChange} 
         onSubmit={handleSubmit} 
         onLoginClick={handleLoginClick}
         onGoogleSignup = {handleGoogleSignup}
+        formErrors={formErrors}
+        isFormValid={isFormValid}
+        errorMessage={errorMessage}
       />
     </div>
   );

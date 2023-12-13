@@ -13,14 +13,24 @@ interface SignupFormProps {
   onSubmit: (e: React.FormEvent) => void;
   onLoginClick: () => void;
   onGoogleSignup: () => void;
+  formErrors: {
+    firstName: string;
+    lastName: string;
+    emailId: string;
+    userName: string;
+    password: string;
+  };
+  isFormValid: boolean;
+  errorMessage: string | null;
 }
 
-const SignupForm: React.FC<SignupFormProps> = ({ formData, onChange, onSubmit, onLoginClick, onGoogleSignup }) => {
+const SignupForm: React.FC<SignupFormProps> = ({ formData, onChange, onSubmit, onLoginClick, onGoogleSignup, formErrors, isFormValid, errorMessage }) => {
   return (
     <div className={styles.coverImage}>
       <div className={styles.signupPage}>
         <img src={`${process.env.PUBLIC_URL}/assets/logo.svg`} alt="Tasty Trails Logo" className={styles.logo}/>
         <h1 className={styles.heading}>Sign Up</h1>
+        {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
         <form onSubmit={onSubmit} className={styles.signupForm}>
           <div className={styles.inputContainer}>
             <label htmlFor="firstName" className={styles.inputLabel}>First Name</label>
@@ -34,6 +44,7 @@ const SignupForm: React.FC<SignupFormProps> = ({ formData, onChange, onSubmit, o
               required
               className={styles.input}
             />
+            <div className={styles.errorMessage}>{formErrors.firstName}</div>
           </div>
           <div className={styles.inputContainer}>
             <label htmlFor="lastName" className={styles.inputLabel}>Last Name</label>
@@ -47,6 +58,7 @@ const SignupForm: React.FC<SignupFormProps> = ({ formData, onChange, onSubmit, o
               required
               className={styles.input}
             />
+            <div className={styles.errorMessage}>{formErrors.lastName}</div>
           </div>
           <div className={styles.inputContainer}>
             <label htmlFor="emailId" className={styles.inputLabel}>Email</label>
@@ -60,6 +72,7 @@ const SignupForm: React.FC<SignupFormProps> = ({ formData, onChange, onSubmit, o
               required
               className={styles.input}
             />
+            <div className={styles.errorMessage}>{formErrors.emailId}</div>
           </div>
           <div className={styles.inputContainer}>
             <label htmlFor="userName" className={styles.inputLabel}>Username</label>
@@ -73,6 +86,7 @@ const SignupForm: React.FC<SignupFormProps> = ({ formData, onChange, onSubmit, o
               required
               className={styles.input}
             />
+            <div className={styles.errorMessage}>{formErrors.userName}</div>
           </div>
           <div className={styles.inputContainer}>
             <label htmlFor="password" className={styles.inputLabel}>Password</label>
@@ -86,8 +100,9 @@ const SignupForm: React.FC<SignupFormProps> = ({ formData, onChange, onSubmit, o
               required
               className={styles.input}
             />
+            <div className={styles.errorMessage}>{formErrors.password}</div>
           </div>
-          <button type="submit" className={styles.signupButton}>Sign Up</button>
+          <button type="submit" className={styles.signupButton} disabled={!isFormValid}>Sign Up</button>
           <hr className={styles.signupDivision}/>
         </form>
         <div className={styles.secondarySignup}>
