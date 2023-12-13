@@ -57,7 +57,7 @@
   }
 }
 
-@media screen and (min-width: 600px) and (max-width: 914px) {
+@media screen and (min-width: $mobile-width) and (max-width: $tablet-width) {
   .parentContainer {
     width: 80vw;
     margin: 62vh auto 0 auto;
@@ -80,7 +80,7 @@
   }
 }
 
-@media screen and (max-width: 600px){
+@media screen and (max-width: $mobile-width){
   .parentContainer {
     width: 80vw;
     margin: 51vh auto 0 auto;

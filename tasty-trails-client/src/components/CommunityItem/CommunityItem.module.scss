@@ -68,7 +68,7 @@
     }
 }
 
-@media screen and (max-width: 914px) {
+@media screen and (max-width: $tablet-width) {
   .communityItem {
     flex-wrap: wrap;
     justify-content: center;

@@ -53,7 +53,7 @@
     }
 }
 
-@media screen and (min-width: 600px) and (max-width: 914px) {
+@media screen and (min-width: $mobile-width) and (max-width: $tablet-width) {
     .sidebar {
         width: 100%;
         position: absolute;
@@ -84,7 +84,7 @@
     }
 }
 
-@media screen and (max-width: 600px){
+@media screen and (max-width: $mobile-width){
     .sidebar {
         position: absolute;
         width: 100%;
