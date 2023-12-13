@@ -6,7 +6,7 @@ import { useNavigate} from 'react-router-dom';
 
 const UserProfileEditContainer: React.FC = () => {
 
-    const userId = useSelector((state: any) => state.auth.userId); // Adjust based on your state structure
+    const userId = useSelector((state: any) => state.auth.userId); 
 
     const [user, setUser] = useState({
         emailId: '',
@@ -18,6 +18,9 @@ const UserProfileEditContainer: React.FC = () => {
     const [imagePreviewUrl, setImagePreviewUrl] = useState<string>('');
     const navigate = useNavigate();
 
+    const [fullNameError, setFullNameError] = useState<string>('');
+    const [userNameError, setUserNameError] = useState<string>('');
+   
     useEffect(() => {
         if (userId) {
             fetchUserData();
@@ -28,7 +31,7 @@ const UserProfileEditContainer: React.FC = () => {
         try {
             const response = await getUserById(userId);
             setUser(response.data);
-            setImagePreviewUrl(response.data.image || ''); // Assuming the image is a URL
+            setImagePreviewUrl(response.data.image || ''); 
         } catch (error) {
             console.error('Failed to fetch user data:', error);
         }
@@ -56,23 +59,45 @@ const UserProfileEditContainer: React.FC = () => {
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
       
-         const data = {
-            "fullName":user.fullName,
-            "userName":user.userName,
-            "location":user.location,
-            ...(image && { image: image })
-        }
+        if(validateForm()) {
+            const data = {
+                "fullName":user.fullName,
+                "userName":user.userName,
+                "location":user.location,
+                ...(image && { image: image })
+            }
 
-        try {
-            await updateUser(userId,data);
-            alert('Profile updated successfully');
-            navigate('/profile');
-            
-        } catch (error) {
-            console.error('Error updating profile:', error);
-            alert('Error updating profile');
+            try {
+                await updateUser(userId,data);
+                alert('Profile updated successfully');
+                navigate('/profile');
+                
+            } catch (error) {
+                console.error('Error updating profile:', error);
+                alert('Error updating profile');
+            }
         }
     };
+
+    const validateForm = () => {
+        let isValid = true;
+    
+        if (!user.fullName?.trim()) {
+          setFullNameError('Full Name is required');
+          isValid = false;
+        } else {
+          setFullNameError('');
+        }
+    
+        if (!user.userName?.trim()) {
+          setUserNameError('Username is required');
+          isValid = false;
+        } else {
+          setUserNameError('');
+        }
+    
+        return isValid;
+      };
 
     const handleBack = () => {
         navigate('/profile');
@@ -97,6 +122,8 @@ const UserProfileEditContainer: React.FC = () => {
             onImageChange={handleImageChange}
             onSubmit={handleSubmit}
             onBack={handleBack}
+            fullNameError={fullNameError}
+            userNameError={userNameError}
         />
     );
 };
