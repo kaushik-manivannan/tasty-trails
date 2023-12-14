@@ -98,7 +98,7 @@ export const loginUser = async (req, res) => {
         const { user, token } = await userService.loginUser(userData);
         res.status(200).json({ user, token });
     } catch (err) {
-        responses.set400ErrorResponse(err, res);
+        responses.set401ErrorResponse(res, err.message);
     }
 };
 
