@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { setAuth } from '../auth/authSlice.ts';
 import LoginForm from '../components/LoginForm/LoginForm.tsx';
 import { loginUser } from '../api/index.js';
-import axios, { AxiosError } from 'axios';
+import { AxiosError } from 'axios';
 import { handleAxiosError } from '../service/server-error-handler.ts';
  
  

@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 import { getuserCommunities } from "../api/index.js";
 import { updatePost } from "../api/index.js";
+import { sendAlert } from "../service/alert-service.ts";
 
 /**
  * ModifyPostContainer is responsible for managing the state and logic
@@ -81,7 +82,7 @@ const ModifyPostContainer: React.FC<ModifyPostContainerProps> = ({ setIsOnEdit, 
       if (response.status !== 200) {
         throw new Error('Failed to update post');
       }
-      alert('Post updated successfully');
+      sendAlert('Post updated successfully', 'Success');
       setIsOnEdit(false); // Exit edit mode
       setPost(response.data);
     } catch (error) {

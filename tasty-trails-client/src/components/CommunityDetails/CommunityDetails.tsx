@@ -5,6 +5,7 @@ import styles from './CommunityDetails.module.scss';
 import { useTranslation } from 'react-i18next';
 
 import { Post } from "../../interfaces/post-interfaces";
+import { sendAlert } from "../../service/alert-service.ts";
 
 const CommunityDetails: React.FC<CommunityDetailsProps> = ({ community, postList, isEditable, updateCommunityById }) => {
     const [editedCommunityName, setEditedCommunityName] = useState(community.communityName);
@@ -45,7 +46,6 @@ const CommunityDetails: React.FC<CommunityDetailsProps> = ({ community, postList
         }
         try {
             await updateCommunityById(updatedCommunity);
-            setUpdateMessage("Community updated successfully!");
             setIsEditClicked(false);
         } catch (error) {
             setUpdateMessage("Community update failed!");
