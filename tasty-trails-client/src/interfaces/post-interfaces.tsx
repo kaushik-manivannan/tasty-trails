@@ -23,7 +23,7 @@ export interface PostItemProps {
 export interface PostListProps {
     posts: Post[];
     onSearch: (query: string) => void;
-    isLoading: boolean;
+    isLoading?: boolean;
 }
 
 export interface PostFormData {

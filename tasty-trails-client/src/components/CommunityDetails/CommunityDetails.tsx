@@ -3,7 +3,6 @@ import PostList from '../PostList/PostList';
 import { CommunityDetailsProps } from '../../interfaces/community-interfaces';
 import styles from './CommunityDetails.module.scss';
 import { useTranslation } from 'react-i18next';
-
 import { Post } from "../../interfaces/post-interfaces";
 
 const CommunityDetails: React.FC<CommunityDetailsProps> = ({ community, postList, isEditable, updateCommunityById }) => {
@@ -17,7 +16,7 @@ const CommunityDetails: React.FC<CommunityDetailsProps> = ({ community, postList
         setEditedCommunityName(event.target.value);
     };
 
-    const handleCommunityDescriptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleCommunityDescriptionChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setEditedCommunityDescription(event.target.value);
     };
 
@@ -101,7 +100,6 @@ const CommunityDetails: React.FC<CommunityDetailsProps> = ({ community, postList
                         </label>
                         <textarea
                             id="communityDescription"
-                            type="text"
                             value={editedCommunityDescription}
                             onChange={handleCommunityDescriptionChange}
                             className={styles.textarea} 
