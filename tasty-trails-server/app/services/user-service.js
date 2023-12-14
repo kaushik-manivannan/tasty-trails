@@ -157,11 +157,14 @@ export const authenticateUser = async (userName, password) => {
         const user = await User.findOne({ userName });
         if(user) {
             const isPasswordValid = await user.comparePassword(password);
+            if(!isPasswordValid) {
+                throw new TastyTrialsError("Invalidpassword");
+            }
         }
 
         return user;
     } catch (error) {
-        throw new TastyTrialsError('Error authenticating user');
+        throw new TastyTrialsError('Invalid Username or password');
     }
 };
 
