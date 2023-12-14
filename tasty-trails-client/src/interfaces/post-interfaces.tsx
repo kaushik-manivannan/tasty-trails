@@ -23,7 +23,7 @@ export interface PostItemProps {
 export interface PostListProps {
     posts: Post[];
     onSearch: (query: string) => void;
-    isLoading: boolean;
+    isLoading?: boolean;
 }
 
 export interface PostFormData {
@@ -56,10 +56,12 @@ export interface PostFormProps {
 export interface ModifyPostContainerProps{
   setIsOnEdit: Function;
   post: Post;
+  setPost: any;
 }
 
 export interface PostDetailsProps{
   post: Post;
   onDelete: Function;
   canModify: boolean;
+  setPost?: Function;
 }

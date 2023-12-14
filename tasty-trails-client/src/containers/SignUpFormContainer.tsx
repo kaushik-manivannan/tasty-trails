@@ -4,6 +4,7 @@ import { createUser} from '../api/index.js';
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { setAuth } from '../auth/authSlice.ts';
+import { sendAlert } from '../service/alert-service.ts';
  
 const SignupFormContainer: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -95,14 +96,17 @@ const SignupFormContainer: React.FC = () => {
       try {
           const { firstName, lastName, ...restFormData } = formData;
           const fullName = `${firstName} ${lastName}`;
-      console.log('in handle submit');
    
           const response = await createUser({ ...restFormData, fullName });
- 
+        
+        if(response.data.error) {
+          setErrorMessage(response.data.error);
+          return;
+        }
+
         if (response.status === 200) {
-          console.log('User created successfully!');
-          // Add any additional logic after successful user creation
-         
+          
+          
           const { userId, token } = {
             userId: response.data.user._id,
             token: response.data.token,
@@ -110,6 +114,8 @@ const SignupFormContainer: React.FC = () => {
           dispatch(setAuth({ userId, token }));
  
           navigate('/posts', { state: { userId } });
+          sendAlert("Signed Up Successfully!", "Success");
+          
         } else {
  
           setErrorMessage('Failed to create user. Please try again.');
@@ -117,7 +123,6 @@ const SignupFormContainer: React.FC = () => {
       } catch (error) {
         console.error('Error creating user:', error);
         setErrorMessage('An error occurred while creating the user. Please try again.');
-        // Handle error as needed
       }
     }
   };

@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import { getuserCommunities } from "../api/index.js";
 import { createPost } from "../api/index.js";
 import { useNavigate } from 'react-router-dom';
+import { sendAlert } from "../service/alert-service.ts";
 
 /**
  * CreatePostContainer component is responsible for the creation of a new post.
@@ -62,7 +63,7 @@ const CreatePostContainer: React.FC = () => {
       }
       
       // Display success message and navigate back to the home page
-      alert('Post created successfully');
+      sendAlert("Post Created Successfully", "Success");
       navigate(-1);
     } catch (error) {
       console.error('Failed to create post');

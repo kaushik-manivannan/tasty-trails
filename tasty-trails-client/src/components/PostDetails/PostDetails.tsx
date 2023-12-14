@@ -7,7 +7,7 @@ import CommentListContainer from '../../containers/CommentListContainer';
 import TimeAgo from 'react-timeago';
 
 // Functional component for displaying post details
-const PostDetails: React.FC<PostDetailsProps> = ({ post, onDelete, canModify }) => {
+const PostDetails: React.FC<PostDetailsProps> = ({ post, onDelete, canModify,setPost }) => {
   // State to track whether the post is in edit mode
   const [isOnEdit, setIsOnEdit] = useState(false);
 
@@ -34,7 +34,7 @@ const PostDetails: React.FC<PostDetailsProps> = ({ post, onDelete, canModify }) 
   }, []);
 
   return (
-    <div className={styles.postDetails}>
+    <section className={styles.postDetails}>
       {/* Back Button */}
       <button onClick={() => navigate(-1)} className={styles.backButton}>
         <img src={`${process.env.PUBLIC_URL}/assets/back-arrow.svg`} alt="Back Button" />
@@ -106,10 +106,10 @@ const PostDetails: React.FC<PostDetailsProps> = ({ post, onDelete, canModify }) 
       ) : (
         <>
           {/* Displaying ModifyPostFormContainer when in edit mode */}
-          <ModifyPostFormContainer setIsOnEdit={(isOnEdit: boolean) => setIsOnEdit(isOnEdit)} post={post} />
+          <ModifyPostFormContainer setIsOnEdit={(isOnEdit: boolean) => setIsOnEdit(isOnEdit)} post={post} setPost={setPost}/>
         </>
       )}
-    </div>
+    </section>
   );
 };
 

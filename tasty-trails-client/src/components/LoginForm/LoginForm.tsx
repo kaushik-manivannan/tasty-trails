@@ -30,10 +30,12 @@ const LoginForm: React.FC<LoginFormProps> = ({ formData, onChange, onSubmit, onS
  
         {/* Heading for the login form */}
         <h1 className={styles.heading}>{t('Sign in to Tasty Trails')}</h1>
-        {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
  
         {/* Login form */}
         <form onSubmit={onSubmit} className={styles.loginForm}>
+
+          {errorMessage && <p className={styles.commonErrorMessage}>{errorMessage}</p>}
+
           {/* Username input */}
           <div className={styles.inputContainer}>
             <label htmlFor="userName" className={styles.inputLabel}>{t('Username')}</label>
@@ -44,7 +46,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ formData, onChange, onSubmit, onS
               value={formData.userName}
               onChange={onChange}
               placeholder={t('Enter your username')}
-              required
+              
               className={styles.input}
             />
             <div className={styles.errorMessage}>{usernameError}</div>
@@ -60,7 +62,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ formData, onChange, onSubmit, onS
               value={formData.password}
               onChange={onChange}
               placeholder={t('Enter your password')}
-              required
+              
               className={styles.input}
             />
             <div className={styles.errorMessage}>{passwordError}</div>
@@ -75,8 +77,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ formData, onChange, onSubmit, onS
  
         {/* Secondary login option (Sign in with Google) */}
         <div className={styles.secondaryLogin}>
-          <button type="submit" className={styles.secondaryLoginButton} onClick={onGoogleLogin}>
-            {t('Sign in with Google')}
+          <button type="submit" className={styles.secondaryLoginButton} onClick={onGoogleLogin}>{t("Sign in with Google")}
           </button>
         </div>
  

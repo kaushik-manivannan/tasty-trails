@@ -13,7 +13,6 @@ passport.use(new GoogleStrategy({
   
   // Callback function when Google authentication is successful
   function(request, accessToken, refreshToken, profile, done) {
-    console.log("in google user function");
     
       // Creating a simplified user object from Google profile data
       const user = {

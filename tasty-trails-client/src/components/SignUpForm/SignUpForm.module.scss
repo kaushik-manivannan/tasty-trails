@@ -43,6 +43,12 @@
             align-items: center;
             gap: 10px;
 
+            .commonErrorMessage {
+                color: $accent-color;
+                font-size: 0.9rem;
+                margin-bottom: 10px;
+            }
+
             .inputContainer {
                 @include flexbox(flex, column);
                 margin: 15px 0;

@@ -3,7 +3,6 @@ import PostList from '../PostList/PostList';
 import { CommunityDetailsProps } from '../../interfaces/community-interfaces';
 import styles from './CommunityDetails.module.scss';
 import { useTranslation } from 'react-i18next';
-
 import { Post } from "../../interfaces/post-interfaces";
 
 const CommunityDetails: React.FC<CommunityDetailsProps> = ({ community, postList, isEditable, updateCommunityById }) => {
@@ -17,7 +16,7 @@ const CommunityDetails: React.FC<CommunityDetailsProps> = ({ community, postList
         setEditedCommunityName(event.target.value);
     };
 
-    const handleCommunityDescriptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleCommunityDescriptionChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setEditedCommunityDescription(event.target.value);
     };
 
@@ -45,7 +44,6 @@ const CommunityDetails: React.FC<CommunityDetailsProps> = ({ community, postList
         }
         try {
             await updateCommunityById(updatedCommunity);
-            setUpdateMessage("Community updated successfully!");
             setIsEditClicked(false);
         } catch (error) {
             setUpdateMessage("Community update failed!");
@@ -70,8 +68,8 @@ const CommunityDetails: React.FC<CommunityDetailsProps> = ({ community, postList
     const { t } = useTranslation();
 
     return (
-        <div className={styles.parentContainer}>
-            <div className={styles.communityDetailsContainer}>
+        <section className={styles.parentContainer}>
+            <article className={styles.communityDetailsContainer}>
                 <h2 className={styles.communityDetailsHeading}>{t('Community Details')}</h2>
                 {updateMessage && (
                     <div className={styles.updateMessage}>
@@ -100,12 +98,12 @@ const CommunityDetails: React.FC<CommunityDetailsProps> = ({ community, postList
                             className={styles.inputLabel}>
                             {t('Community Description')}
                         </label>
-                        <input
+                        <textarea
                             id="communityDescription"
-                            type="text"
                             value={editedCommunityDescription}
                             onChange={handleCommunityDescriptionChange}
-                            className={styles.input} />
+                            className={styles.textarea} 
+                            style = {{resize: "none"}}/>
                     </div>
                 </>
                 ) : (<>
@@ -139,14 +137,14 @@ const CommunityDetails: React.FC<CommunityDetailsProps> = ({ community, postList
                         </div>
                     )
                 )}
-            </div>
-            <div className={styles.postListContainer}>
+            </article>
+            <section className={styles.postListContainer}>
                 <h2 className={styles.heading}>{`${community.communityName} ${t('Posts')}`}</h2>
                 <div className={styles.postList}>
                     <PostList posts={filteredPosts} onSearch={onSearch} />
                 </div>
-            </div>
-        </div>
+            </section>
+        </section>
     )
 }
 

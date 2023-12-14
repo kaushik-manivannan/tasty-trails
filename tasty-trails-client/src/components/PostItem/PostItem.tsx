@@ -34,7 +34,7 @@ const PostItem: React.FC<PostItemProps> = ({ post }) => {
   }, []);
 
   return (
-    <div className={styles.cardLink} onClick={handleOnClick}>
+    <article className={styles.cardLink} onClick={handleOnClick}>
       <div className={styles.card}>
         {/* Displaying the post image */}
         <img src={post.image} className={styles.image} />
@@ -78,7 +78,7 @@ const PostItem: React.FC<PostItemProps> = ({ post }) => {
           </div>
         </div>
       </div>
-    </div>
+    </article>
   );
 };
 

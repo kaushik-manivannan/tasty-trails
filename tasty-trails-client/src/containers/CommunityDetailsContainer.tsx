@@ -4,6 +4,7 @@ import CommunityDetails from '../components/CommunityDetails/CommunityDetails.ts
 import { getAllCommunityDetailsById } from '../api/index.js';
 import { useSelector } from 'react-redux';
 import { updateCommunityById } from '../api/index.js';
+import { sendAlert } from "../service/alert-service.ts";
 
 const CommunityDetailsContainer: React.FC = () => {
     const [community, setCommunity] = useState(null); // Stores the details of the community
@@ -17,9 +18,11 @@ const CommunityDetailsContainer: React.FC = () => {
         try {
             const response = await updateCommunityById(communityId, payload);
             if (response.status !== 200) {
+                sendAlert("Failed Updating Community!", "Failure");
                 throw new Error(`Error occurred while updating community: ${response.data}`);
             }
             setCommunity(response.data);
+            sendAlert("Community Updated Successfully!", "Success");
         } catch (error) {
             console.error("Error updating community: ", error);
         }
@@ -39,7 +42,7 @@ const CommunityDetailsContainer: React.FC = () => {
                 setIsEditable(true);
             }
         } catch (error) {
-            console.log("Error fetching CommunityDetails: ", error);
+            throw new Error(`Error fetching Community Details: ${error}`);
         }
     };
 
@@ -49,7 +52,7 @@ const CommunityDetailsContainer: React.FC = () => {
             try {
                 await fetchPostByCommunityId();
             } catch (error) {
-                console.log("Error fetching data: ", error);
+              throw new Error(`Error fetching Post: ${error}`);
             }
         };
 
