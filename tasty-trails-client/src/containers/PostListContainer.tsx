@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
 import PostList from '../components/PostList/PostList.tsx';
 import { getAllPosts } from '../api/index.js';
+import { setPosts } from '../auth/PostSlice.ts';
 import { Post } from '../interfaces/post-interfaces.tsx';
 
 /**
@@ -8,7 +10,7 @@ import { Post } from '../interfaces/post-interfaces.tsx';
  * Fetches posts from the API and provides search functionality.
  */
 const PostListContainer: React.FC = () => {
-  const [posts, setPosts] = useState([]);
+  const [localPosts, setLocalPosts] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
@@ -18,7 +20,7 @@ const PostListContainer: React.FC = () => {
   };
 
   // Filters posts based on the search query
-  const filteredPosts = posts.filter((post: Post) =>
+  const filteredPosts = localPosts.filter((post: Post) =>
     post.description.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
@@ -32,7 +34,7 @@ const PostListContainer: React.FC = () => {
           setIsLoading(false);
           throw new Error('Failed to fetch posts.');
         }
-        setPosts(response.data);
+        setLocalPosts(response.data);
         setIsLoading(false);
       } catch (error) {
         setIsLoading(false);
@@ -47,4 +49,12 @@ const PostListContainer: React.FC = () => {
   return <PostList posts={filteredPosts} onSearch={handleSearch} isLoading={isLoading} />;
 };
 
-export default PostListContainer;
+const mapStateToProps = (state:any) => ({
+  posts: state.post.posts,
+});
+
+const mapDispatchToProps = {
+  setPosts,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostListContainer);
