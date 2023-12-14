@@ -41,6 +41,8 @@ const SignupForm: React.FC<SignupFormProps> = ({ formData, onChange, onSubmit, o
  
         {/* Signup Form */}
         <form onSubmit={onSubmit} className={styles.signupForm}>
+          {errorMessage && <p className={styles.commonErrorMessage}>{errorMessage}</p>}
+
           {/* First Name Input */}
           <div className={styles.inputContainer}>
             <label htmlFor="firstName" className={styles.inputLabel}>{t('First Name')}</label>

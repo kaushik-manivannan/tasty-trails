@@ -30,10 +30,12 @@ const LoginForm: React.FC<LoginFormProps> = ({ formData, onChange, onSubmit, onS
  
         {/* Heading for the login form */}
         <h1 className={styles.heading}>{t('Sign in to Tasty Trails')}</h1>
-        {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
  
         {/* Login form */}
         <form onSubmit={onSubmit} className={styles.loginForm}>
+
+          {errorMessage && <p className={styles.commonErrorMessage}>{errorMessage}</p>}
+
           {/* Username input */}
           <div className={styles.inputContainer}>
             <label htmlFor="userName" className={styles.inputLabel}>{t('Username')}</label>
