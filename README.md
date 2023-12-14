@@ -51,7 +51,7 @@ For users, Tasty Trails means more than just access to surplus food; it's an opp
   Secure your account and personalize your Tasty Trails experience with user authentication.
 
 ## Object Model Diagram
-<img src="assets/tastytrails-updated.svg">
+<img src="assets/tastytrails.svg">
 
 ## Tech Stack
 

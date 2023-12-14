@@ -45,7 +45,6 @@ const CommunityDetails: React.FC<CommunityDetailsProps> = ({ community, postList
         }
         try {
             await updateCommunityById(updatedCommunity);
-            setUpdateMessage("Community updated successfully!");
             setIsEditClicked(false);
         } catch (error) {
             setUpdateMessage("Community update failed!");
