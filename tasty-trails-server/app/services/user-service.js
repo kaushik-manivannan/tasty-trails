@@ -15,10 +15,15 @@ import { sendEmail } from "../middleware/email.js";
  */
 export const createUser = async (newUserData) => {
     try {
-        const user = await User.findOne({ userName: newUserData.userName });
-        if (user) {
-            
-            return {user: user, error:'User already exists'};
+        const existingUser = await User.findOne({ userName: newUserData.userName });
+        if (existingUser) {
+            return { user: existingUser, error: 'User already exists with the username' };
+        }
+
+        // Check if a user with the same email exists
+        const existingEmailUser = await User.findOne({ emailId: newUserData.emailId });
+        if (existingEmailUser) {
+            return { user: existingEmailUser, error: 'Email already in use' };
         }
 
         // Hash the password before saving it to the database
@@ -128,7 +133,11 @@ export const loginUser = async (userData) => {
 
         return { user, token };
     } catch (error) {
-                throw new Error('Error during login');
+        if (error instanceof TastyTrialsError) { 
+            throw error;
+        } else {
+            throw new Error('Error Loggin a user user');
+        }
     }
 };
 
@@ -144,21 +153,15 @@ export const loginUser = async (userData) => {
  */
 export const authenticateUser = async (userName, password) => {
     try {
-                const user = await User.findOne({ userName });
-
-        if (!user) {
-            throw new TastyTrialsError('User not found');
-        }
-
-        const isPasswordValid = await user.comparePassword(password);
-
-        if (!isPasswordValid) {
-            throw new TastyTrialsError('Incorrect password');
+        
+        const user = await User.findOne({ userName });
+        if(user) {
+            const isPasswordValid = await user.comparePassword(password);
         }
 
         return user;
     } catch (error) {
-                throw new TastyTrialsError('Error authenticating user');
+        throw new TastyTrialsError('Error authenticating user');
     }
 };
 
