@@ -8,7 +8,7 @@
     "Signup": "Signup",
     "Enter your username": "Enter your username",
     "Enter your password":"Enter your password",
-    "Sign up with Google": "Sign up with Google",
+    "Sign in with Google": "Sign in with Google",
     "Logout": "Logout",
     "Home": "Home",
     "Sign in to Tasty Trails":"Sign in to Tasty Trails",
@@ -59,5 +59,6 @@
     "Save Changes": "Save Changes",
     "Your Profile": "Your Profile",
     "Edit Profile": "Edit Profile",
-    "View":"View"
+    "View":"View",
+    "Don't have an account?": "Don't have an account?"
 }

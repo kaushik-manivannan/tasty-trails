@@ -4,6 +4,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import ModifyPostForm from "../components/ModifyPostForm/ModifyPostForm";
 import { PostFormData, ModifyPostContainerProps } from "../interfaces/post-interfaces";
 import { useSelector } from 'react-redux';
+import { useNavigate } from "react-router-dom";
 import { getuserCommunities } from "../api/index.js";
 import { updatePost } from "../api/index.js";
 
@@ -11,7 +12,7 @@ import { updatePost } from "../api/index.js";
  * ModifyPostContainer is responsible for managing the state and logic
  * related to modifying a post. It interacts with the API to perform post updates.
  */
-const ModifyPostContainer: React.FC<ModifyPostContainerProps> = ({ setIsOnEdit, post }) => {
+const ModifyPostContainer: React.FC<ModifyPostContainerProps> = ({ setIsOnEdit, post,setPost }) => {
   // Form state and validation using react-hook-form
   const { register, handleSubmit, formState: { errors }, setValue } = useForm<PostFormData>({
     mode: 'onChange',
@@ -23,6 +24,8 @@ const ModifyPostContainer: React.FC<ModifyPostContainerProps> = ({ setIsOnEdit, 
 
   // User ID from Redux store
   const userId = useSelector((state: any) => state.auth.userId);
+
+  const navigate = useNavigate();
 
   // Function to fetch all communities of the user
   const fetchUserCommunities = async () => {
@@ -80,6 +83,7 @@ const ModifyPostContainer: React.FC<ModifyPostContainerProps> = ({ setIsOnEdit, 
       }
       alert('Post updated successfully');
       setIsOnEdit(false); // Exit edit mode
+      setPost(response.data);
     } catch (error) {
       console.error('Failed to update post');
     }
