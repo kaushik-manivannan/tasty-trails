@@ -100,12 +100,13 @@ const CommunityDetails: React.FC<CommunityDetailsProps> = ({ community, postList
                             className={styles.inputLabel}>
                             {t('Community Description')}
                         </label>
-                        <input
+                        <textarea
                             id="communityDescription"
                             type="text"
                             value={editedCommunityDescription}
                             onChange={handleCommunityDescriptionChange}
-                            className={styles.input} />
+                            className={styles.textarea} 
+                            style = {{resize: "none"}}/>
                     </div>
                 </>
                 ) : (<>

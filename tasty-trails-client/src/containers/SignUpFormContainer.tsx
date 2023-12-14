@@ -97,10 +97,15 @@ const SignupFormContainer: React.FC = () => {
           const fullName = `${firstName} ${lastName}`;
    
           const response = await createUser({ ...restFormData, fullName });
- 
+        
+        if(response.data.error) {
+          setErrorMessage(response.data.error);
+          return;
+        }
+
         if (response.status === 200) {
           
-          // Add any additional logic after successful user creation
+          
           const { userId, token } = {
             userId: response.data.user._id,
             token: response.data.token,
@@ -115,7 +120,6 @@ const SignupFormContainer: React.FC = () => {
       } catch (error) {
         console.error('Error creating user:', error);
         setErrorMessage('An error occurred while creating the user. Please try again.');
-        // Handle error as needed
       }
     }
   };

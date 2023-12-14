@@ -44,7 +44,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ formData, onChange, onSubmit, onS
               value={formData.userName}
               onChange={onChange}
               placeholder={t('Enter your username')}
-              required
+              
               className={styles.input}
             />
             <div className={styles.errorMessage}>{usernameError}</div>
@@ -60,7 +60,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ formData, onChange, onSubmit, onS
               value={formData.password}
               onChange={onChange}
               placeholder={t('Enter your password')}
-              required
+              
               className={styles.input}
             />
             <div className={styles.errorMessage}>{passwordError}</div>
