@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { getPost } from '../api/index.js';
-import {Post} from '../interfaces/post-interfaces';
 import PostDetails from '../components/PostDetails/PostDetails.tsx';
 import { useNavigate, useParams } from 'react-router-dom';
 import {useSelector} from 'react-redux';
 import {deletePost} from '../api/index.js';
+import { sendAlert } from '../service/alert-service.ts';
 
 /**
  * This component is called when you want to view the details of a specific post
@@ -22,6 +22,7 @@ const PostDetailsContainer: React.FC = () => {
     const response = await deletePost(postId);
     if (response.status === 204) {
       navigate(-1);
+      sendAlert("Post Deleted Successfully!", "Success");
     }else{
       throw new Error("some error occured while deleting the post");
     }}catch(error){

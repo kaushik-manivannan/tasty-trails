@@ -32,7 +32,7 @@ const NewCommentContainer: React.FC<NewCommentContainerProps> = ({ userId, userN
   // Function to convert an image file to base64 format
   const imageToBase64 = (file: File) => {
     return new Promise<string>((resolve, reject) => {
-      const reader = new FileReader();
+      const reader: any = new FileReader();
       reader.onloadend = () => {
         resolve(reader.result.toString().split(",")[1] || '');
       };

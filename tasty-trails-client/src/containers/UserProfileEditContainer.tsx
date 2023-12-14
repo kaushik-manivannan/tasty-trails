@@ -3,6 +3,7 @@ import { useSelector} from 'react-redux';
 import UserProfileEditComponent from '../components/UserProfile/UserProfileEditComponent.tsx';
 import { getUserById, updateUser } from '../api/index.js';
 import { useNavigate} from 'react-router-dom';
+import { sendAlert } from '../service/alert-service.ts';
  
 const UserProfileEditContainer: React.FC = () => {
  
@@ -69,12 +70,10 @@ const UserProfileEditContainer: React.FC = () => {
  
             try {
                 await updateUser(userId,data);
-                alert('Profile updated successfully');
                 navigate('/profile');
-               
+                sendAlert("Profile Updated Successfully", "Success");
             } catch (error) {
-                console.error('Error updating profile:', error);
-                alert('Error updating profile');
+                sendAlert('Error updating profile', 'Failure');
             }
         }
     };
