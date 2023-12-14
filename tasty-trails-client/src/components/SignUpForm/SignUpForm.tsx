@@ -34,7 +34,6 @@ const SignupForm: React.FC<SignupFormProps> = ({ formData, onChange, onSubmit, o
       <div className={styles.signupPage}>
         {/* Tasty Trails Logo */}
         <img src={`${process.env.PUBLIC_URL}/assets/logo.svg`} alt="Tasty Trails Logo" className={styles.logo}/>
-        {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
  
         {/* Heading */}
         <h1 className={styles.heading}>{t('Sign Up')}</h1>
