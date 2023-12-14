@@ -56,10 +56,12 @@ export interface PostFormProps {
 export interface ModifyPostContainerProps{
   setIsOnEdit: Function;
   post: Post;
+  setPost: Function;
 }
 
 export interface PostDetailsProps{
   post: Post;
   onDelete: Function;
   canModify: boolean;
+  setPost?: Function;
 }

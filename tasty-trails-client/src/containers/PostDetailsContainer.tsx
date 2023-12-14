@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getPost } from '../api/index.js';
+import {Post} from '../interfaces/post-interfaces';
 import PostDetails from '../components/PostDetails/PostDetails.tsx';
 import { useNavigate, useParams } from 'react-router-dom';
 import {useSelector} from 'react-redux';
@@ -48,7 +49,7 @@ const PostDetailsContainer: React.FC = () => {
     fetchPostById();
   }, [postId]);
 
-  return <>{post && <PostDetails post={post} onDelete={onDelete} canModify={canModify} />}</>;
+  return <>{post && <PostDetails post={post} onDelete={onDelete} canModify={canModify} setPost={(updatedPost:any)=>setPost(updatedPost)} />}</>;
 };
 
 export default PostDetailsContainer;
