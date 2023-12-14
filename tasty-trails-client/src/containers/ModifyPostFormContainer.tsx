@@ -4,7 +4,6 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import ModifyPostForm from "../components/ModifyPostForm/ModifyPostForm";
 import { PostFormData, ModifyPostContainerProps } from "../interfaces/post-interfaces";
 import { useSelector } from 'react-redux';
-import { useNavigate } from "react-router-dom";
 import { getuserCommunities } from "../api/index.js";
 import { updatePost } from "../api/index.js";
 import { sendAlert } from "../service/alert-service.ts";
@@ -25,8 +24,6 @@ const ModifyPostContainer: React.FC<ModifyPostContainerProps> = ({ setIsOnEdit, 
 
   // User ID from Redux store
   const userId = useSelector((state: any) => state.auth.userId);
-
-  const navigate = useNavigate();
 
   // Function to fetch all communities of the user
   const fetchUserCommunities = async () => {

@@ -20,7 +20,7 @@ import { useTranslation } from'react-i18next';
 import UserProfileViewPage from './views/UserProfileViewPage/UserProfileViewPage.tsx';
 import UserProfileEditPage from './views/UserProfileEditPage/UserProfileEditPage.tsx';
 import GoogleOAuthSuccess from './containers/GoogleOAuthSuccess.tsx';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
  
 const protectedRoutes = [
   { path: '/posts', component: LandingPage },
