@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import NewComment from '../components/NewComment/NewComment.tsx';
 import { NewCommentContainerProps } from '../interfaces/newComment-interfaces';
+import { createComment } from '../api/index.js';
 
 // NewCommentContainer component to manage the state and logic for NewComment
 const NewCommentContainer: React.FC<NewCommentContainerProps> = ({ userId, userName, postId, addComment, userImage }) => {
@@ -64,7 +65,8 @@ const NewCommentContainer: React.FC<NewCommentContainerProps> = ({ userId, userN
   };
 
   // Handler for adding a new comment to the server
-  const addCommentHandler = (commentWithEmoji: string, selectedImage: string) => {
+  const addCommentHandler = async (commentWithEmoji: string, selectedImage: string) => {
+    
     const newComment = {
       userId,
       postId,
@@ -75,23 +77,19 @@ const NewCommentContainer: React.FC<NewCommentContainerProps> = ({ userId, userN
       userImage: userImage,
     };
     // Send a POST request to save the new comment
-    fetch('http://localhost:8080/comments', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(newComment),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        addComment(data);
-        setComment('');
+    try {
+    const response = await createComment(newComment);
 
-      })
-      .catch((error) => {
-        console.error('Error adding comment:', error);
-      });
-  };
+      if (response.status === 201) {
+        addComment(response.data);
+        setComment('');
+      } else {
+        throw new Error(`Error adding comment: ${response.data}`);
+      }
+    } catch (error) {
+      console.error('Error adding comment:', error);
+    }
+}
 
   // Render the NewComment component with the appropriate props
   return (

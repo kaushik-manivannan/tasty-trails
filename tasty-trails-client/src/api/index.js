@@ -44,3 +44,4 @@ export const getAllCommentsByPostId = (postId) => API.get(`/comments/${postId}`)
 export const getAllCommentsByUserId = (userId) => API.get(`/users/${userId}`);
 export const updateCommentById = (id,data) => API.put(`/comments/${id}`,data);
 export const createComment = (data) => API.post(`/comments`,data);
+export const deleteCommentById = (id) => API.delete(`/comments/${id}`);

@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import CommentList from '../components/CommentList/CommentList.tsx';
 import NewCommentContainer from './NewCommentContainer.tsx';
 import { Comment } from '../interfaces/comment-interfaces';
-import { getAllCommentsByPostId, getAllCommentsByUserId, updateCommentById } from '../api/index.js';
+import { getAllCommentsByPostId, getAllCommentsByUserId, updateCommentById, deleteCommentById } from '../api/index.js';
  
 // Define the CommentListContainer component
 const CommentListContainer: React.FC = () => {
@@ -77,21 +77,21 @@ const CommentListContainer: React.FC = () => {
   };
   
   // Function to delete a comment using an API call
-  const deleteComment = (commentId: { $oid: string; }) => {
-    // Implement delete logic
-    fetch(`http://localhost:8080/comments/${commentId}`, {
-      method: 'DELETE',
-    })
-      .then((response) => response.json())
-      .then((data) => {
+    const deleteComment = async (commentId: { $oid: string }) => {
+      try {
+        const response = await deleteCommentById(commentId);
+        if(response.status!== 200){
+          throw new Error(`Error occured while deleting the comment with response : ${response.data}`);
+        }
         setComments((prevComments) =>
-          prevComments.filter((comment) => comment._id !== commentId)
+      prevComments.filter((comment) => comment._id !== commentId)
         );
-      })
-      .catch((error) => {
-        console.error('Error deleting comment:', error);
-      });
-  };
+      } catch (error) {
+        throw new Error(`Error Deleting Comments: ${error}`);
+      }
+    };
+
+    // Implement delete logic
   
   // Render the CommentList and NewCommentContainer components
   return (
