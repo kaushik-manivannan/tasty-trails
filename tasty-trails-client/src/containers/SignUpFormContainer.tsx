@@ -4,6 +4,7 @@ import { createUser} from '../api/index.js';
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { setAuth } from '../auth/authSlice.ts';
+import { sendAlert } from '../service/alert-service.ts';
  
 const SignupFormContainer: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -113,6 +114,8 @@ const SignupFormContainer: React.FC = () => {
           dispatch(setAuth({ userId, token }));
  
           navigate('/posts', { state: { userId } });
+          sendAlert("Signed Up Successfully!", "Success");
+          
         } else {
  
           setErrorMessage('Failed to create user. Please try again.');
