@@ -7,7 +7,7 @@ Welcome to Tasty Trails, a purpose-driven web application designed to foster com
 For users, Tasty Trails means more than just access to surplus food; it's an opportunity to discover and enjoy delicious meals while promoting sustainability in the community. Our primary goal is to target those in need, ensuring that both food providers and recipients find mutual benefit through this platform. By connecting surplus food providers with those facing food insecurity, Tasty Trails strives to create a space where every shared meal makes a meaningful impact on individuals and communities.
 
 ## Demo Video
-https://github.com/kaushik-manivannan/tasty-trails/assets/144855772/b4dfea66-9fce-4081-b07b-73d2bb49bc17
+https://github.com/kaushik-manivannan/tasty-trails/assets/144855772/64b9fd56-ea19-416c-9431-3dd6ce3ec1a6
 
 ## Key Features
 
